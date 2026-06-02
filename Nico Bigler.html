@@ -25,40 +25,74 @@ body.body-loaded{opacity:1;}
 img{display:block;}
 a{color:inherit;text-decoration:none;}
 ::selection{background:var(--white);color:var(--onyx);}
+@media(hover:hover){html{cursor:none;}a,button{cursor:none;}}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:var(--onyx);border-bottom:1px solid transparent;display:flex;align-items:center;justify-content:space-between;padding:0 var(--mx);transform:translateY(-100%);transition:border-bottom-color .3s ease;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:9001;height:56px;background:var(--onyx);border-bottom:1px solid transparent;display:flex;align-items:center;justify-content:space-between;padding:0 var(--mx);transform:translateY(-100%);transition:border-bottom-color .3s ease;}
 .nav.nav-loaded{transform:translateY(0);transition:transform .5s var(--ease) .2s,border-bottom-color .3s ease;}
 .nav.nav-scrolled{border-bottom-color:var(--charcoal);}
 .nav-brand{font-family:'Inter',sans-serif;font-size:13px;white-space:nowrap;}
 .nav-brand strong{font-weight:600;color:var(--pale-light);}
 .nav-brand em{font-style:normal;font-weight:400;color:var(--charcoal);}
-.nav-links{display:flex;gap:32px;align-items:center;}
-.nav-link{font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:0.06em;color:var(--pale-slate);padding-bottom:3px;border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease;}
-.nav-link:hover{color:var(--pale-light);}
-.nav-link.active{color:var(--white);border-bottom-color:var(--white);}
+
+/* HAMBURGER */
+.hamburger{background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;z-index:10;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--pale-slate);transition:transform .3s ease,opacity .2s ease,background .2s;}
+.hamburger:hover span{background:var(--white);}
+.hamburger.hamburger-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.hamburger-open span:nth-child(2){opacity:0;}
+.hamburger.hamburger-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MEGA MENU */
+.mega-menu{position:fixed;inset:0;z-index:9000;background:var(--onyx);opacity:0;pointer-events:none;transition:opacity .4s ease;display:grid;grid-template-columns:1fr 1.2fr 0.8fr;column-gap:48px;padding:0 var(--mx) 80px;}
+.mega-menu.mega-open{opacity:1;pointer-events:auto;}
+.mega-col{padding-top:80px;display:flex;flex-direction:column;}
+.mega-logo{font-family:'Inter',sans-serif;font-weight:900;font-size:24px;color:var(--white);}
+.mega-center{gap:0;}
+.menu-link{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:48px;color:var(--pale-light);padding:8px 0;opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .2s;}
+.mega-open .menu-link{opacity:1;transform:translateY(0);}
+.mega-open .menu-link:hover{color:var(--white);transform:translateX(8px);}
+.mega-right{justify-content:space-between;}
+.mega-section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);margin-bottom:12px;}
+.mega-side-link{display:block;font-family:'Inter',sans-serif;font-size:15px;color:var(--pale-slate);padding:6px 0;transition:color .2s;}
+.mega-side-link:hover{color:var(--white);}
+.mega-newsletter{margin-top:auto;padding-top:32px;}
+.mega-newsletter-row{display:flex;align-items:center;gap:12px;margin-top:10px;}
+.mega-email-input{flex:1;background:transparent;border:none;border-bottom:1px solid var(--charcoal);color:var(--pale-light);font-family:'Inter',sans-serif;font-size:14px;padding:10px 0;outline:none;transition:border-bottom-color .2s;}
+.mega-email-input::placeholder{color:var(--charcoal);}
+.mega-email-input:focus{border-bottom-color:var(--pale-light);}
+.mega-email-btn{background:none;border:none;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pale-slate);transition:color .2s;white-space:nowrap;padding:0;}
+.mega-email-btn:hover{color:var(--white);}
 
 /* HERO */
-.hero{position:relative;height:100vh;min-height:640px;background:var(--onyx);display:flex;align-items:center;justify-content:center;text-align:center;padding-top:56px;}
-.marker{position:absolute;width:6px;height:6px;background:var(--charcoal);}
-.marker.tl{top:80px;left:32px;}
-.marker.tr{top:80px;right:32px;}
-.marker.bl{bottom:32px;left:32px;}
-.marker.br{bottom:32px;right:32px;}
-.hero-inner{display:flex;flex-direction:column;align-items:center;}
-.hero-name{font-family:'Inter',sans-serif;font-weight:900;font-size:96px;line-height:1;letter-spacing:-0.03em;color:var(--white);margin-bottom:16px;}
-.hero-name .letter{display:inline-block;opacity:0;transform:translateY(-60px);animation:letterDrop .7s var(--ease) both;}
-.hero-name .letter-space{display:inline-block;width:.26em;}
-.hero-role{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--pale-slate);margin-bottom:32px;transition:opacity .4s ease;height:18px;display:flex;align-items:center;justify-content:center;}
-.hero-rule{width:120px;height:1px;background:var(--charcoal);margin-bottom:24px;}
-.hero-cta{display:flex;gap:12px;align-items:center;justify-content:center;opacity:0;animation:heroCtaIn .5s ease-out 1.3s both;}
-.btn-solid{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;background:var(--pale-light);color:var(--onyx);border:none;border-radius:4px;cursor:pointer;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;display:inline-block;}
-.btn-solid:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 8px 24px rgba(211,211,217,0.15);}
+.hero{position:relative;height:100vh;min-height:640px;background:var(--onyx);overflow:hidden;}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.hero-content{position:absolute;z-index:10;top:50%;left:48px;transform:translateY(-50%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #1E1E1E;border-radius:100px;padding:5px 14px;margin-bottom:20px;}
+.hero-badge-dot{width:5px;height:5px;background:var(--pale-slate);border-radius:50%;animation:pulseDot 2s ease-in-out infinite;}
+.hero-badge-text{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--charcoal);text-transform:uppercase;}
+.hero-name-solid{font-family:'Inter',sans-serif;font-weight:900;font-size:140px;line-height:0.88;letter-spacing:-0.04em;color:var(--white);}
+.hero-name-outline{font-family:'Inter',sans-serif;font-weight:900;font-size:140px;line-height:0.88;letter-spacing:-0.04em;color:transparent;-webkit-text-stroke:1.5px #323338;}
+.hero-subtitle{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--charcoal);margin-top:20px;}
+.hero-actions{display:flex;gap:10px;margin-top:24px;pointer-events:all;}
+.h-btn{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;padding:10px 22px;background:var(--pale-light);color:var(--onyx);border:none;border-radius:3px;cursor:pointer;display:inline-block;transition:background .2s ease,transform .2s ease;}
+.h-btn:hover{background:var(--white);transform:translateY(-2px);}
+.h-btn:active{transform:scale(0.97);transition-duration:.1s;}
+.h-btn-ghost{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;padding:10px 22px;background:transparent;color:var(--pale-slate);border:1px solid #1E1E1E;border-radius:3px;cursor:pointer;display:inline-block;transition:border-color .2s ease,color .2s ease,transform .2s ease;}
+.h-btn-ghost:hover{border-color:var(--pale-slate);color:var(--pale-light);transform:translateY(-2px);}
+.h-btn-ghost:active{transform:scale(0.97);transition-duration:.1s;}
+.hero-corner{position:absolute;z-index:10;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#2A2A2A;text-transform:uppercase;pointer-events:none;}
+.hero-corner.tl{top:28px;left:28px;}
+.hero-corner.tr{top:28px;right:28px;}
+.hero-corner.br{bottom:48px;right:48px;}
+
+/* BUTTONS — gradient sweep */
+.btn-solid{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;color:var(--onyx);border:none;border-radius:4px;cursor:pointer;display:inline-block;background:linear-gradient(110deg,#C8C8CE 0%,#D3D3D9 30%,#F8F8F8 50%,#D3D3D9 70%,#C8C8CE 100%);background-size:250% 100%;background-position:100% 50%;transition:background-position .7s ease-out,transform .2s ease,box-shadow .2s ease;}
+.btn-solid:hover{background-position:0% 50%;transform:translateY(-2px);box-shadow:0 8px 24px rgba(211,211,217,0.15);}
 .btn-solid:active{transform:scale(0.97);transition-duration:.1s;}
-.btn-outline{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;background:transparent;color:var(--pale-light);border:1px solid var(--charcoal);border-radius:4px;cursor:pointer;transition:border-color .2s ease,transform .2s ease;display:inline-block;}
-.btn-outline:hover{border-color:var(--pale-light);transform:translateY(-2px);}
+.btn-outline{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;color:var(--pale-light);border:1px solid var(--charcoal);border-radius:4px;cursor:pointer;display:inline-block;background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,0.06) 35%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.06) 65%,transparent 100%);background-size:250% 100%;background-position:100% 50%;transition:background-position .7s ease-out,border-color .2s ease,transform .2s ease;}
+.btn-outline:hover{background-position:0% 50%;border-color:var(--pale-light);transform:translateY(-2px);}
 .btn-outline:active{transform:scale(0.97);transition-duration:.1s;}
-.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--charcoal);white-space:nowrap;}
 
 /* WORK */
 .work{background:var(--onyx);padding:120px var(--mx);}
@@ -97,8 +131,8 @@ a{color:inherit;text-decoration:none;}
 textarea.form-field{resize:none;}
 .form-field::placeholder{color:var(--charcoal);}
 .form-field:focus{border-bottom-color:var(--pale-light);}
-.btn-submit{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 32px;background:var(--pale-light);color:var(--onyx);border:none;border-radius:4px;cursor:pointer;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
-.btn-submit:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 8px 24px rgba(211,211,217,0.15);}
+.btn-submit{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 32px;color:var(--onyx);border:none;border-radius:4px;cursor:pointer;background:linear-gradient(110deg,#C8C8CE 0%,#D3D3D9 30%,#F8F8F8 50%,#D3D3D9 70%,#C8C8CE 100%);background-size:250% 100%;background-position:100% 50%;transition:background-position .7s ease-out,transform .2s ease,box-shadow .2s ease;}
+.btn-submit:hover{background-position:0% 50%;transform:translateY(-2px);box-shadow:0 8px 24px rgba(211,211,217,0.15);}
 .btn-submit:active{transform:scale(0.97);transition-duration:.1s;}
 .footer-cv-links{margin-top:20px;display:flex;gap:24px;flex-wrap:wrap;}
 .footer-cv-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--charcoal);transition:color .2s ease;}
@@ -113,44 +147,72 @@ textarea.form-field{resize:none;}
 .footer-ghost{font-family:'Inter',sans-serif;font-weight:900;font-size:160px;line-height:1;color:var(--graphite);opacity:0.5;white-space:nowrap;pointer-events:none;user-select:none;margin-top:-20px;letter-spacing:-0.04em;}
 
 /* WIPE */
-.wipe{position:fixed;inset:0;z-index:1000;background:var(--onyx);opacity:0;pointer-events:none;transition:opacity .42s ease;}
+.wipe{position:fixed;inset:0;z-index:9999;background:var(--onyx);opacity:0;pointer-events:none;transition:opacity .42s ease;}
 .wipe.on{opacity:1;pointer-events:auto;}
 .wipe .lbl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--pale-slate);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;opacity:0;transition:opacity .3s ease .12s;}
 .wipe.on .lbl{opacity:1;}
 
-/* CURSOR */
-.cursor-dot{width:6px;height:6px;background:var(--pale-light);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;left:-100px;top:-100px;transition:opacity .2s;}
-.cursor-ring{width:36px;height:36px;border:1px solid var(--charcoal);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;left:-100px;top:-100px;transition:width .2s,height .2s,border-color .2s;}
-.cursor-dot.dot-hide{opacity:0;}
-.cursor-ring.ring-hover{width:48px;height:48px;border-color:var(--white);}
+/* CURSOR — CSS :has for hover state, no JS event delegation needed */
+.cursor-dot{width:6px;height:6px;background:var(--pale-light);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;left:-100px;top:-100px;transition:opacity .2s,transform .2s;}
+.cursor-ring{width:36px;height:36px;border:1px solid var(--charcoal);border-radius:50%;position:fixed;pointer-events:none;z-index:9997;left:-100px;top:-100px;transition:width .2s,height .2s,border-color .2s;}
+body:has(a:hover,button:hover) .cursor-dot{opacity:0;}
+body:has(a:hover,button:hover) .cursor-ring{width:48px;height:48px;border-color:var(--white);}
 
 /* SCROLL ANIMATIONS */
 .anim{opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
 .anim.anim-visible{opacity:1;transform:translateY(0);}
 
+/* MANIFESTO */
+.manifesto{background:#090A0C;padding:160px var(--mx);border-top:1px solid #1A1A1A;border-bottom:1px solid #1A1A1A;}
+.leitsatz-block{padding-bottom:80px;margin-bottom:80px;border-bottom:1px solid #1A1A1A;position:relative;}
+.leitsatz-last{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.lz-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:#323338;margin-bottom:20px;opacity:0;transform:translateY(12px);transition:opacity .5s ease-out,transform .5s ease-out;}
+.lz-label.lz-in{opacity:1;transform:translateY(0);}
+.lz-text{font-family:'Inter',sans-serif;font-weight:900;font-size:56px;line-height:1.0;letter-spacing:-0.03em;color:#FFFFFF;}
+.lz-line{display:block;overflow:visible;}
+.lz-word{display:inline-block;opacity:0;transform:translateY(20px) rotate(-4deg);transition:opacity .6s cubic-bezier(0.22,1,0.36,1),transform .6s cubic-bezier(0.22,1,0.36,1);}
+.lz-word.lz-in{opacity:1;transform:translateY(0) rotate(0deg);}
+.lz-word.lz-stroke{color:transparent;-webkit-text-stroke:1px #2A2A2A;}
+.lz-word.lz-dim{color:#AAABBC;}
+.lz-icon-wrap{position:absolute;right:var(--mx);top:50%;transform:translateY(-50%);opacity:0.08;color:#AAABBC;width:40px;height:40px;}
+.lz-icon{width:40px;height:40px;animation:lzSpin 20s linear infinite;}
+.lz-icon-ccw{animation:lzSpinCcw 20s linear infinite;}
+.lz-closing{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#323338;margin-top:32px;opacity:0;transition:opacity .6s ease-out;}
+.lz-closing.lz-in{opacity:1;}
+
 /* KEYFRAMES */
-@keyframes letterDrop{to{opacity:1;transform:translateY(0);}}
-@keyframes heroCtaIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes lzSpin{to{transform:rotate(360deg);}}
+@keyframes lzSpinCcw{to{transform:rotate(-360deg);}}
 
 @media(max-width:1024px){
   :root{--mx:48px;}
-  .hero-name{font-size:72px;}
+  .hero-name-solid,.hero-name-outline{font-size:108px;}
+  .mega-menu{grid-template-columns:1fr 1.4fr;padding-bottom:64px;}
+  .mega-right{display:none;}
+  .menu-link{font-size:40px;}
   .footer-grid{grid-template-columns:1fr;gap:56px;}
   .footer-heading .h-white,.footer-heading .h-dim{font-size:44px;}
   .footer-ghost{font-size:120px;}
+  .lz-text{font-size:44px;}
 }
 @media(max-width:768px){
   :root{--mx:24px;}
-  .nav-links{display:none;}
-  .hero-name{font-size:52px;}
-  .hero-cta{flex-direction:column;width:100%;max-width:280px;}
-  .btn-solid,.btn-outline{text-align:center;}
+  .hero-content{left:24px;}
+  .hero-name-solid,.hero-name-outline{font-size:72px;}
+  .hero-actions{flex-direction:column;gap:8px;}
   .work{padding:80px var(--mx);}
   .work-item{grid-template-columns:36px 1fr;}
   .work-item-arrow{display:none;}
+  .mega-menu{grid-template-columns:1fr;padding:80px var(--mx) 64px;}
+  .mega-col:first-child{display:none;}
+  .menu-link{font-size:32px;}
   .footer-bottom{grid-template-columns:1fr;gap:8px;}
   .footer-bottom-mid,.footer-bottom-right{text-align:left;}
   .footer-ghost{font-size:72px;}
+  .manifesto{padding:80px var(--mx);}
+  .lz-text{font-size:32px;}
+  .lz-icon-wrap{display:none;}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;animation-delay:.01ms!important;}
@@ -166,8 +228,6 @@ textarea.form-field{resize:none;}
 
 <script type="text/babel">
 const {useState,useEffect,useRef} = React;
-
-const ROLES = ["Communications Specialist","Brand Manager","Visual Strategist"];
 
 const WORK = [
   {num:"01",company:"PRIVATBANK BERGOS AG · 2024–2025",
@@ -213,19 +273,7 @@ function Cursor(){
       }
       raf.current=requestAnimationFrame(tick);
     };
-    const onIn=()=>{
-      dotRef.current?.classList.add('dot-hide');
-      ringRef.current?.classList.add('ring-hover');
-    };
-    const onOut=()=>{
-      dotRef.current?.classList.remove('dot-hide');
-      ringRef.current?.classList.remove('ring-hover');
-    };
     document.addEventListener('mousemove',onMove);
-    document.querySelectorAll('a,button').forEach(el=>{
-      el.addEventListener('mouseenter',onIn);
-      el.addEventListener('mouseleave',onOut);
-    });
     raf.current=requestAnimationFrame(tick);
     return ()=>{
       document.removeEventListener('mousemove',onMove);
@@ -242,69 +290,349 @@ function Cursor(){
   );
 }
 
-function Nav(){
-  const [active,setActive]=useState("work");
-  const links=[
-    {id:"work",label:"Work",href:"#work"},
-    {id:"about",label:"About",href:"#about"},
-    {id:"journal",label:"Journal",href:"#journal"},
-    {id:"cv",label:"CV",href:"#"},
+function MegaMenu({isOpen, onClose}){
+  const mainLinks=[
+    {label:'Home',href:'#top'},
+    {label:'Work',href:'#work'},
+    {label:'About',href:'#about'},
+    {label:'Journal',href:'#journal'},
+    {label:'Contact',href:'#contact'},
+    {label:'Project Nr. 13 →',href:'Project Nr. 13.html'},
   ];
+  const infoLinks=['About me','HWZ Bachelor Thesis','Datenschutz','Impressum'];
+  const dlLinks=['↓ CV Deutsch','↓ CV English'];
+  const socialLinks=['LinkedIn ↗','Instagram ↗'];
+
+  useEffect(()=>{
+    const onKey=(e)=>{if(e.key==='Escape') onClose();};
+    document.addEventListener('keydown',onKey);
+    return ()=>document.removeEventListener('keydown',onKey);
+  },[onClose]);
+
+  useEffect(()=>{
+    document.body.style.overflow=isOpen?'hidden':'';
+    return ()=>{document.body.style.overflow='';};
+  },[isOpen]);
+
+  return (
+    <div
+      className={"mega-menu"+(isOpen?' mega-open':'')}
+      onClick={(e)=>{if(e.target===e.currentTarget) onClose();}}
+    >
+      <div className="mega-col">
+        <span className="mega-logo">N—B</span>
+      </div>
+      <nav className="mega-col mega-center">
+        {mainLinks.map((l,i)=>(
+          <a
+            key={i}
+            href={l.href}
+            className="menu-link"
+            style={{transitionDelay:isOpen?`${100+i*50}ms`:'0ms'}}
+            onClick={onClose}
+          >{l.label}</a>
+        ))}
+      </nav>
+      <div className="mega-col mega-right">
+        <div>
+          <div className="mega-section-label">INFO</div>
+          {infoLinks.map((l,i)=>(
+            <a key={i} href="#" className="mega-side-link" onClick={onClose}>{l}</a>
+          ))}
+          <div className="mega-section-label" style={{marginTop:'32px'}}>DOWNLOAD</div>
+          {dlLinks.map((l,i)=>(
+            <a key={i} href="#" className="mega-side-link" onClick={onClose}>{l}</a>
+          ))}
+          <div className="mega-section-label" style={{marginTop:'32px'}}>SOCIAL</div>
+          {socialLinks.map((l,i)=>(
+            <a key={i} href="#" className="mega-side-link" onClick={onClose}>{l}</a>
+          ))}
+        </div>
+        <div className="mega-newsletter">
+          <div className="mega-section-label">NEWSLETTER</div>
+          <div className="mega-newsletter-row">
+            <input type="email" className="mega-email-input" placeholder="EMAIL ADDRESS"/>
+            <button type="button" className="mega-email-btn">ENTER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Nav({menuOpen, onToggle}){
   return (
     <nav className="nav">
       <a className="nav-brand" href="#top">
         <strong>Nico Bigler</strong>
         <em> — Communications Specialist</em>
       </a>
-      <div className="nav-links">
-        {links.map(l=>(
-          <a key={l.id}
-             className={"nav-link"+(active===l.id?" active":"")}
-             href={l.href}
-             onClick={()=>setActive(l.id)}
-          >{l.label}</a>
-        ))}
-      </div>
+      <button
+        className={"hamburger"+(menuOpen?' hamburger-open':'')}
+        onClick={onToggle}
+        aria-label={menuOpen?'Close menu':'Open menu'}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   );
 }
 
 function Hero(){
-  const [idx,setIdx]=useState(0);
-  const [visible,setVisible]=useState(false);
-  const letters="NICO BIGLER".split('');
+  const canvasRef = useRef(null);
+  const heroRef = useRef(null);
+  const mouse = useRef({x:0,y:0,on:false});
+  const scrollOff = useRef(0);
 
   useEffect(()=>{
-    const showT=setTimeout(()=>setVisible(true),1000);
-    const t=setInterval(()=>{
-      setVisible(false);
-      setTimeout(()=>{setIdx(i=>(i+1)%ROLES.length);setVisible(true);},400);
-    },3000);
-    return ()=>{clearInterval(t);clearTimeout(showT);};
+    const canvas = canvasRef.current;
+    const hero = heroRef.current;
+    if(!canvas||!hero) return;
+    const ctx = canvas.getContext('2d');
+    let time = 0;
+    let raf;
+
+    const resize=()=>{
+      canvas.width = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize',resize);
+
+    const onMove=(e)=>{
+      const r = hero.getBoundingClientRect();
+      mouse.current = {x:e.clientX-r.left, y:e.clientY-r.top, on:true};
+    };
+    const onLeave=()=>{ mouse.current={x:-999,y:-999,on:false}; };
+    const onWheel=(e)=>{ scrollOff.current += e.deltaY*0.3; };
+
+    hero.addEventListener('mousemove',onMove);
+    hero.addEventListener('mouseleave',onLeave);
+    hero.addEventListener('wheel',onWheel,{passive:true});
+
+    const draw=()=>{
+      const W=canvas.width, H=canvas.height;
+      const {x:mx,y:my,on}=mouse.current;
+      const scroll=scrollOff.current;
+      ctx.clearRect(0,0,W,H);
+
+      const GRID=48, HR=120, GR=HR*0.3;
+      const ex=on?mx:W*0.5, ey=on?my:H*0.5;
+      const oX=((ex*0.04+scroll*0.06)%GRID+GRID)%GRID;
+      const oY=((ey*0.03+scroll*0.09)%GRID+GRID)%GRID;
+
+      // vertical lines
+      for(let lx=-GRID+oX; lx<W+GRID; lx+=GRID){
+        const dist=on?Math.abs(mx-lx):999;
+        let col,lw;
+        if(dist<HR){
+          const p=1-dist/HR, g=Math.pow(p,1.8);
+          if(dist<GR){
+            col=`rgba(255,255,255,${(0.04+g*0.85).toFixed(3)})`; lw=0.5+g*2.5;
+          } else {
+            col=`rgba(170,171,188,${(0.04+g*0.5).toFixed(3)})`; lw=0.5+g*1.2;
+          }
+        } else { col='rgba(170,171,188,0.04)'; lw=0.5; }
+        ctx.beginPath(); ctx.strokeStyle=col; ctx.lineWidth=lw;
+        ctx.moveTo(lx,0); ctx.lineTo(lx,H); ctx.stroke();
+        if(on&&dist<GR){
+          const g=Math.pow(1-dist/HR,1.8);
+          ctx.save(); ctx.shadowColor='rgba(211,211,217,0.4)'; ctx.shadowBlur=8;
+          ctx.beginPath(); ctx.strokeStyle=`rgba(211,211,217,${(g*0.3).toFixed(3)})`; ctx.lineWidth=lw*0.5;
+          ctx.moveTo(lx,0); ctx.lineTo(lx,H); ctx.stroke(); ctx.restore();
+        }
+      }
+
+      // horizontal lines
+      for(let ly=-GRID+oY; ly<H+GRID; ly+=GRID){
+        const dist=on?Math.abs(my-ly):999;
+        let col,lw;
+        if(dist<HR){
+          const p=1-dist/HR, g=Math.pow(p,1.8);
+          if(dist<GR){
+            col=`rgba(255,255,255,${(0.04+g*0.85).toFixed(3)})`; lw=0.5+g*2.5;
+          } else {
+            col=`rgba(170,171,188,${(0.04+g*0.5).toFixed(3)})`; lw=0.5+g*1.2;
+          }
+        } else { col='rgba(170,171,188,0.04)'; lw=0.5; }
+        ctx.beginPath(); ctx.strokeStyle=col; ctx.lineWidth=lw;
+        ctx.moveTo(0,ly); ctx.lineTo(W,ly); ctx.stroke();
+        if(on&&dist<GR){
+          const g=Math.pow(1-dist/HR,1.8);
+          ctx.save(); ctx.shadowColor='rgba(211,211,217,0.4)'; ctx.shadowBlur=8;
+          ctx.beginPath(); ctx.strokeStyle=`rgba(211,211,217,${(g*0.3).toFixed(3)})`; ctx.lineWidth=lw*0.5;
+          ctx.moveTo(0,ly); ctx.lineTo(W,ly); ctx.stroke(); ctx.restore();
+        }
+      }
+
+      // concentric circles
+      const cx=W*0.72+(mx-W/2)*0.012-scroll*0.06;
+      const cy=-80+(my-H/2)*0.008-scroll*0.1;
+      const radii=[320,235,160,100,55,24];
+      const ops=[0.06,0.08,0.11,0.14,0.17,0.20];
+      radii.forEach((r,i)=>{
+        ctx.beginPath();
+        ctx.arc(cx,cy,r+Math.sin(time+i*0.7)*3,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(170,171,188,${ops[i]})`;
+        ctx.lineWidth=0.8; ctx.stroke();
+      });
+
+      // radial lines
+      for(let i=0;i<10;i++){
+        const angle=(i/10)*Math.PI*2+time*0.12;
+        ctx.beginPath(); ctx.strokeStyle='rgba(170,171,188,0.02)'; ctx.lineWidth=0.5;
+        ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(angle)*330,cy+Math.sin(angle)*330); ctx.stroke();
+      }
+
+      // center dot
+      ctx.beginPath(); ctx.arc(cx,cy,2.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(170,171,188,0.25)'; ctx.fill();
+
+      // cursor effects
+      if(on&&mx>0&&my>0){
+        ctx.beginPath(); ctx.arc(mx,my,3,0,Math.PI*2);
+        ctx.fillStyle='rgba(211,211,217,0.15)'; ctx.fill();
+        const nearX=Math.round((mx-oX)/GRID)*GRID+oX;
+        const nearY=Math.round((my-oY)/GRID)*GRID+oY;
+        ctx.beginPath(); ctx.arc(nearX,nearY,2.5,0,Math.PI*2);
+        ctx.fillStyle='rgba(211,211,217,0.5)'; ctx.fill();
+      }
+
+      time+=0.005;
+      raf=requestAnimationFrame(draw);
+    };
+    raf=requestAnimationFrame(draw);
+
+    return ()=>{
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize',resize);
+      hero.removeEventListener('mousemove',onMove);
+      hero.removeEventListener('mouseleave',onLeave);
+      hero.removeEventListener('wheel',onWheel);
+    };
   },[]);
 
   return (
-    <section className="hero" id="top">
-      <span className="marker tl"></span>
-      <span className="marker tr"></span>
-      <span className="marker bl"></span>
-      <span className="marker br"></span>
-      <div className="hero-inner">
-        <h1 className="hero-name">
-          {letters.map((l,i)=>
-            l===' '
-              ? <span key={i} className="letter-space"></span>
-              : <span key={i} className="letter" style={{animationDelay:`${i*50}ms`}}>{l}</span>
-          )}
-        </h1>
-        <div className="hero-role" style={{opacity:visible?1:0}}>{ROLES[idx]}</div>
-        <div className="hero-rule"></div>
-        <div className="hero-cta">
-          <a href="#work" className="btn-solid">View work</a>
-          <a href="#contact" className="btn-outline">Get in touch</a>
+    <section ref={heroRef} className="hero" id="top">
+      <canvas ref={canvasRef} className="hero-canvas"></canvas>
+      <div className="hero-content">
+        <div className="hero-badge">
+          <span className="hero-badge-dot"></span>
+          <span className="hero-badge-text">AVAILABLE — Q3 2026</span>
+        </div>
+        <div className="hero-name-solid">NICO</div>
+        <div className="hero-name-outline">BIGLER</div>
+        <div className="hero-subtitle">COMMUNICATIONS SPECIALIST · BRAND MANAGER</div>
+        <div className="hero-actions">
+          <a href="#work" className="h-btn">VIEW WORK</a>
+          <a href="#contact" className="h-btn-ghost">GET IN TOUCH</a>
         </div>
       </div>
-      <div className="hero-scroll">↓ SCROLL</div>
+      <span className="hero-corner tl">N—B</span>
+      <span className="hero-corner tr">ZÜRICH · 2026</span>
+      <span className="hero-corner br">SCROLL ↓</span>
+    </section>
+  );
+}
+
+function Manifesto(){
+  const secRef = useRef(null);
+  useEffect(()=>{
+    if(!secRef.current) return;
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const bl = entry.target;
+        const label = bl.querySelector('.lz-label');
+        if(label) label.classList.add('lz-in');
+        const words = bl.querySelectorAll('.lz-word');
+        words.forEach((w,i)=>{
+          w.style.transitionDelay=(200+i*120)+'ms';
+          w.classList.add('lz-in');
+        });
+        const closing = bl.querySelector('.lz-closing');
+        if(closing){
+          closing.style.transitionDelay=(200+words.length*120+400)+'ms';
+          closing.classList.add('lz-in');
+        }
+        obs.unobserve(bl);
+      });
+    },{threshold:0.3});
+    secRef.current.querySelectorAll('.leitsatz-block').forEach(b=>obs.observe(b));
+    return ()=>obs.disconnect();
+  },[]);
+  return (
+    <section ref={secRef} className="manifesto">
+      <div className="leitsatz-block">
+        <div className="lz-label">01 · STRATEGY</div>
+        <div className="lz-text">
+          <div className="lz-line">
+            <span className="lz-word">Where</span>{' '}
+            <span className="lz-word">brand</span>{' '}
+            <span className="lz-word lz-stroke">meets</span>{' '}
+            <span className="lz-word">culture.</span>
+          </div>
+          <div className="lz-line">
+            <span className="lz-word">Where</span>{' '}
+            <span className="lz-word">strategy</span>{' '}
+            <span className="lz-word lz-stroke">meets</span>{' '}
+            <span className="lz-word">soul.</span>
+          </div>
+        </div>
+        <div className="lz-icon-wrap">
+          <svg className="lz-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1">
+            <circle cx="20" cy="20" r="6"/>
+            <circle cx="20" cy="20" r="12"/>
+            <circle cx="20" cy="20" r="18"/>
+          </svg>
+        </div>
+      </div>
+      <div className="leitsatz-block">
+        <div className="lz-label">02 · BRAND</div>
+        <div className="lz-text">
+          <div className="lz-line">
+            <span className="lz-word">Six</span>{' '}
+            <span className="lz-word">years.</span>{' '}
+            <span className="lz-word">Three</span>{' '}
+            <span className="lz-word">sectors.</span>
+          </div>
+          <div className="lz-line">
+            <span className="lz-word lz-dim">One</span>{' '}
+            <span className="lz-word lz-dim">obsession.</span>
+          </div>
+        </div>
+        <div className="lz-icon-wrap">
+          <svg className="lz-icon lz-icon-ccw" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1">
+            <line x1="20" y1="2" x2="20" y2="38"/>
+            <line x1="2" y1="20" x2="38" y2="20"/>
+            <line x1="7.37" y1="7.37" x2="32.63" y2="32.63"/>
+            <line x1="32.63" y1="7.37" x2="7.37" y2="32.63"/>
+          </svg>
+        </div>
+      </div>
+      <div className="leitsatz-block leitsatz-last">
+        <div className="lz-label">03 · CULTURE</div>
+        <div className="lz-text">
+          <div className="lz-line">
+            <span className="lz-word">Sound</span>{' '}
+            <span className="lz-word lz-stroke">becomes</span>{' '}
+            <span className="lz-word">image.</span>
+          </div>
+          <div className="lz-line">
+            <span className="lz-word">Image</span>{' '}
+            <span className="lz-word lz-stroke">becomes</span>{' '}
+            <span className="lz-word">brand.</span>
+          </div>
+        </div>
+        <div className="lz-icon-wrap">
+          <svg className="lz-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1">
+            <polygon points="20,3 37,20 20,37 3,20"/>
+          </svg>
+        </div>
+        <span className="lz-closing">— Nico Bigler, Zürich 2026</span>
+      </div>
     </section>
   );
 }
@@ -382,6 +710,7 @@ function Footer({onProject}){
 
 function App(){
   const [wipe,setWipe]=useState(false);
+  const [menuOpen,setMenuOpen]=useState(false);
 
   useEffect(()=>{
     document.body.classList.add('body-loaded');
@@ -397,11 +726,10 @@ function App(){
         const delay=Number(entry.target.dataset.stagger||0);
         if(delay) entry.target.style.transitionDelay=delay+'ms';
         entry.target.classList.add('anim-visible');
-        if(delay) setTimeout(()=>{ entry.target.style.transitionDelay=''; },700+delay);
+        if(delay) setTimeout(()=>{entry.target.style.transitionDelay='';},700+delay);
         observer.unobserve(entry.target);
       });
     },{threshold:0.15});
-
     document.querySelectorAll('.anim').forEach(el=>observer.observe(el));
 
     return ()=>{
@@ -420,12 +748,14 @@ function App(){
   return (
     <React.Fragment>
       <Cursor/>
-      <Nav/>
+      <Nav menuOpen={menuOpen} onToggle={()=>setMenuOpen(m=>!m)}/>
+      <MegaMenu isOpen={menuOpen} onClose={()=>setMenuOpen(false)}/>
       <Hero/>
+      <Manifesto/>
       <Work/>
       <Marquee/>
       <Footer onProject={goProject}/>
-      <div className={"wipe"+(wipe?" on":"")}><div className="lbl">Entering Project Nr. 13</div></div>
+      <div className={"wipe"+(wipe?' on':'')}><div className="lbl">Entering Project Nr. 13</div></div>
     </React.Fragment>
   );
 }
