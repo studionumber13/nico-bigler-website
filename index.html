@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Nr. 13</title>
+<meta name="description" content="Project Nr. 13 — Cover Art, Music & Design. Zürich & Bern, Est. 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{
+  background:#000;color:#EFE9E7;
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;overflow-x:hidden;
+}
+:root{
+  --black:#000000;--white:#EFE9E7;
+  --accent:#0032FF;--purple:#340539;
+  --grey:#69626D;--dim:rgba(239,233,231,0.08);
+}
+a{color:inherit;text-decoration:none;cursor:none}
+button{background:none;border:none;color:inherit;cursor:none;font:inherit}
+img{display:block;max-width:100%}
+
+/* ── CURSOR ── */
+#cursor-dot{
+  width:5px;height:5px;background:#EFE9E7;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);transition:opacity 0.2s;
+}
+#cursor-ring{
+  width:32px;height:32px;
+  border:1px solid rgba(239,233,231,0.35);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99997;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+  transition:width 0.25s ease,height 0.25s ease,
+             border-color 0.25s ease,background 0.25s ease;
+}
+#cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-link #cursor-label{opacity:0}
+#cursor-ring.hover-img{
+  width:48px;height:48px;
+  background:rgba(239,233,231,0.08);
+  border-color:rgba(239,233,231,0.5);
+}
+#cursor-ring.hover-img #cursor-label{opacity:1}
+#cursor-label{
+  font-family:'IBM Plex Mono',monospace;font-size:8px;
+  color:#EFE9E7;letter-spacing:0.05em;opacity:0;
+  transition:opacity 0.2s;white-space:nowrap;
+}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;z-index:99999;overflow:hidden}
+.loader-half{
+  position:absolute;left:0;right:0;background:#000;
+  transition:transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.loader-half--top{top:0;height:50%;z-index:2}
+.loader-half--bottom{bottom:0;height:50%;z-index:2}
+.loader-content{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:32px;
+  transition:opacity 0.3s ease;
+}
+.loader-logo{
+  width:100px;
+  opacity:0;transform:scale(0.85);
+  animation:loaderIn 0.7s ease-out 0.1s forwards;
+}
+@keyframes loaderIn{to{opacity:1;transform:scale(1)}}
+#loader-counter{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.2em;
+}
+.loader-bar-wrap{width:160px;height:1px;background:rgba(239,233,231,0.1)}
+#loader-bar{height:100%;width:0;background:#EFE9E7}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
+  background:transparent;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  transition:background 0.3s ease,backdrop-filter 0.3s ease,border-bottom 0.3s ease;
+}
+#nav.scrolled{
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--dim);
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:24px}
+.nav-btn{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+.nav-cv{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#69626D;letter-spacing:0.08em;
+  transition:color 0.2s;
+}
+.nav-cv:hover{color:#EFE9E7}
+.nav-center{cursor:none}
+.nav-link{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+
+/* ── MEGA MENU ── */
+#megaMenu{
+  position:fixed;inset:0;z-index:9000;background:#000;
+  display:grid;grid-template-columns:25% 45% 30%;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+#megaMenu.open{opacity:1;pointer-events:all}
+.mm-col{padding:48px;height:100%;overflow-y:auto}
+.mm-close{
+  position:absolute;top:28px;right:48px;
+  font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
+  color:#69626D;z-index:10;line-height:1;
+  transition:color 0.2s;
+}
+.mm-close:hover{color:#EFE9E7}
+.mm-nav-links{padding-top:80px}
+.mm-nav-link{
+  display:block;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:52px;
+  color:#EFE9E7;padding:4px 0;
+  opacity:0;transform:translateY(32px);
+  transition:color 0.2s,transform 0.2s;
+}
+#megaMenu.open .mm-nav-link{
+  opacity:1;transform:translateY(0);
+  transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
+}
+.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-right{padding-top:80px}
+.mm-section-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
+}
+.mm-right-link{
+  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
+  display:block;padding:4px 0;transition:color 0.2s;
+}
+.mm-right-link:hover{color:#EFE9E7}
+.mm-section{margin-top:28px}
+.mm-manifesto{margin-top:48px}
+.mm-manifesto-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;margin-bottom:8px;display:block;
+}
+.mm-manifesto-text{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
+  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+}
+
+/* ── HERO ── */
+#home{
+  height:100vh;background:#000;position:relative;overflow:hidden;
+  background-image:radial-gradient(ellipse at 65% 50%,rgba(52,5,57,0.25) 0%,#000 65%);
+}
+.hero-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  letter-spacing:0.2em;text-transform:uppercase;
+  opacity:0;transition:opacity 0.6s ease;
+}
+.hero-logo{
+  width:120px;
+  opacity:0;transform:scale(0.88);
+  transition:opacity 1s ease-out,transform 1s ease-out;
+}
+.hero-tagline{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:26px;
+  color:#EFE9E7;letter-spacing:-0.02em;
+  opacity:0;transition:opacity 0.6s ease;
+}
+.hero-location{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0;transition:opacity 0.6s ease;
+}
+#heroArtis{
+  opacity:0;transition:opacity 0.6s ease;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.hero-artis-sep{
+  width:120px;height:1px;
+  background:rgba(239,233,231,0.15);
+  margin-bottom:32px;
+}
+.hero-artis-line{
+  display:flex;align-items:baseline;justify-content:center;
+  gap:0 12px;flex-wrap:wrap;
+}
+.hero-artis-static{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:48px;
+  color:#EFE9E7;letter-spacing:-0.03em;line-height:1;
+}
+.hero-artis-word{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:48px;
+  letter-spacing:-0.03em;line-height:1;
+  color:#EFE9E7;
+  -webkit-text-stroke:0px;
+  display:inline-block;margin-left:-8px;
+  transition:opacity 0.3s,transform 0.3s;
+}
+.hero-artis-dot{
+  display:inline-block;width:4px;height:4px;
+  background:#EFE9E7;border-radius:50%;
+  margin-left:4px;vertical-align:middle;
+  animation:pulse 2s ease-in-out infinite alternate;
+}
+.hero-artis-sub{
+  font-family:'Inter',sans-serif;font-weight:400;font-size:16px;
+  color:#69626D;margin-top:8px;text-align:center;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(0.65);opacity:0.2}}
+.hero-scroll-ind{
+  position:absolute;bottom:60px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
+}
+.hero-scroll-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  color:#69626D;letter-spacing:0.2em;text-transform:uppercase;
+}
+.hero-scroll-arrow{font-size:14px;color:#69626D;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.hero-bar{
+  position:absolute;bottom:0;left:0;right:0;height:40px;
+  border-top:1px solid var(--dim);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;z-index:2;
+}
+.hero-copyright{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
+.view-toggle{display:flex;align-items:center;gap:16px}
+.view-btn{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:0.12em;color:#69626D;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.view-btn.active{color:#EFE9E7}
+#scrollPct{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em}
+
+/* ── WORKS ── */
+#works{background:#000}
+.proj-scroll{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 48px;position:relative;
+}
+.proj-scroll-img{
+  max-width:580px;width:100%;aspect-ratio:1/1;object-fit:cover;
+  box-shadow:0 48px 120px rgba(0,0,0,0.85);
+  transition:filter 0.7s cubic-bezier(0.22,1,0.36,1),
+             transform 0.7s cubic-bezier(0.22,1,0.36,1),
+             opacity 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.proj-scroll.inactive .proj-scroll-img{filter:blur(10px);transform:scale(0.72);opacity:0.35}
+.proj-scroll-info{margin-top:32px;text-align:center}
+.proj-release{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;letter-spacing:0.1em;margin-bottom:8px}
+.proj-t1{font-family:'Inter',sans-serif;font-weight:500;font-style:italic;font-size:24px;color:#EFE9E7}
+.proj-t2{font-family:'Inter',sans-serif;font-weight:900;font-size:24px;color:#EFE9E7;letter-spacing:-0.02em}
+#ghost-title{
+  position:fixed;bottom:0;left:0;right:0;
+  text-align:center;pointer-events:none;z-index:5;padding-bottom:48px;
+  font-family:'Inter',sans-serif;font-weight:900;font-size:52px;
+  color:#EFE9E7;opacity:0.1;filter:blur(3px);
+  letter-spacing:-0.03em;transition:opacity 0.3s;
+}
+#works-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  padding:80px 48px;
+}
+.proj-grid{aspect-ratio:1/1;overflow:hidden;position:relative;cursor:none;background:#0A0A0A}
+.proj-grid img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
+.proj-grid:hover img{transform:scale(1.05)}
+.proj-grid-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,0.55);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+}
+.proj-grid:hover .proj-grid-overlay{opacity:1}
+.proj-grid-release{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D}
+.proj-grid-title{font-family:'Inter',sans-serif;font-weight:500;font-size:13px;color:#EFE9E7;margin-top:4px}
+#works-list{padding:0 48px}
+.proj-list{
+  display:flex;align-items:center;
+  border-bottom:1px solid var(--dim);
+  padding:20px 0;cursor:none;
+  position:relative;overflow:hidden;
+  transition:background 0.2s;
+}
+.proj-list:hover{background:rgba(239,233,231,0.015)}
+.proj-list-line{position:absolute;left:0;top:0;width:2px;height:0;background:#EFE9E7;transition:height 0.35s ease-out}
+.proj-list:hover .proj-list-line{height:100%}
+.proj-list-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;width:48px;flex-shrink:0}
+.proj-list-release{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;width:120px;flex-shrink:0}
+.proj-list-title{font-family:'Inter',sans-serif;font-weight:500;font-size:16px;color:#EFE9E7;flex:1}
+.proj-list-arrow{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#69626D;transition:transform 0.2s,color 0.2s}
+.proj-list:hover .proj-list-arrow{transform:translateX(6px);color:#EFE9E7}
+
+/* ── CONTACT ── */
+#contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
+.contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
+.contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
+.contact-email:hover{text-decoration:underline}
+.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;display:block}
+.contact-dl-label{margin-top:28px}
+.contact-social-link{font-family:'Inter',sans-serif;font-size:14px;color:#69626D;display:inline-block;margin-right:16px;transition:color 0.2s}
+.contact-social-link:hover{color:#EFE9E7}
+.contact-dl-link{font-family:'Inter',sans-serif;font-size:14px;color:#69626D;display:block;margin-bottom:6px;transition:color 0.2s}
+.contact-dl-link:hover{color:#EFE9E7}
+.contact-right{padding:120px 80px;display:flex;flex-direction:column}
+.contact-cover{margin-bottom:48px;overflow:hidden}
+.contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
+.contact-field::placeholder{color:rgba(239,233,231,0.2)}
+.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
+textarea.contact-field{resize:none}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
+.contact-submit:hover{background:#fff;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display:flex;justify-content:space-between;align-items:center}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
+.foot-back{cursor:none;transition:color 0.2s}
+.foot-back:hover{color:#EFE9E7}
+
+/* ── ANIM ── */
+.anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.anim.visible{opacity:1;transform:translateY(0)}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"><span id="cursor-label">VIEW</span></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-half loader-half--top"></div>
+  <div class="loader-half loader-half--bottom"></div>
+  <div class="loader-content">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" class="loader-logo" style="width:140px;height:auto;display:block;">
+    <div id="loader-counter">LOADING 000</div>
+    <div class="loader-bar-wrap"><div id="loader-bar"></div></div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-left">
+    <button class="nav-btn" id="menuOpen">WORKS +</button>
+    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+  </div>
+  <div class="nav-center" id="navLogo" title="Back to top">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
+  </div>
+  <div class="nav-right">
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="#contact" class="nav-link">CONTACT</a>
+  </div>
+</nav>
+
+<!-- Mega Menu -->
+<div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
+  <!-- Left -->
+  <div class="mm-col">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
+  </div>
+  <!-- Center -->
+  <div class="mm-col">
+    <nav class="mm-nav-links">
+      <a href="index.html" class="mm-nav-link">Home</a>
+      <a href="#works" class="mm-nav-link">Works</a>
+      <a href="about.html" class="mm-nav-link">About</a>
+      <a href="thesis.html" class="mm-nav-link">Thesis</a>
+      <a href="#contact" class="mm-nav-link">Contact</a>
+    </nav>
+  </div>
+  <!-- Right -->
+  <div class="mm-col mm-right">
+    <span class="mm-section-label">INFO</span>
+    <a href="about.html" class="mm-right-link">About me</a>
+    <a href="about.html#career" class="mm-right-link">Career</a>
+    <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
+    <a href="#" class="mm-right-link">Datenschutz</a>
+    <a href="#" class="mm-right-link">Impressum</a>
+    <div class="mm-section">
+      <span class="mm-section-label">DOWNLOAD</span>
+      <a href="assets/cv/cv-nico-bigler.pdf" class="mm-right-link" target="_blank">↓ CV Nico Bigler</a>
+    </div>
+    <div class="mm-section">
+      <span class="mm-section-label">SOCIAL</span>
+      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
+      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+    </div>
+    <div class="mm-manifesto">
+      <span class="mm-manifesto-label">Art is...</span>
+      <span class="mm-manifesto-text">Make it mean something.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section id="home">
+  <div class="hero-center">
+    <span class="hero-eyebrow">The Art of Cover Design</span>
+    <img src="assets/images/logo.png" alt="Project Nr. 13" class="hero-logo" style="width:180px;height:auto;display:block;">
+    <span class="hero-location">Zürich &amp; Bern — Est. 2026</span>
+    <div id="heroArtis">
+      <div class="hero-artis-sep"></div>
+      <div class="hero-artis-line">
+        <span class="hero-artis-static">Art is</span>
+        <span class="hero-artis-word" id="artisWord">Feeling</span><span class="hero-artis-dot"></span>
+      </div>
+      <p class="hero-artis-sub">Make it mean something.</p>
+    </div>
+  </div>
+  <div class="hero-scroll-ind">
+    <span class="hero-scroll-label">SCROLL</span>
+    <span class="hero-scroll-arrow">↓</span>
+  </div>
+  <div class="hero-bar">
+    <span class="hero-copyright">© Project Nr. 13 · Studionumber13</span>
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="scroll">SCROLL</button>
+      <button class="view-btn" data-view="grid">GRID</button>
+      <button class="view-btn" data-view="list">LIST</button>
+    </div>
+    <span id="scrollPct">0%</span>
+  </div>
+</section>
+
+<!-- Works -->
+<section id="works">
+  <div id="works-scroll"></div>
+  <div id="works-grid" style="display:none;opacity:0"></div>
+  <div id="works-list" style="display:none;opacity:0"></div>
+</section>
+
+<!-- Ghost title -->
+<div id="ghost-title" aria-hidden="true"></div>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-left">
+    <div>
+      <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
+      <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
+      <span class="contact-name anim" data-delay="160">Nico Bigler</span>
+      <a href="mailto:hello@nicobigler.ch" class="contact-email anim" data-delay="200">hello@nicobigler.ch</a>
+    </div>
+    <div class="contact-bottom anim" data-delay="120">
+      <span class="contact-social-label">Socials</span>
+      <a href="https://instagram.com/studionumber13" target="_blank" class="contact-social-link">Instagram</a>
+      <a href="#" class="contact-social-link">LinkedIn</a>
+      <span class="contact-dl-label">Downloads</span>
+      <a href="assets/cv/cv-deutsch.pdf" class="contact-dl-link" target="_blank">↓ CV Deutsch</a>
+      <a href="assets/cv/cv-english.pdf" class="contact-dl-link" target="_blank">↓ CV English</a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-cover anim">
+      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
+           onerror="this.style.background='#111111';this.style.minHeight='480px';">
+    </div>
+    <form class="anim" data-delay="120" onsubmit="return false">
+      <input type="text" class="contact-field" placeholder="Name" required>
+      <input type="email" class="contact-field" placeholder="Email" required>
+      <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
+      <button type="submit" class="contact-submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+  <span class="foot">Bern · Zürich · Est. 2026</span>
+  <span class="foot foot-back" id="backTop">↑ Back to Top</span>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── PROJECTS DATA ── */
+  var projects = [
+    { src:'assets/covers/drp01-13_chains.jpg',    release:"(DRP'01–13)", line1:'The Art of',    line2:'Chains'        },
+    { src:'assets/covers/drp02-13_swords.jpg',    release:"(DRP'02–13)", line1:'Through',       line2:'Swords'        },
+    { src:'assets/covers/drp03-13_flora.jpg',     release:"(DRP'03–13)", line1:'Stillness in',  line2:'Contrast'      },
+    { src:'assets/covers/drp04-13_face.jpg',      release:"(DRP'04–13)", line1:'The Art of',    line2:'Cover Design'  },
+    { src:'assets/covers/drp05-13_cyber.jpg',     release:"(DRP'05–13)", line1:'Digital',       line2:'Alchemy'       },
+    { src:'assets/covers/drp06-13_cube.png',      release:"(DRP'06–13)", line1:'Fragments',     line2:'of Sound'      },
+    { src:'assets/covers/drp07-13_tripset.jpg',   release:"(DRP'07–13)", line1:'Signal &',      line2:'Noise'         },
+    { src:'assets/covers/drp08-13_distorted.png', release:"(DRP'08–13)", line1:'The',           line2:'Threshold'     },
+    { src:'assets/covers/drp09-13_silence.png',   release:"(DRP'09–13)", line1:'Underground',   line2:'Archive'       },
+    { src:'assets/covers/drp10-13_self.jpg',      release:"(DRP'10–13)", line1:'Sound Becomes', line2:'Image'         }
+  ];
+
+  /* ── BUILD PROJECT VIEWS ── */
+  var scrollCont = document.getElementById('works-scroll');
+  var gridCont   = document.getElementById('works-grid');
+  var listCont   = document.getElementById('works-list');
+
+  projects.forEach(function (p, i) {
+    var num = String(i + 1).padStart(2, '0');
+    var alt = p.line1 + ' ' + p.line2;
+
+    var s = document.createElement('div');
+    s.className = 'proj-scroll' + (i > 0 ? ' inactive' : '');
+    s.dataset.index = i;
+    s.dataset.line2 = p.line2;
+    s.innerHTML =
+      '<img class="proj-scroll-img" src="' + p.src + '" alt="' + alt + '" loading="lazy"' +
+      ' onerror="this.style.background=\'#111111\';this.style.minHeight=\'300px\';">' +
+      '<div class="proj-scroll-info">' +
+        '<div class="proj-release">' + p.release + '</div>' +
+        '<div class="proj-t1">' + p.line1 + '</div>' +
+        '<div class="proj-t2">' + p.line2 + '</div>' +
+      '</div>';
+    scrollCont.appendChild(s);
+
+    var g = document.createElement('div');
+    g.className = 'proj-grid';
+    g.innerHTML =
+      '<img src="' + p.src + '" alt="' + alt + '" loading="lazy"' +
+      ' onerror="this.style.background=\'#111111\';">' +
+      '<div class="proj-grid-overlay">' +
+        '<div class="proj-grid-release">' + p.release + '</div>' +
+        '<div class="proj-grid-title">' + p.line1 + ' ' + p.line2 + '</div>' +
+      '</div>';
+    gridCont.appendChild(g);
+
+    var l = document.createElement('div');
+    l.className = 'proj-list';
+    l.innerHTML =
+      '<div class="proj-list-line"></div>' +
+      '<span class="proj-list-num">' + num + '</span>' +
+      '<span class="proj-list-release">' + p.release + '</span>' +
+      '<span class="proj-list-title">' + p.line1 + ' ' + p.line2 + '</span>' +
+      '<span class="proj-list-arrow">→</span>';
+    listCont.appendChild(l);
+  });
+
+  /* ── CURSOR ── */
+  var dot  = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  (function lerpRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+
+  document.querySelectorAll('a,button').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+  });
+  document.querySelectorAll('img').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+  });
+
+  /* ── LOADER ── */
+  var loader        = document.getElementById('loader');
+  var loaderContent = loader.querySelector('.loader-content');
+  var loaderTop     = loader.querySelector('.loader-half--top');
+  var loaderBottom  = loader.querySelector('.loader-half--bottom');
+  var counterEl     = document.getElementById('loader-counter');
+  var barEl         = document.getElementById('loader-bar');
+  var loaderDur     = 2200;
+  var loaderStart   = null;
+
+  function animLoader(ts) {
+    if (!loaderStart) loaderStart = ts;
+    var p = Math.min((ts - loaderStart) / loaderDur, 1);
+    counterEl.textContent = 'LOADING ' + String(Math.round(p * 100)).padStart(3, '0');
+    barEl.style.width = (p * 100) + '%';
+    if (p < 1) {
+      requestAnimationFrame(animLoader);
+    } else {
+      setTimeout(function () {
+        loaderContent.style.opacity = '0';
+        setTimeout(function () {
+          loaderTop.style.transform    = 'translateY(-100%)';
+          loaderBottom.style.transform = 'translateY(100%)';
+          setTimeout(function () { loader.remove(); startHero(); }, 900);
+        }, 200);
+      }, 300);
+    }
+  }
+  requestAnimationFrame(animLoader);
+
+  function startHero() {
+    var ey = document.querySelector('.hero-eyebrow');
+    var hl = document.querySelector('.hero-logo');
+    var tg = document.querySelector('.hero-tagline');
+    var lo = document.querySelector('.hero-location');
+    var ha = document.getElementById('heroArtis');
+    setTimeout(function () { ey.style.opacity = '1'; }, 500);
+    setTimeout(function () { hl.style.opacity = '1'; hl.style.transform = 'scale(1)'; }, 700);
+    setTimeout(function () { tg.style.opacity = '1'; }, 1100);
+    setTimeout(function () { lo.style.opacity = '1'; }, 1300);
+    setTimeout(function () { if (ha) ha.style.opacity = '1'; }, 1600);
+  }
+
+  /* ── NAV SCROLL ── */
+  var nav = document.getElementById('nav');
+  var scrollPctEl = document.getElementById('scrollPct');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+    var pct = Math.round(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
+    scrollPctEl.textContent = (isNaN(pct) ? 0 : pct) + '%';
+  }, { passive: true });
+
+  /* ── MEGA MENU ── */
+  var megaMenu = document.getElementById('megaMenu');
+  var mmLinks  = document.querySelectorAll('.mm-nav-link');
+
+  function openMenu() {
+    megaMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    mmLinks.forEach(function (l, i) { l.style.transitionDelay = (i * 60) + 'ms'; });
+  }
+  function closeMenu() {
+    megaMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    mmLinks.forEach(function (l) { l.style.transitionDelay = '0ms'; });
+  }
+
+  document.getElementById('menuOpen').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && megaMenu.classList.contains('open')) closeMenu();
+  });
+  megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
+  mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
+
+  document.getElementById('navLogo').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  document.getElementById('backTop').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── VIEW TOGGLE ── */
+  var viewBtns   = document.querySelectorAll('.view-btn');
+  var ghostTitle = document.getElementById('ghost-title');
+  var viewEls    = { scroll: scrollCont, grid: gridCont, list: listCont };
+
+  viewBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var v = btn.dataset.view;
+      viewBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      Object.keys(viewEls).forEach(function (key) {
+        viewEls[key].style.display = 'none';
+        viewEls[key].style.opacity = '0';
+      });
+      var t = viewEls[v];
+      t.style.display = (v === 'grid') ? 'grid' : 'block';
+      t.style.transition = 'opacity 0.4s ease';
+      requestAnimationFrame(function () { requestAnimationFrame(function () { t.style.opacity = '1'; }); });
+      ghostTitle.style.display = (v === 'scroll') ? 'block' : 'none';
+    });
+  });
+
+  /* ── SCROLL PROJECT STATES ── */
+  var scrollItems = document.querySelectorAll('.proj-scroll');
+  if (projects.length > 1) ghostTitle.textContent = projects[1].line2;
+
+  var projObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var idx = parseInt(entry.target.dataset.index);
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('inactive');
+        var next = projects[idx + 1];
+        ghostTitle.textContent = next ? next.line2 : '';
+      } else {
+        entry.target.classList.add('inactive');
+      }
+    });
+  }, { threshold: 0.5 });
+  scrollItems.forEach(function (item) { projObs.observe(item); });
+
+  /* ── SCROLL ANIMATIONS ── */
+  var animEls = document.querySelectorAll('.anim');
+  var animObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(function () { entry.target.classList.add('visible'); }, delay);
+        animObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  animEls.forEach(function (el) { animObs.observe(el); });
+
+  /* ── ART IS ROTATING WORD ── */
+  var wordEl = document.getElementById('artisWord');
+  var words  = ['Feeling','Culture','Sound','Noise','Structure','Identity',
+                'Memory','Signal','Vision','Instinct','Archive','Motion',
+                'Tension','Silence','Energy','Contrast'];
+  var wi     = 0;
+  var wTimer = null;
+
+  function cycleWord() {
+    wi = (wi + 1) % words.length;
+    wordEl.style.opacity   = '0';
+    wordEl.style.transform = 'translateY(-10px)';
+    setTimeout(function () {
+      wordEl.textContent     = words[wi];
+      wordEl.style.opacity   = '1';
+      wordEl.style.transform = 'translateY(0)';
+    }, 300);
+  }
+
+  function startCycle() { wTimer = setInterval(cycleWord, 2500); }
+  function stopCycle()  { clearInterval(wTimer); }
+
+  wordEl.addEventListener('mouseenter', function () { stopCycle(); wordEl.classList.add('hovered'); });
+  wordEl.addEventListener('mouseleave', function () {
+    wordEl.classList.remove('hovered');
+    wordEl.style.opacity   = '0';
+    wordEl.style.transform = 'translateY(-10px)';
+    setTimeout(function () {
+      wi = (wi + 1) % words.length;
+      wordEl.textContent     = words[wi];
+      wordEl.style.opacity   = '1';
+      wordEl.style.transform = 'translateY(0)';
+      startCycle();
+    }, 300);
+  });
+
+  startCycle();
+
+})();
+</script>
+</body>
+</html>

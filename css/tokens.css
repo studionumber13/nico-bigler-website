@@ -1,0 +1,87 @@
+:root {
+  /* ── Backgrounds ── */
+  --color-bg:         #0D0D0D;
+  --color-bg-2:       #141414;
+  --color-bg-surface: #1A1A1A;
+  --color-bg-hover:   #1F1F1F;
+
+  /* ── Text ── */
+  --color-text:       #F0EDE6;
+  --color-text-muted: #888580;
+  --color-text-dim:   #4A4845;
+
+  /* ── Accent — Warm Coral — max 10% of page ── */
+  --color-accent:     #E8553A;
+  --color-accent-mid: rgba(232, 85, 58, 0.15);
+  --color-accent-low: rgba(232, 85, 58, 0.07);
+
+  /* ── Borders ── */
+  --color-border:     rgba(240, 237, 230, 0.08);
+  --color-border-mid: rgba(240, 237, 230, 0.14);
+
+  /* ── Typography ── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'Space Mono', 'Courier New', monospace;
+
+  --text-hero:    clamp(52px, 8vw, 96px);
+  --text-h2:      clamp(32px, 4vw, 52px);
+  --text-h3:      clamp(20px, 2.5vw, 28px);
+  --text-body-lg: clamp(16px, 1.5vw, 20px);
+  --text-body:    16px;
+  --text-small:   13px;
+  --text-mono:    12px;
+  --text-micro:   10px;
+
+  --leading-tight:  1.1;
+  --leading-normal: 1.6;
+  --leading-loose:  1.85;
+  --tracking-tight: -0.03em;
+  --tracking-mono:  0.12em;
+
+  /* ── Motion ── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   600ms;
+  --duration-hero:   1200ms;
+
+  /* ── Spacing (8px base) ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ── Layout ── */
+  --nav-h:    64px;
+  --max-w:    1280px;
+  --gutter:   clamp(24px, 5vw, 80px);
+}
+
+/* ── LIGHT MODE ── */
+html.light {
+  --color-bg:         #F5F2EC;
+  --color-bg-2:       #EDE9E2;
+  --color-bg-surface: #E5E1D9;
+  --color-bg-hover:   #DDD9D1;
+
+  --color-text:       #0D0D0D;
+  --color-text-muted: #4A4845;
+  --color-text-dim:   #888580;
+
+  --color-accent:     #D94224;
+  --color-accent-mid: rgba(217, 66, 36, 0.12);
+  --color-accent-low: rgba(217, 66, 36, 0.06);
+
+  --color-border:     rgba(13, 13, 13, 0.1);
+  --color-border-mid: rgba(13, 13, 13, 0.18);
+}

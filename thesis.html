@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thesis — Nico Bigler</title>
+<meta name="description" content="Bachelor Thesis: Artist–Brand Collaborations. HWZ Zürich, 2025. Grade 6.0.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{
+  background:#000;color:#EFE9E7;
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;overflow-x:hidden;
+}
+:root{
+  --black:#000000;--white:#EFE9E7;
+  --grey:#69626D;--dim:rgba(239,233,231,0.08);
+}
+a{color:inherit;text-decoration:none;cursor:none}
+button{background:none;border:none;color:inherit;cursor:none;font:inherit}
+img{display:block;max-width:100%}
+
+/* ── CURSOR ── */
+#cursor-dot{
+  width:5px;height:5px;background:#EFE9E7;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);transition:opacity 0.2s;
+}
+#cursor-ring{
+  width:32px;height:32px;
+  border:1px solid rgba(239,233,231,0.35);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99997;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+  transition:width 0.25s ease,height 0.25s ease,
+             border-color 0.25s ease,background 0.25s ease;
+}
+#cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-img{width:48px;height:48px;background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5)}
+#cursor-label{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#EFE9E7;letter-spacing:0.05em;opacity:0;transition:opacity 0.2s;white-space:nowrap}
+#cursor-ring.hover-img #cursor-label{opacity:1}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
+  background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--dim);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:24px}
+.nav-btn{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+.nav-cv{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#69626D;letter-spacing:0.08em;
+  transition:color 0.2s;
+}
+.nav-cv:hover{color:#EFE9E7}
+.nav-center{cursor:none}
+.nav-link{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+
+/* ── MEGA MENU ── */
+#megaMenu{
+  position:fixed;inset:0;z-index:9000;background:#000;
+  display:grid;grid-template-columns:25% 45% 30%;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+#megaMenu.open{opacity:1;pointer-events:all}
+.mm-col{padding:48px;height:100%;overflow-y:auto}
+.mm-close{
+  position:absolute;top:28px;right:48px;
+  font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
+  color:#69626D;z-index:10;line-height:1;
+  transition:color 0.2s;
+}
+.mm-close:hover{color:#EFE9E7}
+.mm-nav-links{padding-top:80px}
+.mm-nav-link{
+  display:block;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:52px;
+  color:#EFE9E7;padding:4px 0;
+  opacity:0;transform:translateY(32px);
+  transition:color 0.2s,transform 0.2s;
+}
+#megaMenu.open .mm-nav-link{
+  opacity:1;transform:translateY(0);
+  transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
+}
+.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-right{padding-top:80px}
+.mm-section-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
+}
+.mm-right-link{
+  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
+  display:block;padding:4px 0;transition:color 0.2s;
+}
+.mm-right-link:hover{color:#EFE9E7}
+.mm-section{margin-top:28px}
+.mm-manifesto{margin-top:48px}
+.mm-manifesto-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;margin-bottom:8px;display:block;
+}
+.mm-manifesto-text{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
+  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+}
+
+/* ── THESIS HERO ── */
+#thesis-hero{
+  padding:140px 80px 80px;background:#000;
+}
+.thesis-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;
+  margin-bottom:24px;display:block;
+}
+.thesis-h1{
+  display:block;font-family:'Inter',sans-serif;font-weight:900;
+  font-size:88px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;
+}
+.thesis-h2{
+  display:block;font-family:'Inter',sans-serif;font-weight:900;
+  font-size:88px;color:transparent;
+  -webkit-text-stroke:1px rgba(239,233,231,0.18);
+  letter-spacing:-0.04em;line-height:0.92;
+}
+.thesis-grade{
+  margin-top:28px;display:inline-block;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;
+  border:1px solid rgba(239,233,231,0.18);border-radius:100px;
+  padding:5px 14px;
+}
+.thesis-desc{
+  margin-top:28px;max-width:560px;
+  font-family:'Inter',sans-serif;font-size:17px;color:#69626D;line-height:1.8;
+}
+.thesis-btns{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.thesis-btn-pri{
+  background:#EFE9E7;color:#000;padding:13px 30px;
+  border-radius:3px;border:none;cursor:none;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.08em;
+  display:inline-block;
+  transition:background 0.2s,transform 0.2s;
+}
+.thesis-btn-pri:hover{background:#fff;transform:translateY(-2px)}
+.thesis-btn-sec{
+  background:transparent;color:#69626D;
+  border:1px solid var(--dim);padding:13px 30px;
+  border-radius:3px;cursor:none;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.08em;
+  display:inline-block;
+  transition:border-color 0.2s,color 0.2s;
+}
+.thesis-btn-sec:hover{border-color:#EFE9E7;color:#EFE9E7}
+
+/* ── THOUGHTS ── */
+#thoughts{
+  padding:80px;background:#000;
+  border-top:1px solid var(--dim);
+}
+.thoughts-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;
+  margin-bottom:48px;display:block;
+}
+.thoughts-subtitle{
+  font-family:'Inter',sans-serif;font-size:18px;color:#69626D;
+  line-height:1.6;margin-bottom:64px;max-width:520px;
+}
+.post{
+  padding:40px 0;border-bottom:1px solid var(--dim);
+  display:grid;grid-template-columns:160px 1fr;
+  gap:0 48px;cursor:none;
+  transition:background 0.2s;
+}
+.post:hover{background:rgba(239,233,231,0.02)}
+.post-date{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:#69626D;letter-spacing:0.08em;padding-top:6px;
+  text-transform:uppercase;
+}
+.post-body{}
+.post-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  color:#69626D;text-transform:uppercase;letter-spacing:0.1em;
+  margin-bottom:12px;display:block;
+}
+.post-title{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:28px;
+  color:#EFE9E7;letter-spacing:-0.02em;line-height:1.1;
+  margin-bottom:12px;
+}
+.post-excerpt{
+  font-family:'Inter',sans-serif;font-size:15px;
+  color:#69626D;line-height:1.6;max-width:560px;
+}
+.post-read-more{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#69626D;margin-top:16px;display:block;
+  transition:color 0.2s,transform 0.2s;
+}
+.post:hover .post-read-more{color:#EFE9E7;transform:translateX(6px)}
+.thoughts-coming-soon{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:#69626D;letter-spacing:0.1em;text-transform:uppercase;
+  margin-top:48px;text-align:center;display:block;
+}
+
+/* ── FOOTER ── */
+footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display:flex;justify-content:space-between;align-items:center}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
+.foot-back{cursor:none;transition:color 0.2s}
+.foot-back:hover{color:#EFE9E7}
+
+/* ── ANIM ── */
+.anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.anim.visible{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"><span id="cursor-label">VIEW</span></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-left">
+    <button class="nav-btn" id="menuOpen">WORKS +</button>
+    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+  </div>
+  <a href="index.html" class="nav-center" id="navLogo">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
+  </a>
+  <div class="nav-right">
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="index.html#contact" class="nav-link">CONTACT</a>
+  </div>
+</nav>
+
+<!-- Mega Menu -->
+<div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
+  <div class="mm-col">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
+  </div>
+  <div class="mm-col">
+    <nav class="mm-nav-links">
+      <a href="index.html" class="mm-nav-link">Home</a>
+      <a href="index.html#works" class="mm-nav-link">Works</a>
+      <a href="about.html" class="mm-nav-link">About</a>
+      <a href="thesis.html" class="mm-nav-link">Thesis</a>
+      <a href="index.html#contact" class="mm-nav-link">Contact</a>
+    </nav>
+  </div>
+  <div class="mm-col mm-right">
+    <span class="mm-section-label">INFO</span>
+    <a href="about.html" class="mm-right-link">About me</a>
+    <a href="about.html#career" class="mm-right-link">Career</a>
+    <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
+    <a href="#" class="mm-right-link">Datenschutz</a>
+    <a href="#" class="mm-right-link">Impressum</a>
+    <div class="mm-section">
+      <span class="mm-section-label">DOWNLOAD</span>
+      <a href="assets/cv/cv-nico-bigler.pdf" class="mm-right-link" target="_blank">↓ CV Nico Bigler</a>
+    </div>
+    <div class="mm-section">
+      <span class="mm-section-label">SOCIAL</span>
+      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
+      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+    </div>
+    <div class="mm-manifesto">
+      <span class="mm-manifesto-label">Art is...</span>
+      <span class="mm-manifesto-text">Make it mean something.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Thesis Hero -->
+<section id="thesis-hero">
+  <span class="thesis-eyebrow anim">BACHELOR THESIS · HWZ ZÜRICH · 2025</span>
+  <span class="thesis-h1 anim" data-delay="60">Artist–Brand</span>
+  <span class="thesis-h2 anim" data-delay="120">Collaborations</span>
+  <span class="thesis-grade anim" data-delay="200">GRADE 6.0</span>
+  <p class="thesis-desc anim" data-delay="280">
+    Eine Untersuchung der strategischen Mechanismen hinter Künstler-Marken-Kollaborationen —
+    wo Musik, Kultur und Markenidentität aufeinandertreffen.
+  </p>
+  <div class="thesis-btns anim" data-delay="360">
+    <a href="#" class="thesis-btn-pri">↓ READ THESIS</a>
+    <a href="#" class="thesis-btn-sec">↓ DOWNLOAD PDF</a>
+  </div>
+</section>
+
+<!-- Thoughts / Blog -->
+<section id="thoughts">
+  <span class="thoughts-label anim">GEDANKEN &amp; BEITRÄGE</span>
+  <p class="thoughts-subtitle anim" data-delay="80">
+    Reflexionen über Design, Musik und Markenkultur.
+  </p>
+
+  <!-- Post 1 -->
+  <div class="post anim" data-delay="100">
+    <span class="post-date">DEMNÄCHST</span>
+    <div class="post-body">
+      <span class="post-tag">BRAND STRATEGY</span>
+      <h2 class="post-title">Wenn Musik zur Marke wird</h2>
+      <p class="post-excerpt">Über die strategischen Mechanismen hinter Künstler-Brand-Kollaborationen und warum die Authentizität der entscheidende Faktor ist.</p>
+      <span class="post-read-more">Read more →</span>
+    </div>
+  </div>
+
+  <!-- Post 2 -->
+  <div class="post anim" data-delay="160">
+    <span class="post-date">DEMNÄCHST</span>
+    <div class="post-body">
+      <span class="post-tag">VISUAL CULTURE</span>
+      <h2 class="post-title">Cover Art als Kommunikation</h2>
+      <p class="post-excerpt">Wie ein Albumcover mehr über eine Marke aussagt als jede Kampagne — und was Kommunikationsspezialisten davon lernen können.</p>
+      <span class="post-read-more">Read more →</span>
+    </div>
+  </div>
+
+  <!-- Post 3 -->
+  <div class="post anim" data-delay="220">
+    <span class="post-date">DEMNÄCHST</span>
+    <div class="post-body">
+      <span class="post-tag">DESIGN SYSTEMS</span>
+      <h2 class="post-title">Zwischen Bern und Zürich</h2>
+      <p class="post-excerpt">Was zwei Städte über Designphilosophie lehren: Ruhe als Stärke, Präzision als Haltung.</p>
+      <span class="post-read-more">Read more →</span>
+    </div>
+  </div>
+
+  <span class="thoughts-coming-soon anim" data-delay="280">Neue Beiträge folgen bald.</span>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+  <span class="foot">Bern · Zürich · Est. 2019</span>
+  <a href="index.html" class="foot foot-back">← BACK TO WORKS</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── CURSOR ── */
+  var dot  = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  (function lerpRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+
+  document.querySelectorAll('a,button').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+  });
+  document.querySelectorAll('img').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+  });
+
+  /* ── MEGA MENU ── */
+  var megaMenu = document.getElementById('megaMenu');
+  var mmLinks  = document.querySelectorAll('.mm-nav-link');
+
+  function openMenu() {
+    megaMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    mmLinks.forEach(function (l, i) { l.style.transitionDelay = (i * 60) + 'ms'; });
+  }
+  function closeMenu() {
+    megaMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    mmLinks.forEach(function (l) { l.style.transitionDelay = '0ms'; });
+  }
+
+  document.getElementById('menuOpen').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && megaMenu.classList.contains('open')) closeMenu();
+  });
+  megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
+  mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
+
+  /* ── SCROLL ANIMATIONS ── */
+  var animEls = document.querySelectorAll('.anim');
+  var animObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(function () { entry.target.classList.add('visible'); }, delay);
+        animObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  animEls.forEach(function (el) { animObs.observe(el); });
+
+})();
+</script>
+</body>
+</html>
