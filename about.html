@@ -9,16 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:56px}
 body{
   background:#000;color:#EFE9E7;
   font-family:'Inter',sans-serif;
   -webkit-font-smoothing:antialiased;
-  cursor:none;overflow-x:hidden;
+  cursor:none;overflow-x:hidden;width:100%;
 }
 :root{
   --black:#000000;--white:#EFE9E7;
+  --accent:#0032FF;--purple:#340539;
   --grey:#69626D;--dim:rgba(239,233,231,0.08);
 }
 a{color:inherit;text-decoration:none;cursor:none}
@@ -41,9 +43,18 @@ img{display:block;max-width:100%}
              border-color 0.25s ease,background 0.25s ease;
 }
 #cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
-#cursor-ring.hover-img{width:48px;height:48px;background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5)}
-#cursor-label{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#EFE9E7;letter-spacing:0.05em;opacity:0;transition:opacity 0.2s;white-space:nowrap}
+#cursor-ring.hover-link #cursor-label{opacity:0}
+#cursor-ring.hover-img{
+  width:48px;height:48px;
+  background:rgba(239,233,231,0.08);
+  border-color:rgba(239,233,231,0.5);
+}
 #cursor-ring.hover-img #cursor-label{opacity:1}
+#cursor-label{
+  font-family:'IBM Plex Mono',monospace;font-size:8px;
+  color:#EFE9E7;letter-spacing:0.05em;opacity:0;
+  transition:opacity 0.2s;white-space:nowrap;
+}
 
 /* ── NAV ── */
 #nav{
@@ -60,8 +71,7 @@ img{display:block;max-width:100%}
 }
 .nav-cv{
   font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#69626D;letter-spacing:0.08em;
-  transition:color 0.2s;
+  color:#69626D;letter-spacing:0.08em;transition:color 0.2s;
 }
 .nav-cv:hover{color:#EFE9E7}
 .nav-center{cursor:none}
@@ -82,8 +92,7 @@ img{display:block;max-width:100%}
 .mm-close{
   position:absolute;top:28px;right:48px;
   font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
-  color:#69626D;z-index:10;line-height:1;
-  transition:color 0.2s;
+  color:#69626D;z-index:10;line-height:1;transition:color 0.2s;
 }
 .mm-close:hover{color:#EFE9E7}
 .mm-nav-links{padding-top:80px}
@@ -120,82 +129,95 @@ img{display:block;max-width:100%}
   color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
 }
 
-/* ── ABOUT HERO ── */
-#about-hero{
-  height:100vh;background:#000;position:relative;overflow:hidden;
+/* ── ABOUT ── */
+#about{
+  background:#000;
+  min-height:100vh;
+  padding-top:56px;
+  position:relative;
+  overflow:hidden;
 }
-.about-ghost-bg{
-  position:absolute;bottom:-40px;left:-20px;
-  font-family:'Inter',sans-serif;font-weight:900;font-style:italic;
-  font-size:260px;color:#EFE9E7;opacity:0.03;
-  pointer-events:none;white-space:nowrap;z-index:0;line-height:1;
-}
-.about-hero-content{
-  position:absolute;bottom:80px;left:80px;z-index:2;
-}
-.about-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;letter-spacing:0.15em;
-  margin-bottom:24px;display:block;
-}
-.about-name-1{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:96px;
-  color:#EFE9E7;letter-spacing:-0.04em;line-height:0.88;display:block;
-}
-.about-name-2{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:96px;
-  color:transparent;-webkit-text-stroke:1px #323338;
-  letter-spacing:-0.04em;line-height:0.88;display:block;
-}
-
-/* ── ABOUT CONTENT ── */
-#about-content{
-  padding:80px;background:#000;border-top:1px solid var(--dim);
+.about-ghost{
+  position:absolute;
+  bottom:-40px;left:-20px;
+  font-family:'Inter',sans-serif;
+  font-weight:900;font-style:italic;
+  font-size:clamp(160px,20vw,280px);
+  color:#EFE9E7;opacity:0.03;
+  pointer-events:none;white-space:nowrap;
+  z-index:0;letter-spacing:-0.05em;line-height:1;
 }
 .about-grid{
-  display:grid;grid-template-columns:38% 24% 38%;
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr 320px 1fr;
   gap:0 64px;
+  padding:120px 80px 160px;
+  align-items:start;
+  max-width:1440px;
+  margin:0 auto;
+  box-sizing:border-box;
 }
-.about-left{
-  font-family:'Inter',sans-serif;font-size:15px;color:#69626D;line-height:1.85;
-}
+.about-left{padding-top:24px}
 .about-intro{
-  font-size:18px;color:#EFE9E7;line-height:1.75;margin-bottom:32px;
+  font-family:'Inter',sans-serif;font-weight:400;
+  font-size:20px;color:#EFE9E7;line-height:1.7;
+  margin-bottom:40px;
 }
-.about-left p{margin-top:24px}
-.about-left p.bright{color:#EFE9E7}
+.about-body{
+  font-family:'Inter',sans-serif;font-size:15px;
+  color:#69626D;line-height:1.85;margin-bottom:20px;
+}
+.about-body.bright{color:#EFE9E7}
+.about-center{position:relative;width:320px}
 .about-portrait{
-  width:100%;aspect-ratio:3/4;object-fit:cover;
-  background:#111111;display:block;
+  width:100%;aspect-ratio:3/4;
+  object-fit:cover;object-position:center top;
+  display:block;background:#111111;
 }
 .about-portrait-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;text-align:center;margin-top:10px;
-  text-transform:uppercase;letter-spacing:0.08em;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:#69626D;text-align:center;margin-top:12px;
+  letter-spacing:0.08em;text-transform:uppercase;
 }
-.about-right{padding-top:60px}
+.about-right{padding-top:24px}
 .about-stmt{
-  display:block;font-family:'Inter',sans-serif;font-weight:900;font-size:20px;
-  color:#EFE9E7;letter-spacing:-0.02em;opacity:0.45;line-height:1.4;margin-bottom:20px;
+  display:block;
+  font-family:'Inter',sans-serif;font-weight:900;font-size:20px;
+  color:#EFE9E7;letter-spacing:-0.02em;
+  opacity:0.5;line-height:1.4;margin-bottom:20px;
 }
-.about-info{margin-top:48px}
-.about-row{
+.about-divider{
+  width:100%;height:1px;border:none;
+  background:rgba(239,233,231,0.08);
+  margin:40px 0;
+}
+.about-info-row{
   display:flex;justify-content:space-between;
-  border-bottom:1px solid var(--dim);padding:12px 0;
+  align-items:flex-start;
+  border-bottom:1px solid rgba(239,233,231,0.07);
+  padding:14px 0;gap:16px;
 }
-.about-row-label{
+.about-info-label{
   font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;text-transform:uppercase;letter-spacing:0.1em;
+  color:#69626D;text-transform:uppercase;letter-spacing:0.12em;
+  flex-shrink:0;padding-top:2px;
 }
-.about-row-val{font-family:'Inter',sans-serif;font-size:13px;color:#EFE9E7}
-.about-cv-btns{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.about-info-val{
+  font-family:'Inter',sans-serif;font-size:13px;
+  color:#EFE9E7;text-align:right;word-break:break-word;
+}
+.about-cv-btns{
+  margin-top:28px;display:flex;flex-direction:column;gap:10px;
+}
 .about-cv-btn{
-  border:1px solid var(--dim);color:#69626D;
-  padding:10px 20px;
+  display:block;text-align:center;
+  border:1px solid rgba(239,233,231,0.15);
+  color:#69626D;padding:11px 20px;
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   text-transform:uppercase;letter-spacing:0.08em;
-  border-radius:3px;display:inline-block;
-  transition:border-color 0.2s,color 0.2s;
+  border-radius:3px;
+  transition:border-color 0.2s ease,color 0.2s ease;
 }
 .about-cv-btn:hover{border-color:#EFE9E7;color:#EFE9E7}
 
@@ -268,42 +290,72 @@ img{display:block;max-width:100%}
   text-transform:uppercase;letter-spacing:0.12em;
   display:block;margin-bottom:16px;
 }
-.career-samples-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-}
+.career-samples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .career-sample-card{cursor:none}
 .career-sample-img{
   background:#111111;aspect-ratio:16/10;
   overflow:hidden;border-radius:2px;
-  border:1px solid transparent;
-  transition:border-color 0.2s;
+  border:1px solid transparent;transition:border-color 0.2s;
 }
 .career-sample-card:hover .career-sample-img{border-color:rgba(239,233,231,0.15)}
 .career-sample-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform 0.4s ease;
+  width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;
 }
 .career-sample-card:hover .career-sample-img img{transform:scale(1.04)}
 .career-sample-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;margin-top:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;margin-top:6px;
 }
 
 /* ── FOOTER ── */
-footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display:flex;justify-content:space-between;align-items:center}
-.foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
+footer{
+  background:#000;padding:28px 80px;
+  border-top:1px solid rgba(239,233,231,0.07);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.foot{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  color:#69626D;letter-spacing:0.08em;text-transform:uppercase;
+}
 .foot-back{cursor:none;transition:color 0.2s}
 .foot-back:hover{color:#EFE9E7}
 
 /* ── ANIM ── */
-.anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.anim{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),
+             transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
 .anim.visible{opacity:1;transform:translateY(0)}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .about-grid{
+    grid-template-columns:1fr 260px 1fr;
+    padding:80px 48px 120px;
+    gap:0 40px;
+  }
+  #career{padding:80px 48px}
+}
+@media(max-width:768px){
+  .about-grid{
+    grid-template-columns:1fr;
+    padding:80px 24px;
+    gap:48px;
+  }
+  .about-center{width:100%;max-width:320px;margin:0 auto}
+  #career{padding:80px 24px}
+  .career-block{grid-template-columns:1fr;gap:24px}
+  .career-samples-grid{grid-template-columns:repeat(2,1fr)}
+  footer{padding:28px 24px;flex-direction:column;gap:12px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
 </style>
 </head>
 <body>
 
+<!-- Cursor -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"><span id="cursor-label">VIEW</span></div>
 
@@ -317,7 +369,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
   </a>
   <div class="nav-right">
-    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="about.html" class="nav-link" style="color:#EFE9E7">ABOUT</a>
     <a href="index.html#contact" class="nav-link">CONTACT</a>
   </div>
 </nav>
@@ -360,84 +412,82 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   </div>
 </div>
 
-<!-- About Hero -->
-<section id="about-hero">
-  <div class="about-ghost-bg" aria-hidden="true">about</div>
-  <div class="about-hero-content">
-    <span class="about-eyebrow">ABOUT</span>
-    <span class="about-name-1">Nico</span>
-    <span class="about-name-2">Bigler.</span>
-  </div>
-</section>
-
-<!-- About Content -->
-<section id="about-content">
+<!-- About -->
+<section id="about">
+  <div class="about-ghost" aria-hidden="true">about</div>
   <div class="about-grid">
 
-    <!-- Left -->
+    <!-- Left Column -->
     <div class="about-left">
       <p class="about-intro anim">
-        — Ich glaube, dass eine gute Marke
-        <strong>wie ein gutes Album ist.</strong>
+        Ich bin am <strong>13. Februar</strong> geboren.<br>
+        Für die meisten ist das eine schlechte Zahl.<br>
+        Für mich war es immer eine Einladung —<br>
+        auf die andere Seite zu schauen.
       </p>
-      <p class="anim" data-delay="100">
-        Sie braucht ein Konzept.<br>
-        Sie braucht eine Ästhetik.<br>
-        Sie braucht eine Aussage die bleibt.
+      <p class="about-body anim" data-delay="100">
+        Das ist es was ich tue.<br>
+        Bei Tag als <strong style="color:#EFE9E7">Communications Specialist</strong><br>
+        und <strong style="color:#EFE9E7">Brand Manager</strong> — für Privatbanken,<br>
+        soziale Institutionen, öffentliche Stellen.<br>
+        Ich baue Systeme die halten.<br>
+        Identitäten die etwas bedeuten.
       </p>
-      <p class="anim" data-delay="200">
-        Ich lebe zwischen <strong>Bern und Zürich</strong> —
-        zwei Städte, zwei Energien, eine Haltung.
-        Bern gibt mir Ruhe, Tiefe und das Gefühl
-        dass Dinge Zeit brauchen dürfen.
-        Zürich gibt mir Präzision, Tempo und den
-        Anspruch dass alles auf den Punkt sein muss.
+      <p class="about-body anim" data-delay="200">
+        Bei Nacht folge ich einem anderen Instinkt.<br>
+        <strong style="color:#EFE9E7">Project Nr. 13</strong> ist mein Ort wo Strategie<br>
+        aufhört und Übersetzung beginnt.<br>
+        Wo Musik zu Bildern wird.<br>
+        Wo das Unbekannte sichtbar wird.
       </p>
-      <p class="anim" data-delay="300">
-        Diese Spannung ist kein Widerspruch.
-        Sie ist meine Arbeitsweise.
+      <p class="about-body anim" data-delay="300">
+        Aufgewachsen in <strong style="color:#EFE9E7">Bern</strong> — einer Stadt<br>
+        die lehrt, dass Tiefe Zeit braucht.<br>
+        Heute in <strong style="color:#EFE9E7">Zürich</strong> — wo Präzision<br>
+        und Schärfe den Standard setzen.
       </p>
-      <p class="bright anim" data-delay="400">
-        Ich bin Nico Bigler — Communications Specialist
-        und Gründer von Project Nr. 13.
-        Ich arbeite für alle die verstehen,
-        dass <strong>Form und Inhalt keine Gegensätze sind</strong> —
-        sondern das Gleiche.
+      <p class="about-body bright anim" data-delay="400">
+        Beides lebt in mir.<br>
+        Beides zeigt sich in meiner Arbeit.
       </p>
     </div>
 
-    <!-- Center -->
-    <div class="anim" data-delay="150">
-      <img class="about-portrait" src="assets/about/portrait.jpg" alt="Nico Bigler" loading="lazy"
-           onerror="this.style.background='#111111';">
-      <p class="about-portrait-label">Nico Bigler · Bern &amp; Zürich</p>
+    <!-- Center Column — Portrait -->
+    <div class="about-center anim" data-delay="150">
+      <img class="about-portrait"
+           src="assets/about/portrait.jpg"
+           alt="Nico Bigler"
+           loading="lazy"
+           onerror="this.style.background='#111111';this.alt='';">
+      <p class="about-portrait-label">NICO BIGLER · BERN &amp; ZÜRICH</p>
     </div>
 
-    <!-- Right -->
+    <!-- Right Column -->
     <div class="about-right">
-      <span class="about-stmt anim">System meets Instinct.</span>
-      <span class="about-stmt anim" data-delay="80">Strategy meets Art.</span>
-      <span class="about-stmt anim" data-delay="160">Bern meets Zürich.</span>
-      <div class="about-info anim" data-delay="240">
-        <div class="about-row">
-          <span class="about-row-label">BASED IN</span>
-          <span class="about-row-val">Bern &amp; Zürich, Switzerland</span>
+      <span class="about-stmt anim">Sound becomes image.</span>
+      <span class="about-stmt anim" data-delay="80">The unknown becomes art.</span>
+      <span class="about-stmt anim" data-delay="160">Something beautiful on<br>the other side of 13.</span>
+      <hr class="about-divider anim" data-delay="200">
+      <div class="anim" data-delay="240">
+        <div class="about-info-row">
+          <span class="about-info-label">BASED IN</span>
+          <span class="about-info-val">Bern &amp; Zürich, Switzerland</span>
         </div>
-        <div class="about-row">
-          <span class="about-row-label">AVAILABLE</span>
-          <span class="about-row-val">Q3 2026</span>
+        <div class="about-info-row">
+          <span class="about-info-label">AVAILABLE</span>
+          <span class="about-info-val">Q3 2026</span>
         </div>
-        <div class="about-row">
-          <span class="about-row-label">LANGUAGES</span>
-          <span class="about-row-val">DE · EN · FR</span>
+        <div class="about-info-row">
+          <span class="about-info-label">LANGUAGES</span>
+          <span class="about-info-val">DE · EN · FR</span>
         </div>
-        <div class="about-row">
-          <span class="about-row-label">EDUCATION</span>
-          <span class="about-row-val">B.Sc. HWZ Zürich · Note 6.0</span>
+        <div class="about-info-row">
+          <span class="about-info-label">EDUCATION</span>
+          <span class="about-info-val">B.Sc. HWZ Zürich · Note 6.0</span>
         </div>
-        <div class="about-row">
-          <span class="about-row-label">INSTAGRAM</span>
-          <span class="about-row-val">@studionumber13</span>
+        <div class="about-info-row">
+          <span class="about-info-label">INSTAGRAM</span>
+          <span class="about-info-val">@studionumber13</span>
         </div>
       </div>
       <div class="about-cv-btns anim" data-delay="320">
@@ -568,9 +618,9 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
 <!-- Footer -->
 <footer>
-  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
-  <span class="foot">Bern · Zürich · Est. 2019</span>
-  <a href="index.html" class="foot foot-back">← BACK TO WORKS</a>
+  <span class="foot">© ALL RIGHTS RESERVED. PROJECT NR. 13</span>
+  <span class="foot">BERN · ZÜRICH · EST. 2026</span>
+  <span class="foot foot-back" id="backTop">↑ BACK TO TOP</span>
 </footer>
 
 <script>
@@ -627,6 +677,11 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   });
   megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
   mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
+
+  /* ── BACK TO TOP ── */
+  document.getElementById('backTop').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   /* ── SCROLL ANIMATIONS ── */
   var animEls = document.querySelectorAll('.anim');

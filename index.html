@@ -262,7 +262,7 @@ img{display:block;max-width:100%}
 .proj-scroll{
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:80px 48px;position:relative;
+  padding:80px 48px;position:relative;z-index:2;
 }
 .proj-scroll-img{
   max-width:580px;width:100%;aspect-ratio:1/1;object-fit:cover;
@@ -348,6 +348,27 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 /* ── ANIM ── */
 .anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
 .anim.visible{opacity:1;transform:translateY(0)}
+
+/* ── WORKS BG ── */
+#works-bg{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+#works-bg img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:blur(80px) brightness(0.2) saturate(1.6);
+  transform:scale(1.15);
+  position:absolute;inset:0;
+  transition:opacity 0.6s ease;
+}
+#works-bg-grad{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.7) 100%);
+  z-index:1;
+}
 
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
@@ -455,6 +476,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <span id="scrollPct">0%</span>
   </div>
 </section>
+
+<!-- Works Background -->
+<div id="works-bg" aria-hidden="true">
+  <img id="works-bg-a" alt="" style="opacity:1;">
+  <img id="works-bg-b" alt="" style="opacity:0;">
+  <div id="works-bg-grad"></div>
+</div>
 
 <!-- Works -->
 <section id="works">
@@ -717,6 +745,55 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     });
   }, { threshold: 0.5 });
   scrollItems.forEach(function (item) { projObs.observe(item); });
+
+  /* ── WORKS BACKGROUND ── */
+  var worksBg  = document.getElementById('works-bg');
+  var bgImgA   = document.getElementById('works-bg-a');
+  var bgImgB   = document.getElementById('works-bg-b');
+  var bgActive = 'a';
+  var bgCurrent = '';
+  var bgInited = false;
+
+  function setBgImage(src) {
+    if (src === bgCurrent) return;
+    bgCurrent = src;
+    if (bgActive === 'a') {
+      bgImgB.src = src;
+      bgImgB.style.opacity = '1';
+      bgImgA.style.opacity = '0';
+      bgActive = 'b';
+    } else {
+      bgImgA.src = src;
+      bgImgA.style.opacity = '1';
+      bgImgB.style.opacity = '0';
+      bgActive = 'a';
+    }
+  }
+
+  var worksVisObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        worksBg.style.opacity = '1';
+        if (!bgInited) {
+          bgInited = true;
+          bgImgA.src = projects[0].src;
+          bgCurrent  = projects[0].src;
+        }
+      } else {
+        worksBg.style.opacity = '0';
+      }
+    });
+  }, { threshold: 0 });
+  worksVisObs.observe(document.getElementById('works'));
+
+  var bgProjObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        setBgImage(projects[parseInt(entry.target.dataset.index)].src);
+      }
+    });
+  }, { threshold: 0.5 });
+  scrollItems.forEach(function (item) { bgProjObs.observe(item); });
 
   /* ── SCROLL ANIMATIONS ── */
   var animEls = document.querySelectorAll('.anim');
