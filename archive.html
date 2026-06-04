@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive — Project Nr. 13</title>
+<meta name="description" content="The complete visual archive of Project Nr. 13 — every piece ever made.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{
+  background:#090A0C;color:#EFE9E7;
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;overflow-x:hidden;
+}
+:root{
+  --black:#090A0C;--white:#EFE9E7;
+  --grey:#69626D;--dim:rgba(239,233,231,0.07);
+}
+a{color:inherit;text-decoration:none;cursor:none}
+button{background:none;border:none;color:inherit;cursor:none;font:inherit}
+img{display:block;max-width:100%}
+
+/* ── CURSOR ── */
+#cursor-dot{
+  width:5px;height:5px;background:#EFE9E7;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);transition:opacity 0.2s;
+}
+#cursor-ring{
+  width:32px;height:32px;
+  border:1px solid rgba(239,233,231,0.35);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99997;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+  transition:width 0.25s ease,height 0.25s ease,
+             border-color 0.25s ease,background 0.25s ease;
+}
+#cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-link #cursor-label{opacity:0}
+#cursor-ring.hover-img{
+  width:48px;height:48px;
+  background:rgba(239,233,231,0.08);
+  border-color:rgba(239,233,231,0.5);
+}
+#cursor-ring.hover-img #cursor-label{opacity:1}
+#cursor-label{
+  font-family:'IBM Plex Mono',monospace;font-size:8px;
+  color:#EFE9E7;letter-spacing:0.05em;opacity:0;
+  transition:opacity 0.2s;white-space:nowrap;
+}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
+  background:rgba(9,10,12,0.92);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  border-bottom:1px solid var(--dim);
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:24px}
+.nav-btn{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+.nav-cv{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:#69626D;letter-spacing:0.08em;
+  transition:color 0.2s;
+}
+.nav-cv:hover{color:#EFE9E7}
+.nav-center{cursor:none}
+.nav-link{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
+  color:#EFE9E7;letter-spacing:0.08em;
+}
+
+/* ── MEGA MENU ── */
+#megaMenu{
+  position:fixed;inset:0;z-index:9000;background:#000;
+  display:grid;grid-template-columns:25% 45% 30%;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+#megaMenu.open{opacity:1;pointer-events:all}
+.mm-col{padding:48px;height:100%;overflow-y:auto}
+.mm-close{
+  position:absolute;top:28px;right:48px;
+  font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
+  color:#69626D;z-index:10;line-height:1;
+  transition:color 0.2s;
+}
+.mm-close:hover{color:#EFE9E7}
+.mm-nav-links{padding-top:80px}
+.mm-nav-link{
+  display:block;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:52px;
+  color:#EFE9E7;padding:4px 0;
+  opacity:0;transform:translateY(32px);
+  transition:color 0.2s,transform 0.2s;
+}
+#megaMenu.open .mm-nav-link{
+  opacity:1;transform:translateY(0);
+  transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
+}
+.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-right{padding-top:80px}
+.mm-section-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
+}
+.mm-right-link{
+  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
+  display:block;padding:4px 0;transition:color 0.2s;
+}
+.mm-right-link:hover{color:#EFE9E7}
+.mm-section{margin-top:28px}
+.mm-manifesto{margin-top:48px}
+.mm-manifesto-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;margin-bottom:8px;display:block;
+}
+.mm-manifesto-text{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
+  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+}
+
+/* ── PAGE HEADER ── */
+#arch-header{
+  background:#090A0C;
+  padding:140px 80px 80px;
+  border-bottom:1px solid var(--dim);
+}
+
+/* ── MASONRY GALLERY ── */
+#arch-gallery{
+  background:#090A0C;
+  padding:48px 48px 120px;
+  column-count:3;
+  column-gap:6px;
+}
+@media(max-width:1024px){#arch-gallery{column-count:2}}
+@media(max-width:640px){#arch-gallery{column-count:1}}
+
+.arch-item{
+  break-inside:avoid;
+  margin-bottom:6px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  display:block;
+  background:#111111;
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.7s ease-out,transform 0.7s ease-out;
+}
+.arch-item.visible{opacity:1;transform:translateY(0)}
+.arch-item img{
+  width:100%;height:auto;display:block;
+  transition:transform 0.6s ease,filter 0.6s ease;
+}
+.arch-item:hover img{transform:scale(1.04);filter:brightness(0.65)}
+.arch-overlay{
+  position:absolute;inset:0;
+  background:rgba(9,10,12,0);
+  transition:background 0.3s ease;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;padding:20px;
+  pointer-events:none;
+}
+.arch-item:hover .arch-overlay{background:rgba(9,10,12,0.65)}
+.arch-overlay span{opacity:0;transition:opacity 0.3s ease}
+.arch-item:hover .arch-overlay span{opacity:1}
+
+/* ── FOOTER ── */
+footer{
+  background:#090A0C;padding:28px 48px;
+  border-top:1px solid var(--dim);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.foot{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  color:#69626D;letter-spacing:0.08em;text-transform:uppercase;
+}
+.foot-back{cursor:none;transition:color 0.2s}
+.foot-back:hover{color:#EFE9E7}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"><span id="cursor-label">VIEW</span></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-left">
+    <button class="nav-btn" id="menuOpen">WORKS +</button>
+    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+  </div>
+  <a href="index.html" class="nav-center" title="Home">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
+  </a>
+  <div class="nav-right">
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="index.html#contact" class="nav-link">CONTACT</a>
+  </div>
+</nav>
+
+<!-- Mega Menu -->
+<div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
+  <!-- Left -->
+  <div class="mm-col">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
+  </div>
+  <!-- Center -->
+  <div class="mm-col">
+    <nav class="mm-nav-links">
+      <a href="index.html" class="mm-nav-link">Home</a>
+      <a href="index.html#works" class="mm-nav-link">Works</a>
+      <a href="archive.html" class="mm-nav-link" style="color:#EFE9E7;">Archive</a>
+      <a href="about.html" class="mm-nav-link">About</a>
+      <a href="thesis.html" class="mm-nav-link">Thesis</a>
+      <a href="index.html#contact" class="mm-nav-link">Contact</a>
+    </nav>
+  </div>
+  <!-- Right -->
+  <div class="mm-col mm-right">
+    <span class="mm-section-label">INFO</span>
+    <a href="about.html" class="mm-right-link">About me</a>
+    <a href="about.html#career" class="mm-right-link">Career</a>
+    <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
+    <a href="#" class="mm-right-link">Datenschutz</a>
+    <a href="#" class="mm-right-link">Impressum</a>
+    <div class="mm-section">
+      <span class="mm-section-label">DOWNLOAD</span>
+      <a href="assets/cv/cv-nico-bigler.pdf" class="mm-right-link" target="_blank">↓ CV Nico Bigler</a>
+    </div>
+    <div class="mm-section">
+      <span class="mm-section-label">SOCIAL</span>
+      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
+      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+    </div>
+    <div class="mm-manifesto">
+      <span class="mm-manifesto-label">Art is...</span>
+      <span class="mm-manifesto-text">Make it mean something.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Page Header -->
+<header id="arch-header">
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;display:block;">ARCHIVE — ALL RELEASES</span>
+  <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;display:block;">The Full</span>
+  <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:transparent;-webkit-text-stroke:1px rgba(239,233,231,0.18);letter-spacing:-0.04em;line-height:0.92;display:block;">Collection.</span>
+  <p style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#69626D;line-height:1.7;margin-top:24px;max-width:480px;">Every piece ever made. Unfiltered.<br>From early experiments to latest releases —<br>the complete visual archive of Project Nr. 13.</p>
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:100px;padding:5px 14px;display:inline-block;margin-top:20px;">31 RELEASES</span>
+</header>
+
+<!-- Masonry Gallery -->
+<div id="arch-gallery">
+
+  <div class="arch-item" onclick="openLightbox(0)">
+    <img src="assets/covers/archive/arch01.jpg" alt="Archive 01" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'01)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 01</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(1)">
+    <img src="assets/covers/archive/arch02.jpg" alt="Archive 02" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'02)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 02</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(2)">
+    <img src="assets/covers/archive/arch03.jpg" alt="Archive 03" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'03)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 03</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(3)">
+    <img src="assets/covers/archive/arch04.jpg" alt="Archive 04" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'04)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 04</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(4)">
+    <img src="assets/covers/archive/arch05.jpg" alt="Archive 05" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'05)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 05</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(5)">
+    <img src="assets/covers/archive/arch06.jpg" alt="Archive 06" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'06)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 06</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(6)">
+    <img src="assets/covers/archive/arch07.jpg" alt="Archive 07" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'07)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 07</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(7)">
+    <img src="assets/covers/archive/arch08.jpg" alt="Archive 08" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'08)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 08</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(8)">
+    <img src="assets/covers/archive/arch09.jpg" alt="Archive 09" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'09)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 09</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(9)">
+    <img src="assets/covers/archive/arch10.png" alt="Archive 10" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'10)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 10</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(10)">
+    <img src="assets/covers/archive/arch11.jpg" alt="Archive 11" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'11)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 11</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(11)">
+    <img src="assets/covers/archive/arch12.jpg" alt="Archive 12" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'12)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 12</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(12)">
+    <img src="assets/covers/archive/arch13.jpg" alt="Archive 13" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'13)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 13</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(13)">
+    <img src="assets/covers/archive/arch14.jpg" alt="Archive 14" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'14)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 14</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(14)">
+    <img src="assets/covers/archive/arch15.jpg" alt="Archive 15" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'15)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 15</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(15)">
+    <img src="assets/covers/archive/arch16.jpg" alt="Archive 16" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'16)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 16</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(16)">
+    <img src="assets/covers/archive/arch17.jpg" alt="Archive 17" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'17)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 17</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(17)">
+    <img src="assets/covers/archive/arch18.jpg" alt="Archive 18" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'18)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 18</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(18)">
+    <img src="assets/covers/archive/arch19.jpg" alt="Archive 19" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'19)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 19</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(19)">
+    <img src="assets/covers/archive/arch20.jpg" alt="Archive 20" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'20)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 20</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(20)">
+    <img src="assets/covers/archive/arch21.jpg" alt="Archive 21" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'21)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 21</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(21)">
+    <img src="assets/covers/archive/arch22.jpg" alt="Archive 22" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'22)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 22</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(22)">
+    <img src="assets/covers/archive/arch23.png" alt="Archive 23" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'23)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 23</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(23)">
+    <img src="assets/covers/archive/arch24.jpg" alt="Archive 24" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'24)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 24</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(24)">
+    <img src="assets/covers/archive/arch25.jpg" alt="Archive 25" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'25)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 25</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(25)">
+    <img src="assets/covers/archive/arch26.jpg" alt="Archive 26" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'26)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 26</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(26)">
+    <img src="assets/covers/archive/arch27.jpg" alt="Archive 27" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'27)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 27</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(27)">
+    <img src="assets/covers/archive/arch28.jpg" alt="Archive 28" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'28)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 28</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(28)">
+    <img src="assets/covers/archive/arch29.jpg" alt="Archive 29" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'29)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 29</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(29)">
+    <img src="assets/covers/archive/arch30.jpg" alt="Archive 30" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'30)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 30</span>
+    </div>
+  </div>
+
+  <div class="arch-item" onclick="openLightbox(30)">
+    <img src="assets/covers/archive/arch31.jpg" alt="Archive 31" loading="lazy">
+    <div class="arch-overlay">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'31)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 31</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+  <span class="foot">Bern · Zürich · Est. 2026</span>
+  <a href="index.html" class="foot foot-back">← Back to Works</a>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(9,10,12,0.97);opacity:0;transition:opacity 0.4s ease;align-items:center;justify-content:center;padding:48px;">
+
+  <button onclick="closeLightbox()" style="position:absolute;top:28px;right:40px;font-family:'Inter',sans-serif;font-weight:300;font-size:32px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">×</button>
+
+  <button onclick="prevImage()" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">←</button>
+
+  <button onclick="nextImage()" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">→</button>
+
+  <div style="display:grid;grid-template-columns:1fr 280px;gap:48px;max-width:1100px;width:90%;max-height:90vh;">
+    <img id="lbImg" style="max-height:80vh;width:100%;object-fit:contain;display:block;" alt="">
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+      <span id="lbRelease" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;"></span>
+      <h2 id="lbTitle" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;"></h2>
+      <div style="height:1px;background:rgba(239,233,231,0.08);"></div>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#69626D;line-height:1.7;">Visual experiment — part of the ongoing Project Nr. 13 archive. Cover art and visual design exploring the intersection of music, identity and image.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">COVER ART</span>
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">ARCHIVE</span>
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">PROJECT NR. 13</span>
+      </div>
+      <span id="lbCounter" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.1em;margin-top:auto;">01 / 31</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── CURSOR ── */
+  var dot  = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  (function lerpRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+
+  document.querySelectorAll('a,button').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+  });
+  document.querySelectorAll('img').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+  });
+
+  /* ── MEGA MENU ── */
+  var megaMenu = document.getElementById('megaMenu');
+  var mmLinks  = document.querySelectorAll('.mm-nav-link');
+
+  function openMenu() {
+    megaMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    mmLinks.forEach(function (l, i) { l.style.transitionDelay = (i * 60) + 'ms'; });
+  }
+  function closeMenu() {
+    megaMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    mmLinks.forEach(function (l) { l.style.transitionDelay = '0ms'; });
+  }
+
+  document.getElementById('menuOpen').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && megaMenu.classList.contains('open')) closeMenu();
+  });
+  megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
+  mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
+
+  /* ── NAV SCROLL ── */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  /* ── SCROLL ANIMATIONS ── */
+  var items = document.querySelectorAll('.arch-item');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var idx = Array.from(items).indexOf(el);
+        var delay = (idx % 3) * 40;
+        setTimeout(function () { el.classList.add('visible'); }, delay);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08 });
+  items.forEach(function (el) { obs.observe(el); });
+
+})();
+
+/* ── LIGHTBOX ── */
+const archItems = [
+  {src:'assets/covers/archive/arch01.jpg',release:"(ARCH'01)",title:'Untitled 01'},
+  {src:'assets/covers/archive/arch02.jpg',release:"(ARCH'02)",title:'Untitled 02'},
+  {src:'assets/covers/archive/arch03.jpg',release:"(ARCH'03)",title:'Untitled 03'},
+  {src:'assets/covers/archive/arch04.jpg',release:"(ARCH'04)",title:'Untitled 04'},
+  {src:'assets/covers/archive/arch05.jpg',release:"(ARCH'05)",title:'Untitled 05'},
+  {src:'assets/covers/archive/arch06.jpg',release:"(ARCH'06)",title:'Untitled 06'},
+  {src:'assets/covers/archive/arch07.jpg',release:"(ARCH'07)",title:'Untitled 07'},
+  {src:'assets/covers/archive/arch08.jpg',release:"(ARCH'08)",title:'Untitled 08'},
+  {src:'assets/covers/archive/arch09.jpg',release:"(ARCH'09)",title:'Untitled 09'},
+  {src:'assets/covers/archive/arch10.png',release:"(ARCH'10)",title:'Untitled 10'},
+  {src:'assets/covers/archive/arch11.jpg',release:"(ARCH'11)",title:'Untitled 11'},
+  {src:'assets/covers/archive/arch12.jpg',release:"(ARCH'12)",title:'Untitled 12'},
+  {src:'assets/covers/archive/arch13.jpg',release:"(ARCH'13)",title:'Untitled 13'},
+  {src:'assets/covers/archive/arch14.jpg',release:"(ARCH'14)",title:'Untitled 14'},
+  {src:'assets/covers/archive/arch15.jpg',release:"(ARCH'15)",title:'Untitled 15'},
+  {src:'assets/covers/archive/arch16.jpg',release:"(ARCH'16)",title:'Untitled 16'},
+  {src:'assets/covers/archive/arch17.jpg',release:"(ARCH'17)",title:'Untitled 17'},
+  {src:'assets/covers/archive/arch18.jpg',release:"(ARCH'18)",title:'Untitled 18'},
+  {src:'assets/covers/archive/arch19.jpg',release:"(ARCH'19)",title:'Untitled 19'},
+  {src:'assets/covers/archive/arch20.jpg',release:"(ARCH'20)",title:'Untitled 20'},
+  {src:'assets/covers/archive/arch21.jpg',release:"(ARCH'21)",title:'Untitled 21'},
+  {src:'assets/covers/archive/arch22.jpg',release:"(ARCH'22)",title:'Untitled 22'},
+  {src:'assets/covers/archive/arch23.png',release:"(ARCH'23)",title:'Untitled 23'},
+  {src:'assets/covers/archive/arch24.jpg',release:"(ARCH'24)",title:'Untitled 24'},
+  {src:'assets/covers/archive/arch25.jpg',release:"(ARCH'25)",title:'Untitled 25'},
+  {src:'assets/covers/archive/arch26.jpg',release:"(ARCH'26)",title:'Untitled 26'},
+  {src:'assets/covers/archive/arch27.jpg',release:"(ARCH'27)",title:'Untitled 27'},
+  {src:'assets/covers/archive/arch28.jpg',release:"(ARCH'28)",title:'Untitled 28'},
+  {src:'assets/covers/archive/arch29.jpg',release:"(ARCH'29)",title:'Untitled 29'},
+  {src:'assets/covers/archive/arch30.jpg',release:"(ARCH'30)",title:'Untitled 30'},
+  {src:'assets/covers/archive/arch31.jpg',release:"(ARCH'31)",title:'Untitled 31'},
+];
+
+let currentLightbox = 0;
+
+function openLightbox(index) {
+  currentLightbox = index;
+  updateLightbox();
+  const lb = document.getElementById('lightbox');
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => { lb.style.opacity = '1'; }, 10);
+}
+
+function updateLightbox() {
+  const item = archItems[currentLightbox];
+  document.getElementById('lbImg').src = item.src;
+  document.getElementById('lbRelease').textContent = item.release;
+  document.getElementById('lbTitle').textContent = item.title;
+  document.getElementById('lbCounter').textContent =
+    String(currentLightbox + 1).padStart(2, '0') + ' / 31';
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.style.opacity = '0';
+  setTimeout(() => {
+    lb.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 400);
+}
+
+function prevImage() {
+  currentLightbox = (currentLightbox - 1 + archItems.length) % archItems.length;
+  updateLightbox();
+}
+
+function nextImage() {
+  currentLightbox = (currentLightbox + 1) % archItems.length;
+  updateLightbox();
+}
+
+document.getElementById('lightbox').addEventListener('click', function (e) {
+  if (e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') prevImage();
+  if (e.key === 'ArrowRight') nextImage();
+});
+</script>
+</body>
+</html>

@@ -164,98 +164,16 @@ img{display:block;max-width:100%}
 }
 
 /* ── HERO ── */
-#home{
-  height:100vh;background:#000;position:relative;overflow:hidden;
-  background-image:radial-gradient(ellipse at 65% 50%,rgba(52,5,57,0.25) 0%,#000 65%);
-}
-.hero-center{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;z-index:2;
-  display:flex;flex-direction:column;align-items:center;gap:20px;
-}
-.hero-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  letter-spacing:0.2em;text-transform:uppercase;
-  opacity:0;transition:opacity 0.6s ease;
-}
-.hero-logo{
-  width:120px;
-  opacity:0;transform:scale(0.88);
-  transition:opacity 1s ease-out,transform 1s ease-out;
-}
-.hero-tagline{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:26px;
-  color:#EFE9E7;letter-spacing:-0.02em;
-  opacity:0;transition:opacity 0.6s ease;
-}
-.hero-location{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  letter-spacing:0.15em;text-transform:uppercase;
-  opacity:0;transition:opacity 0.6s ease;
-}
-#heroArtis{
-  opacity:0;transition:opacity 0.6s ease;
-  display:flex;flex-direction:column;align-items:center;gap:0;
-}
-.hero-artis-sep{
-  width:120px;height:1px;
-  background:rgba(239,233,231,0.15);
-  margin-bottom:32px;
-}
-.hero-artis-line{
-  display:flex;align-items:baseline;justify-content:center;
-  gap:0 12px;flex-wrap:wrap;
-}
-.hero-artis-static{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:48px;
-  color:#EFE9E7;letter-spacing:-0.03em;line-height:1;
-}
-.hero-artis-word{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:48px;
-  letter-spacing:-0.03em;line-height:1;
-  color:#EFE9E7;
-  -webkit-text-stroke:0px;
-  display:inline-block;margin-left:-8px;
-  transition:opacity 0.3s,transform 0.3s;
-}
-.hero-artis-dot{
-  display:inline-block;width:4px;height:4px;
-  background:#EFE9E7;border-radius:50%;
-  margin-left:4px;vertical-align:middle;
-  animation:pulse 2s ease-in-out infinite alternate;
-}
-.hero-artis-sub{
-  font-family:'Inter',sans-serif;font-weight:400;font-size:16px;
-  color:#69626D;margin-top:8px;text-align:center;
-}
-@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(0.65);opacity:0.2}}
-.hero-scroll-ind{
-  position:absolute;bottom:60px;left:50%;
+#home{height:100vh;background:#000;position:relative;overflow:hidden}
+.scroll-ind{
   transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
+  animation:bounceInd 2s ease-in-out infinite;
+  transition:opacity 0.3s ease;
 }
-.hero-scroll-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;letter-spacing:0.2em;text-transform:uppercase;
+@keyframes bounceInd{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(6px)}
 }
-.hero-scroll-arrow{font-size:14px;color:#69626D;animation:bounce 2s ease-in-out infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-.hero-bar{
-  position:absolute;bottom:0;left:0;right:0;height:40px;
-  border-top:1px solid var(--dim);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;z-index:2;
-}
-.hero-copyright{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
-.view-toggle{display:flex;align-items:center;gap:16px}
-.view-btn{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  letter-spacing:0.12em;color:#69626D;text-transform:uppercase;
-  transition:color 0.2s;
-}
-.view-btn.active{color:#EFE9E7}
-#scrollPct{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em}
 
 /* ── WORKS ── */
 #works{background:#000}
@@ -314,6 +232,7 @@ img{display:block;max-width:100%}
 .proj-list-title{font-family:'Inter',sans-serif;font-weight:500;font-size:16px;color:#EFE9E7;flex:1}
 .proj-list-arrow{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#69626D;transition:transform 0.2s,color 0.2s}
 .proj-list:hover .proj-list-arrow{transform:translateX(6px);color:#EFE9E7}
+.proj-list-thumb{width:60px;height:60px;object-fit:cover;flex-shrink:0;display:block;}
 
 /* ── CONTACT ── */
 #contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
@@ -449,31 +368,24 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
 <!-- Hero -->
 <section id="home">
-  <div class="hero-center">
-    <span class="hero-eyebrow">The Art of Cover Design</span>
-    <img src="assets/images/logo.png" alt="Project Nr. 13" class="hero-logo" style="width:180px;height:auto;display:block;">
-    <span class="hero-location">Zürich &amp; Bern — Est. 2026</span>
-    <div id="heroArtis">
-      <div class="hero-artis-sep"></div>
-      <div class="hero-artis-line">
-        <span class="hero-artis-static">Art is</span>
-        <span class="hero-artis-word" id="artisWord">Feeling</span><span class="hero-artis-dot"></span>
-      </div>
-      <p class="hero-artis-sub">Make it mean something.</p>
+  <!-- Layer 1: Grid Canvas -->
+  <canvas id="gridCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;filter:blur(0.8px);opacity:0.85;pointer-events:none;"></canvas>
+  <!-- Layer 2: Atmosphere -->
+  <div id="heroAtm" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
+  <!-- Layer 3: Vignette -->
+  <div style="position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,0.65) 100%);"></div>
+  <!-- Layer 4: Hero Content -->
+  <div style="position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;">
+    <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;display:block;">Art is</span>
+    <div style="height:clamp(80px,12vw,148px);overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <span id="heroWord" style="font-family:'Inter',monospace;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;">Creation</span>
     </div>
   </div>
-  <div class="hero-scroll-ind">
-    <span class="hero-scroll-label">SCROLL</span>
-    <span class="hero-scroll-arrow">↓</span>
-  </div>
-  <div class="hero-bar">
-    <span class="hero-copyright">© Project Nr. 13 · Studionumber13</span>
-    <div class="view-toggle">
-      <button class="view-btn active" data-view="scroll">SCROLL</button>
-      <button class="view-btn" data-view="grid">GRID</button>
-      <button class="view-btn" data-view="list">LIST</button>
-    </div>
-    <span id="scrollPct">0%</span>
+  <!-- Layer 5: Grid Label -->
+  <div id="gridLabel" style="position:absolute;bottom:40px;right:48px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(239,233,231,0.12);letter-spacing:0.15em;z-index:10;transition:opacity 0.4s ease;text-transform:uppercase;">GRID — 01</div>
+  <!-- Scroll Indicator -->
+  <div class="scroll-ind" style="position:absolute;bottom:40px;left:50%;z-index:10;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(239,233,231,0.18);letter-spacing:0.2em;">↓ SCROLL</span>
   </div>
 </section>
 
@@ -484,11 +396,22 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div id="works-bg-grad"></div>
 </div>
 
+<!-- Works Toggle -->
+<div id="worksToggle" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid rgba(239,233,231,0.07);background:#090A0C;position:sticky;top:56px;z-index:100;">
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.15em;text-transform:uppercase;">SELECTED WORKS</span>
+  <div style="display:flex;gap:24px;align-items:center;">
+    <button id="btnScroll" onclick="setView('scroll')" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;border:none;cursor:pointer;padding:4px 0;color:#EFE9E7;border-bottom:1px solid #EFE9E7;">SCROLL</button>
+    <button id="btnGrid" onclick="setView('grid')" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;border:none;cursor:pointer;padding:4px 0;color:#5A5B64;border-bottom:1px solid transparent;">GRID</button>
+    <button id="btnList" onclick="setView('list')" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;border:none;cursor:pointer;padding:4px 0;color:#5A5B64;border-bottom:1px solid transparent;">LIST</button>
+  </div>
+  <span id="scrollPct" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.1em;">0%</span>
+</div>
+
 <!-- Works -->
 <section id="works">
   <div id="works-scroll"></div>
-  <div id="works-grid" style="display:none;opacity:0"></div>
-  <div id="works-list" style="display:none;opacity:0"></div>
+  <div id="works-grid" style="display:none;"></div>
+  <div id="works-list" style="display:none;"></div>
 </section>
 
 <!-- Ghost title -->
@@ -589,6 +512,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     l.className = 'proj-list';
     l.innerHTML =
       '<div class="proj-list-line"></div>' +
+      '<img class="proj-list-thumb" src="' + p.src + '" alt="' + alt + '" loading="lazy">' +
       '<span class="proj-list-num">' + num + '</span>' +
       '<span class="proj-list-release">' + p.release + '</span>' +
       '<span class="proj-list-title">' + p.line1 + ' ' + p.line2 + '</span>' +
@@ -647,33 +571,17 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
         setTimeout(function () {
           loaderTop.style.transform    = 'translateY(-100%)';
           loaderBottom.style.transform = 'translateY(100%)';
-          setTimeout(function () { loader.remove(); startHero(); }, 900);
+          setTimeout(function () { loader.remove(); }, 900);
         }, 200);
       }, 300);
     }
   }
   requestAnimationFrame(animLoader);
 
-  function startHero() {
-    var ey = document.querySelector('.hero-eyebrow');
-    var hl = document.querySelector('.hero-logo');
-    var tg = document.querySelector('.hero-tagline');
-    var lo = document.querySelector('.hero-location');
-    var ha = document.getElementById('heroArtis');
-    setTimeout(function () { ey.style.opacity = '1'; }, 500);
-    setTimeout(function () { hl.style.opacity = '1'; hl.style.transform = 'scale(1)'; }, 700);
-    setTimeout(function () { tg.style.opacity = '1'; }, 1100);
-    setTimeout(function () { lo.style.opacity = '1'; }, 1300);
-    setTimeout(function () { if (ha) ha.style.opacity = '1'; }, 1600);
-  }
-
   /* ── NAV SCROLL ── */
   var nav = document.getElementById('nav');
-  var scrollPctEl = document.getElementById('scrollPct');
   window.addEventListener('scroll', function () {
     nav.classList.toggle('scrolled', window.scrollY > 80);
-    var pct = Math.round(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
-    scrollPctEl.textContent = (isNaN(pct) ? 0 : pct) + '%';
   }, { passive: true });
 
   /* ── MEGA MENU ── */
@@ -706,27 +614,8 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ── VIEW TOGGLE ── */
-  var viewBtns   = document.querySelectorAll('.view-btn');
+  /* ── GHOST TITLE ── */
   var ghostTitle = document.getElementById('ghost-title');
-  var viewEls    = { scroll: scrollCont, grid: gridCont, list: listCont };
-
-  viewBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var v = btn.dataset.view;
-      viewBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      Object.keys(viewEls).forEach(function (key) {
-        viewEls[key].style.display = 'none';
-        viewEls[key].style.opacity = '0';
-      });
-      var t = viewEls[v];
-      t.style.display = (v === 'grid') ? 'grid' : 'block';
-      t.style.transition = 'opacity 0.4s ease';
-      requestAnimationFrame(function () { requestAnimationFrame(function () { t.style.opacity = '1'; }); });
-      ghostTitle.style.display = (v === 'scroll') ? 'block' : 'none';
-    });
-  });
 
   /* ── SCROLL PROJECT STATES ── */
   var scrollItems = document.querySelectorAll('.proj-scroll');
@@ -808,45 +697,284 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   }, { threshold: 0.1 });
   animEls.forEach(function (el) { animObs.observe(el); });
 
-  /* ── ART IS ROTATING WORD ── */
-  var wordEl = document.getElementById('artisWord');
-  var words  = ['Feeling','Culture','Sound','Noise','Structure','Identity',
-                'Memory','Signal','Vision','Instinct','Archive','Motion',
-                'Tension','Silence','Energy','Contrast'];
-  var wi     = 0;
-  var wTimer = null;
+})();
 
-  function cycleWord() {
-    wi = (wi + 1) % words.length;
-    wordEl.style.opacity   = '0';
-    wordEl.style.transform = 'translateY(-10px)';
-    setTimeout(function () {
-      wordEl.textContent     = words[wi];
-      wordEl.style.opacity   = '1';
-      wordEl.style.transform = 'translateY(0)';
-    }, 300);
+/* ── HERO CANVAS ── */
+(function () {
+  const canvas = document.getElementById('gridCanvas');
+  const ctx    = canvas.getContext('2d');
+  const hero   = document.getElementById('home');
+
+  let W, H, animT = 0, currentGrid = 0;
+
+  function resizeCanvas() {
+    const hero = document.getElementById('home');
+    canvas.width  = hero.offsetWidth  || window.innerWidth;
+    canvas.height = hero.offsetHeight || window.innerHeight;
+    W = canvas.width;
+    H = canvas.height;
+  }
+  resizeCanvas();
+  setTimeout(resizeCanvas, 100);
+  window.addEventListener('resize', resizeCanvas);
+  canvas.style.opacity = '0.85';
+
+  /* ── 8 GRID SYSTEMS ── */
+  const grids = [
+    {
+      name: 'SQUARE — 48px',
+      draw() {
+        const size = 48;
+        ctx.strokeStyle = 'rgba(239,233,231,0.4)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < W; x += size) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+        for (let y = 0; y < H; y += size) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+      }
+    },
+    {
+      name: 'DIAGONAL — 45°',
+      draw() {
+        const gap = 40;
+        ctx.strokeStyle = 'rgba(239,233,231,0.3)';
+        ctx.lineWidth = 0.8;
+        for (let i = -H; i < W + H; i += gap) {
+          ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i + H, H); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i - H, H); ctx.stroke();
+        }
+      }
+    },
+    {
+      name: 'RADIAL — CONCENTRIC',
+      draw() {
+        const cx = W / 2, cy = H / 2;
+        ctx.lineWidth = 0.8;
+        for (let r = 30; r < Math.max(W, H) * 0.9; r += 55) {
+          ctx.strokeStyle = 'rgba(239,233,231,0.25)';
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+        }
+        for (let a = 0; a < 360; a += 20) {
+          const rad = a * Math.PI / 180;
+          ctx.strokeStyle = 'rgba(239,233,231,0.12)';
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + Math.cos(rad) * Math.max(W, H), cy + Math.sin(rad) * Math.max(W, H));
+          ctx.stroke();
+        }
+      }
+    },
+    {
+      name: 'ISOMETRIC — TRIANGLE',
+      draw() {
+        const s = 64, h = s * Math.sqrt(3) / 2;
+        ctx.strokeStyle = 'rgba(239,233,231,0.3)';
+        ctx.lineWidth = 0.8;
+        for (let row = 0; row < Math.ceil(H / h) + 1; row++) {
+          for (let col = 0; col < Math.ceil(W / s) + 2; col++) {
+            const x = col * s + (row % 2) * s / 2, y = row * h;
+            ctx.beginPath();
+            ctx.moveTo(x, y); ctx.lineTo(x + s, y);
+            ctx.moveTo(x, y); ctx.lineTo(x + s / 2, y + h);
+            ctx.moveTo(x + s, y); ctx.lineTo(x + s / 2, y + h);
+            ctx.stroke();
+          }
+        }
+      }
+    },
+    {
+      name: 'DOT MATRIX — 28px',
+      draw() {
+        const gap = 28;
+        for (let x = gap / 2; x < W; x += gap) {
+          for (let y = gap / 2; y < H; y += gap) {
+            ctx.beginPath();
+            ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(239,233,231,0.55)';
+            ctx.fill();
+          }
+        }
+      }
+    },
+    {
+      name: 'HEXAGONAL — HONEYCOMB',
+      draw() {
+        const r = 36, h = r * Math.sqrt(3);
+        ctx.strokeStyle = 'rgba(239,233,231,0.25)';
+        ctx.lineWidth = 0.8;
+        for (let row = 0; row < Math.ceil(H / h) + 1; row++) {
+          for (let col = 0; col < Math.ceil(W / (r * 3)) + 1; col++) {
+            const cx = col * r * 3 + (row % 2) * r * 1.5, cy = row * h;
+            ctx.beginPath();
+            for (let a = 0; a < 6; a++) {
+              const angle = (a * 60 - 30) * Math.PI / 180;
+              const px = cx + r * Math.cos(angle), py = cy + r * Math.sin(angle);
+              a === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+            }
+            ctx.closePath(); ctx.stroke();
+          }
+        }
+      }
+    },
+    {
+      name: 'WAVE — SINUSOIDAL',
+      draw() {
+        const gap = 32;
+        ctx.strokeStyle = 'rgba(239,233,231,0.22)';
+        ctx.lineWidth = 0.8;
+        for (let y = 0; y < H + gap; y += gap) {
+          ctx.beginPath();
+          for (let x = 0; x < W; x += 2) {
+            const wy = y + Math.sin((x + animT * 0.4) * 0.04) * 18;
+            x === 0 ? ctx.moveTo(x, wy) : ctx.lineTo(x, wy);
+          }
+          ctx.stroke();
+        }
+      }
+    },
+    {
+      name: 'CROSS — ARCHITECTURAL',
+      draw() {
+        const gap = 56, size = 14;
+        ctx.strokeStyle = 'rgba(239,233,231,0.4)';
+        ctx.lineWidth = 1;
+        for (let x = gap / 2; x < W; x += gap) {
+          for (let y = gap / 2; y < H; y += gap) {
+            ctx.beginPath();
+            ctx.moveTo(x - size, y); ctx.lineTo(x + size, y);
+            ctx.moveTo(x, y - size); ctx.lineTo(x, y + size);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+  ];
+
+  /* ── ANIMATION LOOP ── */
+  function drawLoop() {
+    ctx.clearRect(0, 0, W, H);
+    animT += 0.5;
+    grids[currentGrid].draw();
+    requestAnimationFrame(drawLoop);
+  }
+  drawLoop();
+  console.log('Canvas W:', W, 'H:', H);
+  console.log('Current grid:', currentGrid);
+
+  /* ── GRID TRANSITION ── */
+  function switchGrid() {
+    const c = document.getElementById('gridCanvas');
+    c.style.opacity = '0.4';
+    setTimeout(() => {
+      currentGrid = (currentGrid + 1) % grids.length;
+      const label = document.getElementById('gridLabel');
+      if (label) {
+        label.style.opacity = '0';
+        setTimeout(() => {
+          label.textContent = grids[currentGrid].name;
+          label.style.opacity = '1';
+        }, 200);
+      }
+      c.style.opacity = '0.85';
+    }, 200);
   }
 
-  function startCycle() { wTimer = setInterval(cycleWord, 2500); }
-  function stopCycle()  { clearInterval(wTimer); }
+  /* ── WORD LIST ── */
+  const heroWords = [
+    'Creation','Minimal','Elegant','Modern',
+    'Bold','Vibrant','Clean','Aesthetic',
+    'Impactful','Innovative','Inspiring',
+    'Strategic','Unique','Visual','Immersive',
+    'Sleek','Iconic','Stunning','Passionate',
+    'Project Nr. 13'
+  ];
+  const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*';
 
-  wordEl.addEventListener('mouseenter', function () { stopCycle(); wordEl.classList.add('hovered'); });
-  wordEl.addEventListener('mouseleave', function () {
-    wordEl.classList.remove('hovered');
-    wordEl.style.opacity   = '0';
-    wordEl.style.transform = 'translateY(-10px)';
-    setTimeout(function () {
-      wi = (wi + 1) % words.length;
-      wordEl.textContent     = words[wi];
-      wordEl.style.opacity   = '1';
-      wordEl.style.transform = 'translateY(0)';
-      startCycle();
-    }, 300);
+  /* ── SCRAMBLE ── */
+  let wordIndex = 0;
+  const heroEl  = document.getElementById('heroWord');
+
+  function scramble(target, callback) {
+    let iter = 0;
+    const maxIter = target.length * 4;
+    const iv = setInterval(() => {
+      heroEl.textContent = target
+        .split('')
+        .map((c, i) => {
+          if (c === ' ') return ' ';
+          if (i < Math.floor(iter / 4)) return c;
+          return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+        })
+        .join('');
+      iter++;
+      if (iter >= maxIter) {
+        clearInterval(iv);
+        heroEl.textContent = target;
+        if (callback) callback();
+      }
+    }, 22);
+  }
+
+  /* ── WORD CYCLE ── */
+  function nextWord() {
+    switchGrid();
+    wordIndex = (wordIndex + 1) % heroWords.length;
+    const word   = heroWords[wordIndex];
+    const isLast = word === 'Project Nr. 13';
+    scramble(word, () => { setTimeout(nextWord, isLast ? 2000 : 1000); });
+  }
+
+  scramble(heroWords[0], () => { setTimeout(nextWord, 1000); });
+
+  /* ── SCROLL HIDE ── */
+  window.addEventListener('scroll', () => {
+    const si = document.querySelector('.scroll-ind');
+    if (si) si.style.opacity = window.scrollY > 80 ? '0' : '1';
   });
-
-  startCycle();
-
 })();
+
+/* ── VIEW TOGGLE ── */
+function setView(view) {
+  var scrollEl = document.getElementById('works-scroll');
+  var gridEl   = document.getElementById('works-grid');
+  var listEl   = document.getElementById('works-list');
+
+  if (scrollEl) scrollEl.style.display = 'none';
+  if (gridEl)   gridEl.style.display   = 'none';
+  if (listEl)   listEl.style.display   = 'none';
+
+  if (view === 'scroll' && scrollEl) scrollEl.style.display = 'block';
+  if (view === 'grid'   && gridEl)   gridEl.style.display   = 'grid';
+  if (view === 'list'   && listEl)   listEl.style.display   = 'block';
+
+  var btns = {
+    scroll: document.getElementById('btnScroll'),
+    grid:   document.getElementById('btnGrid'),
+    list:   document.getElementById('btnList')
+  };
+  Object.entries(btns).forEach(function (entry) {
+    var k = entry[0], btn = entry[1];
+    if (!btn) return;
+    if (k === view) {
+      btn.style.color = '#EFE9E7';
+      btn.style.borderBottom = '1px solid #EFE9E7';
+    } else {
+      btn.style.color = '#5A5B64';
+      btn.style.borderBottom = '1px solid transparent';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () { setView('scroll'); });
+
+window.addEventListener('scroll', function () {
+  var pct = Math.round(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
+  var el = document.getElementById('scrollPct');
+  if (el) el.textContent = (isNaN(pct) ? 0 : pct) + '%';
+});
 </script>
 </body>
 </html>
