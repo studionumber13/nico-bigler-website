@@ -121,7 +121,7 @@ img{display:block;max-width:100%}
   transition:opacity 0.4s ease;
 }
 #megaMenu.open{opacity:1;pointer-events:all}
-.mm-col{padding:48px;height:100%;overflow-y:auto}
+.mm-col{padding:48px;height:100%}
 .mm-close{
   position:absolute;top:28px;right:48px;
   font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
@@ -289,6 +289,29 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   z-index:1;
 }
 
+/* ── ARCHIVE BUTTON ── */
+#archive-btn{
+  display:block;width:100%;padding:64px 48px;
+  border:none;border-top:1px solid rgba(239,233,231,0.12);
+  background:transparent;text-align:center;color:#EFE9E7;
+  position:relative;overflow:hidden;
+  transition:color 0.4s ease;
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:clamp(40px,7vw,88px);
+  letter-spacing:-0.04em;line-height:1;
+  cursor:none;
+  text-decoration:none;
+}
+#archive-btn::before{
+  content:'';position:absolute;inset:0;
+  background:#EFE9E7;
+  transform:translateX(-100%);
+  transition:transform 0.4s ease;
+}
+#archive-btn:hover{color:#000;}
+#archive-btn:hover::before{transform:translateX(0);}
+#archive-btn span{position:relative;z-index:1;}
+
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
@@ -320,6 +343,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
   </div>
   <div class="nav-right">
+    <a href="archive.html" class="nav-link">ARCHIVE</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="#contact" class="nav-link">CONTACT</a>
   </div>
@@ -337,6 +361,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <nav class="mm-nav-links">
       <a href="index.html" class="mm-nav-link">Home</a>
       <a href="#works" class="mm-nav-link">Works</a>
+      <a href="archive.html" class="mm-nav-link">Archive</a>
       <a href="about.html" class="mm-nav-link">About</a>
       <a href="thesis.html" class="mm-nav-link">Thesis</a>
       <a href="#contact" class="mm-nav-link">Contact</a>
@@ -448,6 +473,9 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     </form>
   </div>
 </section>
+
+<!-- Archive Button -->
+<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
 
 <!-- Footer -->
 <footer>
