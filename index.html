@@ -16,7 +16,7 @@ body{
   background:#000;color:#EFE9E7;
   font-family:'Inter',sans-serif;
   -webkit-font-smoothing:antialiased;
-  cursor:none;overflow-x:hidden;
+  cursor:none;overflow-x:clip;
 }
 :root{
   --black:#000000;--white:#EFE9E7;
@@ -107,7 +107,16 @@ img{display:block;max-width:100%}
   transition:color 0.2s;
 }
 .nav-cv:hover{color:#EFE9E7}
-.nav-center{cursor:none}
+.nav-center{cursor:none;position:relative}
+.nav-center::after{
+  content:'';position:absolute;top:50%;left:50%;
+  width:28px;height:28px;border-radius:50%;
+  border:1.5px solid #0032FF;
+  transform:translate(-50%,-50%) scale(0);
+  opacity:0;pointer-events:none;
+  transition:transform 0.3s ease,opacity 0.3s ease;
+}
+.nav-center:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1;}
 .nav-link{
   font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
   color:#EFE9E7;letter-spacing:0.08em;
@@ -194,13 +203,6 @@ img{display:block;max-width:100%}
 .proj-release{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;letter-spacing:0.1em;margin-bottom:8px}
 .proj-t1{font-family:'Inter',sans-serif;font-weight:500;font-style:italic;font-size:24px;color:#EFE9E7}
 .proj-t2{font-family:'Inter',sans-serif;font-weight:900;font-size:24px;color:#EFE9E7;letter-spacing:-0.02em}
-#ghost-title{
-  position:fixed;bottom:0;left:0;right:0;
-  text-align:center;pointer-events:none;z-index:5;padding-bottom:48px;
-  font-family:'Inter',sans-serif;font-weight:900;font-size:52px;
-  color:#EFE9E7;opacity:0.1;filter:blur(3px);
-  letter-spacing:-0.03em;transition:opacity 0.3s;
-}
 #works-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
   padding:80px 48px;
@@ -422,7 +424,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 </div>
 
 <!-- Works Toggle -->
-<div id="worksToggle" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid rgba(239,233,231,0.07);background:#090A0C;position:sticky;top:56px;z-index:100;">
+<div id="worksToggle" style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid rgba(239,233,231,0.07);background:#090A0C;position:sticky;top:56px;z-index:100;transition:transform 0.3s ease;">
   <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.15em;text-transform:uppercase;">SELECTED WORKS</span>
   <div style="display:flex;gap:24px;align-items:center;">
     <button id="btnScroll" onclick="setView('scroll')" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:transparent;border:none;cursor:pointer;padding:4px 0;color:#EFE9E7;border-bottom:1px solid #EFE9E7;">SCROLL</button>
@@ -439,8 +441,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div id="works-list" style="display:none;"></div>
 </section>
 
-<!-- Ghost title -->
-<div id="ghost-title" aria-hidden="true"></div>
 
 <!-- Contact -->
 <section id="contact">
@@ -483,6 +483,32 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <span class="foot">Bern · Zürich · Est. 2026</span>
   <span class="foot foot-back" id="backTop">↑ Back to Top</span>
 </footer>
+
+<!-- Works Lightbox -->
+<div id="worksLightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(9,10,12,0.97);opacity:0;transition:opacity 0.4s ease;align-items:center;justify-content:center;padding:48px;">
+
+  <button onclick="closeWorksLightbox()" style="position:absolute;top:28px;right:40px;font-family:'Inter',sans-serif;font-weight:300;font-size:32px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">×</button>
+
+  <button onclick="prevWork()" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">←</button>
+
+  <button onclick="nextWork()" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">→</button>
+
+  <div style="display:grid;grid-template-columns:1fr 280px;gap:48px;max-width:1100px;width:90%;max-height:90vh;">
+    <img id="wlbImg" style="max-height:80vh;width:100%;object-fit:contain;display:block;" alt="">
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+      <span id="wlbRelease" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;"></span>
+      <h2 id="wlbTitle" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;"></h2>
+      <div style="height:1px;background:rgba(239,233,231,0.08);"></div>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#69626D;line-height:1.7;">Visual experiment — part of the ongoing Project Nr. 13 archive. Cover art and visual design exploring the intersection of music, identity and image.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">COVER ART</span>
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">SELECTED WORKS</span>
+        <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">PROJECT NR. 13</span>
+      </div>
+      <span id="wlbCounter" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.1em;margin-top:auto;">01 / 10</span>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -546,7 +572,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       '<span class="proj-list-title">' + p.line1 + ' ' + p.line2 + '</span>' +
       '<span class="proj-list-arrow">→</span>';
     listCont.appendChild(l);
+
+    s.addEventListener('click', function() { openWorksLightbox(i); });
+    g.addEventListener('click', function() { openWorksLightbox(i); });
+    l.addEventListener('click', function() { openWorksLightbox(i); });
   });
+
+  window._worksData = projects;
 
   /* ── CURSOR ── */
   var dot  = document.getElementById('cursor-dot');
@@ -642,20 +674,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ── GHOST TITLE ── */
-  var ghostTitle = document.getElementById('ghost-title');
-
   /* ── SCROLL PROJECT STATES ── */
   var scrollItems = document.querySelectorAll('.proj-scroll');
-  if (projects.length > 1) ghostTitle.textContent = projects[1].line2;
 
   var projObs = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      var idx = parseInt(entry.target.dataset.index);
       if (entry.isIntersecting) {
         entry.target.classList.remove('inactive');
-        var next = projects[idx + 1];
-        ghostTitle.textContent = next ? next.line2 : '';
       } else {
         entry.target.classList.add('inactive');
       }
@@ -998,10 +1023,75 @@ function setView(view) {
 
 document.addEventListener('DOMContentLoaded', function () { setView('scroll'); });
 
+var lastScrollY = 0;
 window.addEventListener('scroll', function () {
   var pct = Math.round(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
   var el = document.getElementById('scrollPct');
   if (el) el.textContent = (isNaN(pct) ? 0 : pct) + '%';
+
+  var toggle = document.getElementById('worksToggle');
+  if (toggle) {
+    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      toggle.style.transform = 'translateY(-100%)';
+    } else {
+      toggle.style.transform = 'translateY(0)';
+    }
+  }
+  lastScrollY = window.scrollY;
+});
+
+/* ── WORKS LIGHTBOX ── */
+var currentWork = 0;
+
+function openWorksLightbox(index) {
+  currentWork = index;
+  updateWorksLightbox();
+  var lb = document.getElementById('worksLightbox');
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { lb.style.opacity = '1'; }, 10);
+}
+
+function updateWorksLightbox() {
+  var data = window._worksData;
+  var item = data[currentWork];
+  document.getElementById('wlbImg').src = item.src;
+  document.getElementById('wlbRelease').textContent = item.release;
+  document.getElementById('wlbTitle').textContent = item.line1 + ' ' + item.line2;
+  document.getElementById('wlbCounter').textContent =
+    String(currentWork + 1).padStart(2, '0') + ' / ' + String(data.length).padStart(2, '0');
+}
+
+function closeWorksLightbox() {
+  var lb = document.getElementById('worksLightbox');
+  lb.style.opacity = '0';
+  setTimeout(function() {
+    lb.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 400);
+}
+
+function prevWork() {
+  currentWork = (currentWork - 1 + window._worksData.length) % window._worksData.length;
+  updateWorksLightbox();
+}
+
+function nextWork() {
+  currentWork = (currentWork + 1) % window._worksData.length;
+  updateWorksLightbox();
+}
+
+document.getElementById('worksLightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeWorksLightbox();
+});
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('worksLightbox');
+  if (lb && lb.style.display === 'flex') {
+    if (e.key === 'Escape') closeWorksLightbox();
+    if (e.key === 'ArrowLeft') prevWork();
+    if (e.key === 'ArrowRight') nextWork();
+  }
 });
 </script>
 </body>
