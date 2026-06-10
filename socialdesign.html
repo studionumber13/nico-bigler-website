@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bergos — Nico Bigler</title>
+<title>socialdesign ag — Nico Bigler</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -42,6 +42,10 @@ a{color:inherit;text-decoration:none;}
 .nav-ext-link{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#AAABBC;text-transform:uppercase;text-decoration:none;transition:color .2s;}
 .nav-ext-link:hover{color:#0032FF;}
 
+/* BACK LINK */
+.back-link{display:block;padding:40px var(--mx) 0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--charcoal);transition:color .2s;}
+.back-link:hover{color:var(--white);}
+
 /* MEGA MENU */
 #megaMenu{position:fixed;inset:0;z-index:9000;background:#000;display:grid;grid-template-columns:25% 45% 30%;opacity:0;pointer-events:none;transition:opacity 0.4s ease;}
 #megaMenu.open{opacity:1;pointer-events:all}
@@ -62,11 +66,11 @@ a{color:inherit;text-decoration:none;}
 .mm-manifesto-text{font-family:'Inter',sans-serif;font-weight:900;font-size:16px;color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;}
 
 /* SECTION 1 — HEADER */
-.co-header{background:var(--onyx);padding:140px var(--mx) 64px;}
-.co-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);margin-bottom:24px;opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
-.co-title{font-family:'Inter',sans-serif;font-weight:900;font-size:72px;line-height:1;letter-spacing:-0.03em;color:var(--white);opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
-.co-subtitle{font-family:'Inter',sans-serif;font-weight:400;font-size:18px;line-height:1.6;color:var(--pale-slate);margin-top:20px;max-width:640px;opacity:0;transition:opacity .5s ease;}
-.co-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;opacity:0;transition:opacity .5s ease;}
+.co-header{background:var(--onyx);padding:100px var(--mx) 64px;}
+.co-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);margin-bottom:20px;opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.co-title{font-family:'Inter',sans-serif;font-weight:700;font-size:64px;line-height:1.05;letter-spacing:-0.03em;color:var(--white);margin-bottom:24px;opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.co-subtitle{font-family:'Inter',sans-serif;font-weight:400;font-size:18px;line-height:1.7;color:var(--pale-slate);max-width:640px;margin-bottom:32px;opacity:0;transition:opacity .5s ease;}
+.co-tags{display:flex;flex-wrap:wrap;gap:8px;opacity:0;transition:opacity .5s ease;}
 .co-rule{height:1px;background:var(--graphite);margin-top:48px;transform:scaleX(0);transform-origin:left;transition:transform .8s ease-out;}
 .co-label.visible{opacity:1;transform:translateY(0);}
 .co-title.visible{opacity:1;transform:translateY(0);}
@@ -83,7 +87,7 @@ a{color:inherit;text-decoration:none;}
 .info-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;}
 .info-value{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:var(--pale-light);}
 
-/* TAGS (shared: co-header + skills) */
+/* TAGS (shared) */
 .tags{display:flex;flex-wrap:wrap;gap:8px;}
 .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--pale-slate);border:1px solid var(--charcoal);padding:6px 14px;border-radius:3px;}
 
@@ -104,7 +108,7 @@ a{color:inherit;text-decoration:none;}
 .metric-number{font-family:'Inter',sans-serif;font-weight:900;font-size:52px;line-height:1;letter-spacing:-0.04em;color:var(--white);}
 .metric-label{font-family:'Inter',sans-serif;font-size:13px;line-height:1.5;color:var(--charcoal);margin-top:12px;}
 
-/* SECTION 5 — SKILLS */
+/* SECTION 5 — TOOLS */
 .skills{background:var(--onyx);padding:80px var(--mx);}
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:32px;}
 .skills-col-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);}
@@ -163,7 +167,7 @@ body:has(a:hover,button:hover) .cursor-ring{width:48px;height:48px;border-color:
 
 @media(max-width:1024px){
   :root{--mx:48px;}
-  .co-title{font-size:56px;}
+  .co-title{font-size:48px;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .impact-metric{padding:0 32px;}
   .impact-metric:first-child{padding-left:0;}
@@ -177,8 +181,8 @@ body:has(a:hover,button:hover) .cursor-ring{width:48px;height:48px;border-color:
   .nav{grid-template-columns:1fr 1fr;}
   .nav-center{display:none;}
   .nav-right{grid-column:2;}
-  .co-title{font-size:40px;}
-  .co-header{padding-top:100px;}
+  .co-title{font-size:36px;}
+  .co-header{padding-top:80px;}
   .impact-grid{grid-template-columns:1fr;}
   .impact-metric{padding:0;padding-bottom:40px;border-right:none!important;border-bottom:1px solid var(--charcoal);}
   .impact-metric:last-child{border-bottom:none;padding-bottom:0;}
@@ -186,10 +190,6 @@ body:has(a:hover,button:hover) .cursor-ring{width:48px;height:48px;border-color:
   .footer-bottom-mid,.footer-bottom-right{text-align:left;}
   .footer-ghost{font-size:72px;}
 }
-/* BACK LINK */
-.back-link{display:block;padding:40px var(--mx) 0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--charcoal);transition:color .2s;}
-.back-link:hover{color:var(--white);}
-
 /* PREV/NEXT NAV */
 .case-nav{background:#323338;padding:48px 80px;border-top:1px solid #5A5B64;display:flex;justify-content:space-between;align-items:center;}
 .case-nav-link{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#D3D3D9;text-decoration:none;transition:color .2s;}
@@ -301,14 +301,14 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
 <!-- SECTION 1 — HEADER -->
 <section class="co-header">
-  <div class="co-label">PRIVATE BANK BERGOS AG · 2024–2025</div>
-  <h1 class="co-title">Communications<br>&amp; Brand Manager</h1>
-  <p class="co-subtitle">Built and led the Brand Center.<br>Responsible for visual identity, editorial design<br>and digital assets for next-generation HNWI clients.</p>
+  <div class="co-label">SOCIALDESIGN AG · 2024–2025</div>
+  <h1 class="co-title">Communications Manager<br>&amp; Project Coordinator</h1>
+  <p class="co-subtitle">Editorial communications,<br>campaign planning and AI workflow development<br>for a Swiss agency<br>for social innovation.</p>
   <div class="co-tags">
-    <span class="tag">Brand Management</span>
-    <span class="tag">CI/CD</span>
-    <span class="tag">Editorial Design</span>
-    <span class="tag">Digital Assets</span>
+    <span class="tag">Content</span>
+    <span class="tag">Campaigns</span>
+    <span class="tag">AI Workflows</span>
+    <span class="tag">Project Coordination</span>
   </div>
   <div class="co-rule"></div>
 </section>
@@ -318,24 +318,24 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div class="about-grid">
     <div>
       <div class="section-label anim">ABOUT THE COMPANY</div>
-      <p class="about-text anim" data-stagger="120">Private Bank Bergos AG is an independent Swiss private bank focusing on individual wealth management. The bank combines traditional Swiss banking values with modern wealth management for HNWI and next-generation clients.</p>
+      <p class="about-text anim" data-stagger="120">socialdesign ag is a Swiss agency for social innovation and strategic communications. It develops solutions for societal challenges in the areas of health, education and integration.</p>
     </div>
     <div>
       <div class="info-row anim" data-stagger="0">
         <div class="info-label">INDUSTRY</div>
-        <div class="info-value">Private Banking</div>
+        <div class="info-value">Social Innovation / Communications</div>
       </div>
       <div class="info-row anim" data-stagger="80">
         <div class="info-label">PERIOD</div>
-        <div class="info-value">April 2024 – December 2025</div>
+        <div class="info-value">July 2024 – March 2025</div>
       </div>
       <div class="info-row anim" data-stagger="160">
         <div class="info-label">COMPANY SIZE</div>
-        <div class="info-value">50–100 Employees</div>
+        <div class="info-value">10–20 Employees</div>
       </div>
       <div class="info-row anim" data-stagger="240">
         <div class="info-label">LOCATION</div>
-        <div class="info-value">Zurich, Switzerland</div>
+        <div class="info-value">Bern, Switzerland</div>
       </div>
     </div>
   </div>
@@ -347,43 +347,36 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div class="activity-item anim" data-stagger="0">
     <div class="activity-num">01</div>
     <div>
-      <div class="activity-title">Brand Center</div>
-      <div class="activity-desc">Built CI/CD governance framework, style guide, brand voice, visual identity templates and SharePoint asset library.<br><br>+90% brand conformity · +40% usage · −30–40% search time.</div>
+      <div class="activity-title">Editorial Communications</div>
+      <div class="activity-desc">Managed newsletter, blog posts, website and LinkedIn channel. Produced templates and year-end communications including New Year's card and client gifts.</div>
     </div>
   </div>
   <div class="activity-item anim" data-stagger="80">
     <div class="activity-num">02</div>
     <div>
-      <div class="activity-title">Editorial &amp; Print</div>
-      <div class="activity-desc">Produced the monthly employee magazine «Pavilion» end-to-end — from content to print coordination. Monthly print ads in NZZ and Monocle — concept, design and print management.</div>
+      <div class="activity-title">Campaign Communications</div>
+      <div class="activity-desc">Independently managed all communications for a specialist seminar with the University of St. Gallen: invitation, website and LinkedIn.<br><br>+1.8% engagement rate.</div>
     </div>
   </div>
   <div class="activity-item anim" data-stagger="160">
     <div class="activity-num">03</div>
     <div>
-      <div class="activity-title">Campaign Materials</div>
-      <div class="activity-desc">Independently produced all brand materials: townhall presentations, podcast cover art, LinkedIn banners, social media formats and event materials.</div>
+      <div class="activity-title">Event &amp; Marketing Planning</div>
+      <div class="activity-desc">Planned and coordinated communications for external events and training sessions.</div>
     </div>
   </div>
   <div class="activity-item anim" data-stagger="240">
     <div class="activity-num">04</div>
     <div>
-      <div class="activity-title">Investment Communications</div>
-      <div class="activity-desc">Conceived and produced the «Bergos Next Gen» brochure for the strategic growth segment of young investors.</div>
+      <div class="activity-title">AI Workflows &amp; Enablement</div>
+      <div class="activity-desc">Developed AI workflows, trained teams and provided operational support.<br><br>75–85% efficiency gain · proposal output increased from 2 to 5 per unit.</div>
     </div>
   </div>
   <div class="activity-item anim" data-stagger="320">
     <div class="activity-num">05</div>
     <div>
-      <div class="activity-title">Social Media &amp; Strategy</div>
-      <div class="activity-desc">Managed cross-channel communications for HNWI audiences. Co-developed the 2026 social media strategy.<br><br>+3.2% engagement rate · +15% qualified decision-makers.</div>
-    </div>
-  </div>
-  <div class="activity-item anim" data-stagger="400">
-    <div class="activity-num">06</div>
-    <div>
-      <div class="activity-title">Website &amp; SEO</div>
-      <div class="activity-desc">Managed SEO copy, on-page optimisation and performance reporting. Coordinated website redesign with agencies.</div>
+      <div class="activity-title">HR Processes</div>
+      <div class="activity-desc">Co-managed recruitment, onboarding and offboarding processes including contracts, induction programmes, references and master data maintenance.</div>
     </div>
   </div>
 </section>
@@ -393,16 +386,16 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div class="section-label anim">IMPACT</div>
   <div class="impact-grid">
     <div class="impact-metric anim" data-stagger="0">
-      <div class="metric-number">+90 %</div>
-      <div class="metric-label">Brand Conformity</div>
+      <div class="metric-number">75–85%</div>
+      <div class="metric-label">AI Efficiency Gain</div>
     </div>
     <div class="impact-metric anim" data-stagger="150">
-      <div class="metric-number">+3.2%</div>
-      <div class="metric-label">LinkedIn Engagement Rate</div>
+      <div class="metric-number">×2.5</div>
+      <div class="metric-label">Proposal Output</div>
     </div>
     <div class="impact-metric anim" data-stagger="300">
-      <div class="metric-number">×2.5</div>
-      <div class="metric-label">AI Workflow Output</div>
+      <div class="metric-number">+1.8%</div>
+      <div class="metric-label">Engagement Rate</div>
     </div>
   </div>
 </section>
@@ -412,22 +405,21 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div class="section-label anim">TOOLS USED</div>
   <div class="skills-grid">
     <div class="anim" data-stagger="80">
-      <div class="skills-col-label">DESIGN &amp; CONTENT</div>
+      <div class="skills-col-label">CONTENT &amp; COMMUNICATIONS</div>
       <div class="tags skills-tags">
-        <span class="tag">InDesign</span>
-        <span class="tag">Adobe Photoshop</span>
+        <span class="tag">WordPress</span>
         <span class="tag">Canva</span>
-        <span class="tag">PowerPoint</span>
+        <span class="tag">LinkedIn Analytics</span>
+        <span class="tag">Newsletter Tools</span>
       </div>
     </div>
     <div class="anim" data-stagger="160">
-      <div class="skills-col-label">STRATEGY &amp; ANALYTICS</div>
+      <div class="skills-col-label">AI &amp; COLLABORATION</div>
       <div class="tags skills-tags">
-        <span class="tag">LinkedIn Analytics</span>
-        <span class="tag">Google Analytics</span>
-        <span class="tag">Meta Business Suite</span>
-        <span class="tag">Microsoft 365</span>
         <span class="tag">Claude AI</span>
+        <span class="tag">ChatGPT</span>
+        <span class="tag">Microsoft 365</span>
+        <span class="tag">Trello</span>
       </div>
     </div>
   </div>
@@ -435,14 +427,14 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
 <!-- MARQUEE -->
 <div class="marquee">
-  <div class="marquee-track">COMMUNICATIONS · BRAND STRATEGY · ZURICH · VISUAL IDENTITY · PROJECT NR. 13 · COMMUNICATIONS · BRAND STRATEGY · ZURICH · VISUAL IDENTITY · PROJECT NR. 13 · COMMUNICATIONS · BRAND STRATEGY · ZURICH · VISUAL IDENTITY · PROJECT NR. 13 · COMMUNICATIONS · BRAND STRATEGY · ZURICH · VISUAL IDENTITY · PROJECT NR. 13 ·</div>
+  <div class="marquee-track">SOCIAL INNOVATION · CONTENT STRATEGY · BERN · AI WORKFLOWS · CAMPAIGNS · SOCIAL INNOVATION · CONTENT STRATEGY · BERN · AI WORKFLOWS · CAMPAIGNS · SOCIAL INNOVATION · CONTENT STRATEGY · BERN · AI WORKFLOWS · CAMPAIGNS · SOCIAL INNOVATION · CONTENT STRATEGY · BERN · AI WORKFLOWS · CAMPAIGNS ·</div>
 </div>
 
 <!-- PREV/NEXT NAV -->
 <nav class="case-nav">
-  <span></span>
+  <a href="bergos.html" class="case-nav-link">← Bergos AG</a>
   <a href="about.html" class="case-nav-center">← Back to Overview</a>
-  <a href="socialdesign.html" class="case-nav-link">Socialdesign AG →</a>
+  <a href="kantonnbern.html" class="case-nav-link">Canton of Bern →</a>
 </nav>
 
 <!-- Contact -->

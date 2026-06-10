@@ -59,8 +59,8 @@ img{display:block;max-width:100%}
 /* ── NAV ── */
 #nav{
   position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
-  background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--dim);
+  background:#0D0D0D;
+  border-bottom:1px solid #323338;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
 }
@@ -74,7 +74,12 @@ img{display:block;max-width:100%}
   color:#69626D;letter-spacing:0.08em;transition:color 0.2s;
 }
 .nav-cv:hover{color:#EFE9E7}
-.nav-center{cursor:none;position:relative}
+.nav-menu-btn{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;}
+.nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
+.nav-menu-btn:hover svg line{stroke:#0032FF;}
+.nav-back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;text-decoration:none;transition:color 0.2s;}
+.nav-back-link:hover{color:#FFFFFF;}
+.nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center::after{
   content:'';position:absolute;top:50%;left:50%;
   width:28px;height:28px;border-radius:50%;
@@ -86,8 +91,9 @@ img{display:block;max-width:100%}
 .nav-center:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1;}
 .nav-link{
   font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:#EFE9E7;letter-spacing:0.08em;
+  color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
+.nav-link:hover{color:#0032FF;}
 
 /* ── MEGA MENU ── */
 #megaMenu{
@@ -116,27 +122,29 @@ img{display:block;max-width:100%}
   opacity:1;transform:translateY(0);
   transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
 }
-.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-nav-link:hover{color:#0032FF;transform:translateX(8px)!important}
 .mm-right{padding-top:80px}
 .mm-section-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
   text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
 }
 .mm-right-link{
-  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
-  display:block;padding:4px 0;transition:color 0.2s;
+  font-family:'Inter',sans-serif;font-size:14px;color:#EFE9E7;
+  display:block;padding:4px 0;transition:color 0.2s ease;
 }
-.mm-right-link:hover{color:#EFE9E7}
+.mm-right-link:hover{color:#0032FF}
 .mm-section{margin-top:28px}
 .mm-manifesto{margin-top:48px}
 .mm-manifesto-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;margin-bottom:8px;display:block;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;display:block;
 }
 .mm-manifesto-text{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
-  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:28px;
+  color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;
+  animation:pulse 3s ease-in-out infinite alternate;
 }
+@keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
 
 /* ── ABOUT ── */
 #about{
@@ -179,11 +187,7 @@ img{display:block;max-width:100%}
 }
 .about-body.bright{color:#EFE9E7}
 .about-center{position:relative;width:320px}
-.about-portrait{
-  width:100%;aspect-ratio:3/4;
-  object-fit:cover;object-position:center top;
-  display:block;background:#111111;
-}
+.about-portrait{width:100%;aspect-ratio:3/4;object-fit:contain;display:block;background:#EFE9E7;padding:40px;}
 .about-portrait-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   color:#69626D;text-align:center;margin-top:12px;
@@ -231,89 +235,18 @@ img{display:block;max-width:100%}
 .about-cv-btn:hover{border-color:#EFE9E7;color:#EFE9E7}
 
 /* ── CAREER ── */
-#career{background:#000;padding:120px 80px;border-top:1px solid var(--dim)}
-.career-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;display:block;
-}
-.career-h1{
-  display:block;font-family:'Inter',sans-serif;font-weight:900;
-  font-size:72px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.9;
-}
-.career-h2{
-  display:block;font-family:'Inter',sans-serif;font-weight:900;
-  font-size:72px;color:transparent;
-  -webkit-text-stroke:1px rgba(239,233,231,0.18);
-  letter-spacing:-0.04em;line-height:0.9;margin-bottom:80px;
-}
-.career-block{
-  display:grid;grid-template-columns:200px 1fr 200px;
-  gap:0 48px;padding:48px 0;
-  border-bottom:1px solid var(--dim);
-  position:relative;cursor:default;
-}
-.career-line{
-  position:absolute;left:0;top:0;width:2px;height:0;
-  background:rgba(239,233,231,0.3);transition:height 0.4s ease-out;
-}
-.career-block:hover .career-line{height:100%}
-.career-year{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;
-  letter-spacing:0.08em;display:block;margin-bottom:8px;
-}
-.career-view-link{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;
-  display:block;margin-top:16px;transition:color 0.2s;
-}
-.career-view-link:hover{color:#EFE9E7}
-.career-company{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;
-}
-.career-role{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:32px;
-  color:#EFE9E7;letter-spacing:-0.02em;line-height:1;margin-bottom:20px;
-}
-.career-desc{
-  font-family:'Inter',sans-serif;font-size:15px;color:#69626D;
-  line-height:1.7;max-width:480px;
-}
-.career-tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-.career-tag{
-  border:1px solid var(--dim);color:#69626D;padding:5px 12px;
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;
-}
-.career-status{
-  padding:5px 12px;border-radius:100px;
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:0.08em;display:inline-block;
-  border:1px solid rgba(239,233,231,0.15);color:#69626D;
-}
-.career-samples{
-  margin-top:32px;padding-top:32px;
-  border-top:1px solid rgba(239,233,231,0.05);
-}
-.career-samples-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;
-  text-transform:uppercase;letter-spacing:0.12em;
-  display:block;margin-bottom:16px;
-}
-.career-samples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.career-sample-card{cursor:none}
-.career-sample-img{
-  background:#111111;aspect-ratio:16/10;
-  overflow:hidden;border-radius:2px;
-  border:1px solid transparent;transition:border-color 0.2s;
-}
-.career-sample-card:hover .career-sample-img{border-color:rgba(239,233,231,0.15)}
-.career-sample-img img{
-  width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;
-}
-.career-sample-card:hover .career-sample-img img{transform:scale(1.04)}
-.career-sample-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;margin-top:6px;
-}
+#career{background:#090A0C;padding:120px 80px;}
+.career-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;display:block;}
+.career-card{display:grid;grid-template-columns:140px 1fr 160px;padding:48px 0;border-bottom:1px solid #323338;align-items:start;}
+.career-card:last-child{border-bottom:none;}
+.career-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;letter-spacing:0.08em;padding-top:4px;}
+.career-company{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
+.career-title{font-family:'Inter',sans-serif;font-weight:500;font-size:36px;color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
+.career-desc{font-family:'Inter',sans-serif;font-size:14px;color:#AAABBC;line-height:1.7;max-width:520px;margin-bottom:20px;}
+.career-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.career-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#5A5B64;border:0.5px solid #5A5B64;padding:4px 10px;border-radius:2px;}
+.career-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#AAABBC;display:block;text-align:right;text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;align-self:center;}
+.career-link:hover{opacity:1;color:#FFFFFF;}
 
 /* ── FOOTER ── */
 footer{
@@ -353,10 +286,39 @@ footer{
   }
   .about-center{width:100%;max-width:320px;margin:0 auto}
   #career{padding:80px 24px}
-  .career-block{grid-template-columns:1fr;gap:24px}
-  .career-samples-grid{grid-template-columns:repeat(2,1fr)}
+  .career-card{grid-template-columns:1fr;gap:24px}
+  .career-link{text-align:left;margin-top:16px;}
   footer{padding:28px 24px;flex-direction:column;gap:12px;text-align:center}
 }
+/* ── CONTACT SECTION ── */
+.dl-arrow{color:#0032FF;margin-right:8px;}
+#contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
+.contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
+.contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
+.contact-email:hover{text-decoration:underline}
+.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;display:block}
+.contact-dl-label{margin-top:40px}
+.contact-social-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-social-link:hover{color:#FFFFFF}
+.contact-dl-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-dl-link:hover{color:#FFFFFF}
+.contact-right{padding:120px 80px;display:flex;flex-direction:column}
+.contact-cover{margin-bottom:48px;overflow:hidden}
+.contact-cover img{width:100%;height:480px;object-fit:cover;background:#EFE9E7;display:block}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
+.contact-field::placeholder{color:rgba(239,233,231,0.2)}
+.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
+textarea.contact-field{resize:none}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
+.contact-submit:hover{background:#fff;transform:translateY(-2px)}
+#archive-btn{display:block;width:100%;padding:64px 48px;border:none;border-top:1px solid rgba(239,233,231,0.12);background:transparent;text-align:center;color:#EFE9E7;position:relative;overflow:hidden;transition:color 0.4s ease;font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(40px,7vw,88px);letter-spacing:-0.04em;line-height:1;cursor:none;text-decoration:none;}
+#archive-btn::before{content:'';position:absolute;inset:0;background:#EFE9E7;transform:translateX(-100%);transition:transform 0.4s ease;}
+#archive-btn:hover{color:#000;}
+#archive-btn:hover::before{transform:translateX(0);}
+#archive-btn span{position:relative;z-index:1;}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
 }
@@ -371,8 +333,13 @@ footer{
 <!-- Nav -->
 <nav id="nav">
   <div class="nav-left">
-    <button class="nav-btn" id="menuOpen">WORKS +</button>
-    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+    <button class="nav-menu-btn" id="menuOpen" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="3" y1="6" x2="21" y2="6" stroke-width="1.5"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke-width="1.5"/>
+        <line x1="3" y1="18" x2="15" y2="18" stroke-width="1.5"/>
+      </svg>
+    </button>
   </div>
   <a href="index.html" class="nav-center" id="navLogo">
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
@@ -387,8 +354,8 @@ footer{
 <!-- Mega Menu -->
 <div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
   <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
-  <div class="mm-col">
-    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
+  <div class="mm-col" style="display:flex;align-items:center;justify-content:center;background:#000;">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:100%;max-width:480px;height:auto;display:block;margin:0 auto;">
   </div>
   <div class="mm-col">
     <nav class="mm-nav-links">
@@ -413,8 +380,8 @@ footer{
     </div>
     <div class="mm-section">
       <span class="mm-section-label">SOCIAL</span>
-      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
-      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="mm-right-link">LinkedIn ↗</a>
     </div>
     <div class="mm-manifesto">
       <span class="mm-manifesto-label">Art is...</span>
@@ -465,11 +432,7 @@ footer{
 
     <!-- Center Column — Portrait -->
     <div class="about-center anim" data-delay="150">
-      <img class="about-portrait"
-           src="assets/about/portrait.jpg"
-           alt="Nico Bigler"
-           loading="lazy"
-           onerror="this.style.background='#111111';this.alt='';">
+      <img class="about-portrait" src="assets/images/logo.png" alt="Project Nr. 13" style="width:100%;height:auto;display:block;background:#EFE9E7;padding:40px;">
       <p class="about-portrait-label">NICO BIGLER · BERN &amp; ZÜRICH</p>
     </div>
 
@@ -502,8 +465,8 @@ footer{
         </div>
       </div>
       <div class="about-cv-btns anim" data-delay="320">
-        <a href="assets/cv/cv-deutsch.pdf" class="about-cv-btn" target="_blank">↓ CV DEUTSCH</a>
-        <a href="assets/cv/cv-english.pdf" class="about-cv-btn" target="_blank">↓ CV ENGLISH</a>
+        <a href="assets/cv/cv-nico-bigler-de.pdf" class="about-cv-btn" target="_blank">↓ CV GERMAN</a>
+        <a href="assets/cv/cv-nico-bigler-en.pdf" class="about-cv-btn" target="_blank">↓ CV ENGLISH</a>
       </div>
     </div>
 
@@ -512,126 +475,98 @@ footer{
 
 <!-- Career -->
 <section id="career">
-  <span class="career-label anim">BERUFLICHER WERDEGANG</span>
-  <span class="career-h1 anim" data-delay="60">Selected</span>
-  <span class="career-h2 anim" data-delay="120">Experience.</span>
+  <span class="career-label anim">SELECTED EXPERIENCE</span>
 
-  <!-- Block 1 — Bergos -->
-  <div class="career-block anim">
-    <div class="career-line"></div>
-    <div>
-      <span class="career-year">2024–2025</span>
-      <a href="bergos.html" class="career-view-link">→ View Project</a>
-    </div>
+  <div class="career-card anim" data-delay="80">
+    <div class="career-date">2024–2025</div>
     <div>
       <div class="career-company">PRIVATBANK BERGOS AG</div>
-      <div class="career-role">Communications<br>&amp; Brand Manager</div>
-      <p class="career-desc">Aufbau und Führung des Brand Centers. Verantwortlich für visuelle Identität, Editorial Design und digitale Assets für Next-Generation HNWI-Kunden.</p>
+      <h3 class="career-title">Communications<br>&amp; Brand Manager</h3>
+      <p class="career-desc">Aufbau und Führung des Brand Centers. CI/CD-Governance, Styleguide und Brand Voice entwickelt. Eigenständige Produktion aller Markenmittel — von der Druckdatei bis zum digitalen Asset.</p>
       <div class="career-tags">
         <span class="career-tag">Brand Management</span>
         <span class="career-tag">CI/CD</span>
         <span class="career-tag">Editorial Design</span>
         <span class="career-tag">Digital Assets</span>
       </div>
-      <div class="career-samples">
-        <span class="career-samples-label">ARBEITSPROBEN</span>
-        <div class="career-samples-grid">
-          <div class="career-sample-card">
-            <div class="career-sample-img">
-              <img src="assets/projects/bergos/bergos-next-brochure.jpg" alt="Bergos Next Broschüre" loading="lazy"
-                   onerror="this.style.display='none';">
-            </div>
-            <span class="career-sample-label">Bergos Next — Broschüre</span>
-          </div>
-          <div class="career-sample-card">
-            <div class="career-sample-img">
-              <img src="assets/projects/bergos/linkedin-banner.jpg" alt="LinkedIn Banner" loading="lazy"
-                   onerror="this.style.display='none';">
-            </div>
-            <span class="career-sample-label">LinkedIn Banner</span>
-          </div>
-          <div class="career-sample-card">
-            <div class="career-sample-img">
-              <img src="assets/projects/bergos/podcast-cover.jpg" alt="Podcast Cover Art" loading="lazy"
-                   onerror="this.style.display='none';">
-            </div>
-            <span class="career-sample-label">Podcast Cover Art</span>
-          </div>
-        </div>
-      </div>
     </div>
-    <div><span class="career-status">COMPLETED</span></div>
+    <a href="bergos.html" class="career-link">Mehr erfahren →</a>
   </div>
 
-  <!-- Block 2 — Socialdesign -->
-  <div class="career-block anim">
-    <div class="career-line"></div>
-    <div>
-      <span class="career-year">2023–2024</span>
-      <a href="socialdesign.html" class="career-view-link">→ View Project</a>
-    </div>
+  <div class="career-card anim" data-delay="160">
+    <div class="career-date">2024–2025</div>
     <div>
       <div class="career-company">SOCIALDESIGN AG</div>
-      <div class="career-role">Communications<br>Specialist</div>
-      <p class="career-desc">Entwicklung strategischer Kommunikationskonzepte für Sozialprojekte. Stakeholder Management und Kampagnenplanung für soziale Innovation in der Schweiz.</p>
+      <h3 class="career-title">Communications<br>Manager</h3>
+      <p class="career-desc">Redaktionelle Kommunikation, Kampagnenplanung und KI-Workflow-Entwicklung für eine Schweizer Agentur für soziale Innovation. 75–85 % Effizienzgewinn durch KI-Implementierung.</p>
       <div class="career-tags">
-        <span class="career-tag">Strategie</span>
         <span class="career-tag">Content</span>
-        <span class="career-tag">Stakeholder Mgmt</span>
         <span class="career-tag">Kampagnen</span>
+        <span class="career-tag">KI-Workflows</span>
+        <span class="career-tag">Projektkoordination</span>
       </div>
     </div>
-    <div><span class="career-status">COMPLETED</span></div>
+    <a href="socialdesign.html" class="career-link">Mehr erfahren →</a>
   </div>
 
-  <!-- Block 3 — Kanton Bern -->
-  <div class="career-block anim">
-    <div class="career-line"></div>
-    <div>
-      <span class="career-year">2022–2023</span>
-      <a href="kantonnbern.html" class="career-view-link">→ View Project</a>
-    </div>
+  <div class="career-card anim" data-delay="240">
+    <div class="career-date">2020–2024</div>
     <div>
       <div class="career-company">KANTON BERN — KAD</div>
-      <div class="career-role">Communications<br>&amp; Campaigns</div>
-      <p class="career-desc">Erstellung und Umsetzung der kantonalen HPV-Impfkampagne. Management der digitalen Kommunikation für den Kantonsärztlichen Dienst Bern.</p>
+      <h3 class="career-title">Communications<br>&amp; Digitalisierung</h3>
+      <p class="career-desc">Kommunikationsleitung der kantonalen HPV-Impfkampagne für sieben Zielgruppen. KI-Governance mitgestaltet. Budget- und Vertragsmanagement von 8–12 Mio. CHF/Jahr.</p>
       <div class="career-tags">
         <span class="career-tag">Public Health</span>
         <span class="career-tag">Kampagnen</span>
-        <span class="career-tag">Digitale Komm.</span>
-        <span class="career-tag">Behörde</span>
+        <span class="career-tag">KI-Governance</span>
+        <span class="career-tag">Digitalisierung</span>
       </div>
     </div>
-    <div><span class="career-status">COMPLETED</span></div>
-  </div>
-
-  <!-- Block 4 — Fachfrauen Umwelt -->
-  <div class="career-block anim">
-    <div class="career-line"></div>
-    <div>
-      <span class="career-year">2024</span>
-    </div>
-    <div>
-      <div class="career-company">FACHFRAUEN UMWELT</div>
-      <div class="career-role">Brand Identity<br>&amp; Rebranding</div>
-      <p class="career-desc">Vollständiges Corporate Identity Redesign. Neues Logo, Brand Guidelines, Typography System, Newsletter und digitale Mockups für Umweltnetzwerk.</p>
-      <div class="career-tags">
-        <span class="career-tag">Brand Identity</span>
-        <span class="career-tag">Logo Design</span>
-        <span class="career-tag">Corporate Design</span>
-        <span class="career-tag">CI/CD</span>
-      </div>
-    </div>
-    <div><span class="career-status">COMPLETED</span></div>
+    <a href="kantonnbern.html" class="career-link">Mehr erfahren →</a>
   </div>
 
 </section>
 
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-left">
+    <div>
+      <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
+      <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
+      <span class="contact-name anim" data-delay="160">Nico Bigler</span>
+      <a href="mailto:hello@nicobigler.ch" class="contact-email anim" data-delay="200">hello@nicobigler.ch</a>
+    </div>
+    <div class="contact-bottom anim" data-delay="120">
+      <span class="contact-social-label">Socials</span>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
+      <span class="contact-dl-label">Downloads</span>
+      <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
+      <a href="assets/cv/cv-nico-bigler-en.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV English</a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-cover anim">
+      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
+           onerror="this.style.background='#111111';this.style.minHeight='480px';">
+    </div>
+    <form class="anim" data-delay="120" onsubmit="return false">
+      <input type="text" class="contact-field" placeholder="Name" required>
+      <input type="email" class="contact-field" placeholder="Email" required>
+      <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
+      <button type="submit" class="contact-submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- Archive Button -->
+<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
+
 <!-- Footer -->
 <footer>
-  <span class="foot">© ALL RIGHTS RESERVED. PROJECT NR. 13</span>
-  <span class="foot">BERN · ZÜRICH · EST. 2026</span>
-  <span class="foot foot-back" id="backTop">↑ BACK TO TOP</span>
+  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+  <span class="foot">Bern · Zürich · Est. 2026</span>
+  <span class="foot foot-back" id="backTop">↑ Back to Top</span>
 </footer>
 
 <script>

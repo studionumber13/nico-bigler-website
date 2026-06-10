@@ -86,7 +86,7 @@ img{display:block;max-width:100%}
 /* ── NAV ── */
 #nav{
   position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
-  background:transparent;
+  background:#0D0D0D;border-bottom:1px solid #323338;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
   transition:background 0.3s ease,backdrop-filter 0.3s ease,border-bottom 0.3s ease;
@@ -103,11 +103,14 @@ img{display:block;max-width:100%}
 }
 .nav-cv{
   font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#69626D;letter-spacing:0.08em;
+  color:#AAABBC;letter-spacing:0.1em;text-transform:uppercase;
   transition:color 0.2s;
 }
-.nav-cv:hover{color:#EFE9E7}
-.nav-center{cursor:none;position:relative}
+.nav-cv:hover{color:#FFFFFF}
+.nav-menu-btn{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;}
+.nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
+.nav-menu-btn:hover svg line{stroke:#0032FF;}
+.nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center::after{
   content:'';position:absolute;top:50%;left:50%;
   width:28px;height:28px;border-radius:50%;
@@ -119,8 +122,9 @@ img{display:block;max-width:100%}
 .nav-center:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1;}
 .nav-link{
   font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:#EFE9E7;letter-spacing:0.08em;
+  color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
+.nav-link:hover{color:#0032FF;}
 
 /* ── MEGA MENU ── */
 #megaMenu{
@@ -150,27 +154,29 @@ img{display:block;max-width:100%}
   opacity:1;transform:translateY(0);
   transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
 }
-.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-nav-link:hover{color:#0032FF;transform:translateX(8px)!important}
 .mm-right{padding-top:80px}
 .mm-section-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
   text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
 }
 .mm-right-link{
-  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
-  display:block;padding:4px 0;transition:color 0.2s;
+  font-family:'Inter',sans-serif;font-size:14px;color:#EFE9E7;
+  display:block;padding:4px 0;transition:color 0.2s ease;
 }
-.mm-right-link:hover{color:#EFE9E7}
+.mm-right-link:hover{color:#0032FF}
 .mm-section{margin-top:28px}
 .mm-manifesto{margin-top:48px}
 .mm-manifesto-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;margin-bottom:8px;display:block;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;display:block;
 }
 .mm-manifesto-text{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
-  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:28px;
+  color:#FFFFFF;-webkit-text-stroke:0;letter-spacing:-0.02em;line-height:1.1;
+  animation:mm-pulse 3s ease-in-out infinite alternate;
 }
+@keyframes mm-pulse{from{opacity:0.6;}to{opacity:1;}}
 
 /* ── HERO ── */
 #home{height:100vh;background:#000;position:relative;overflow:hidden}
@@ -244,12 +250,13 @@ img{display:block;max-width:100%}
 .contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
 .contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
 .contact-email:hover{text-decoration:underline}
-.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;display:block}
-.contact-dl-label{margin-top:28px}
-.contact-social-link{font-family:'Inter',sans-serif;font-size:14px;color:#69626D;display:inline-block;margin-right:16px;transition:color 0.2s}
-.contact-social-link:hover{color:#EFE9E7}
-.contact-dl-link{font-family:'Inter',sans-serif;font-size:14px;color:#69626D;display:block;margin-bottom:6px;transition:color 0.2s}
-.contact-dl-link:hover{color:#EFE9E7}
+.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;display:block}
+.contact-dl-label{margin-top:40px}
+.contact-social-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-social-link:hover{color:#FFFFFF}
+.contact-dl-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-dl-link:hover{color:#FFFFFF}
+.dl-arrow{color:#0032FF;margin-right:8px;}
 .contact-right{padding:120px 80px;display:flex;flex-direction:column}
 .contact-cover{margin-bottom:48px;overflow:hidden}
 .contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
@@ -314,6 +321,59 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 #archive-btn:hover::before{transform:translateX(0);}
 #archive-btn span{position:relative;z-index:1;}
 
+/* ── CAREER ── */
+#career{background:#090A0C;padding:120px 80px;}
+.career-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;}
+.career-card{display:grid;grid-template-columns:140px 1fr 160px;padding:48px 0;border-bottom:1px solid #323338;align-items:start;}
+.career-card:last-child{border-bottom:none;}
+.career-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;letter-spacing:0.08em;padding-top:4px;}
+.career-company{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
+.career-title{font-family:'Inter',sans-serif;font-weight:500;font-size:36px;color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
+.career-desc{font-family:'Inter',sans-serif;font-size:14px;color:#AAABBC;line-height:1.7;max-width:520px;margin-bottom:20px;}
+.career-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.career-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#5A5B64;border:0.5px solid #5A5B64;padding:4px 10px;border-radius:2px;}
+.career-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#AAABBC;display:block;text-align:right;text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;align-self:center;}
+.career-link:hover{opacity:1;color:#FFFFFF;}
+
+/* ── NR. 13 INTRO ── */
+#nr13-intro{background:#000000;padding:120px 80px}
+.nr13-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.nr13-logo{width:100%;max-width:560px;display:block}
+.nr13-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:24px;display:block}
+.nr13-headline{font-family:'Inter',sans-serif;font-weight:700;font-size:32px;color:#EFE9E7;line-height:1.3;max-width:520px;margin-bottom:24px}
+.nr13-body{font-family:'Inter',sans-serif;font-size:16px;color:#AAABBC;line-height:1.8;max-width:480px;margin-bottom:32px}
+.nr13-tags{display:flex;flex-wrap:wrap;gap:8px}
+.nr13-tag{border:0.5px solid #5A5B64;color:#5A5B64;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px}
+
+/* ── THREE PILLARS ── */
+/* ── PILLARS SECTION ── */
+#pillars-section{position:relative}
+.pillars-scroll-container{position:relative}
+.pillar-row{display:grid;grid-template-columns:80px 1fr 80px;gap:40px;align-items:start;padding:60px 0}
+.pillar-row-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.12em;padding-top:6px}
+.pillar-row-title{font-family:'Inter',sans-serif;font-weight:700;font-size:48px;color:#FFFFFF;letter-spacing:-0.02em;margin-bottom:20px}
+.pillar-row-text{font-family:'Inter',sans-serif;font-size:17px;color:rgba(255,255,255,0.85);line-height:1.9;max-width:640px}
+.pillar-row-icon{width:60px;height:60px;display:block;opacity:0.8;margin-top:8px}
+
+/* ── SHOWREEL ── */
+#showreel{background:#000000;padding:0;opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease}
+#showreel.visible{opacity:1;transform:translateY(0)}
+#showreel-placeholder{width:100%;aspect-ratio:16/9;background:#111111;display:flex;align-items:center;justify-content:center}
+#showreel-placeholder span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#323338;text-transform:uppercase;letter-spacing:0.15em}
+
+/* ── NAV CARDS ── */
+#nav-cards-section{background:#000000;padding:120px 80px}
+.nav-cards-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:48px;display:block}
+.nav-cards-grid{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:2px}
+.nav-card{position:relative;overflow:hidden;cursor:none;display:block;text-decoration:none;min-height:480px}
+.nav-card-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.4s ease}
+.nav-card:hover .nav-card-overlay{background:rgba(0,0,0,0.55)}
+.nav-card-hover-content{position:absolute;top:24px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:flex-start;z-index:2;opacity:0;transition:opacity 0.3s ease 0.1s}
+.nav-card:hover .nav-card-hover-content{opacity:1}
+.nav-card-hover-title{font-family:'Inter',sans-serif;font-weight:700;font-size:28px;color:#FFFFFF}
+.nav-card-hover-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#FFFFFF;border:1px solid #FFFFFF;padding:5px 12px;letter-spacing:0.1em}
+.nav-card-bottom{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.12em;z-index:2}
+
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
@@ -338,8 +398,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 <!-- Nav -->
 <nav id="nav">
   <div class="nav-left">
-    <button class="nav-btn" id="menuOpen">WORKS +</button>
-    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+    <button class="nav-menu-btn" id="menuOpen" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="3" y1="6" x2="21" y2="6" stroke-width="1.5"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke-width="1.5"/>
+        <line x1="3" y1="18" x2="15" y2="18" stroke-width="1.5"/>
+      </svg>
+    </button>
   </div>
   <div class="nav-center" id="navLogo" title="Back to top">
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
@@ -383,8 +448,8 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     </div>
     <div class="mm-section">
       <span class="mm-section-label">SOCIAL</span>
-      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
-      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="mm-right-link">LinkedIn ↗</a>
     </div>
     <div class="mm-manifesto">
       <span class="mm-manifesto-label">Art is...</span>
@@ -416,6 +481,28 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   </div>
 </section>
 
+<!-- Section A: Project Nr. 13 Intro -->
+<section id="nr13-intro">
+  <div class="nr13-grid">
+    <div>
+      <img src="assets/images/logo-black.png" alt="Project Nr. 13" class="nr13-logo">
+    </div>
+    <div>
+      <span class="nr13-label">EST. 2019 — ONGOING</span>
+      <h2 class="nr13-headline">Sound becomes image.<br>The unknown becomes art.</h2>
+      <p class="nr13-body">Project Nr. 13 is a cover art, music and design venture rooted in the personal significance of the number 13. Born on February 13th, the number has always carried a deep personal meaning. Where others see bad luck, I see the threshold between the known and the unknown, the surface and what lies beneath. What started as early graphic design work for musician and DJ Flume grew into a full creative practice spanning cover art, poster design and visual identity. Every piece begins with sound and ends as image. Drum and bass, techno, trance and ambient are not just influences; they are the raw material from which every visual is built.</p>
+      <div class="nr13-tags">
+        <span class="nr13-tag">COVER ART</span>
+        <span class="nr13-tag">MUSIC</span>
+        <span class="nr13-tag">VISUAL IDENTITY</span>
+        <span class="nr13-tag">BRUTALIST DESIGN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- Works Background -->
 <div id="works-bg" aria-hidden="true">
   <img id="works-bg-a" alt="" style="opacity:1;">
@@ -441,6 +528,120 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div id="works-list" style="display:none;"></div>
 </section>
 
+<!-- Section B: My Three Pillars -->
+<div id="pillars-section">
+  <div class="pillars-scroll-container">
+
+    <section class="pillars-intro" style="background:#000000;padding:120px 80px 80px;position:sticky;top:0;z-index:1;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#5A5B64;display:block;margin-bottom:24px;">[ 02 — APPROACH ]</span>
+        <h2 style="font-family:'Inter',sans-serif;font-size:clamp(48px,6vw,80px);font-weight:700;color:#EFE9E7;line-height:1.05;margin:0;">My Three<br>Pillars.</h2>
+      </div>
+    </section>
+
+    <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:2;padding:80px;">
+      <div class="pillar-row">
+        <span class="pillar-row-num">01</span>
+        <div>
+          <h3 class="pillar-row-title">Art &amp; Design</h3>
+          <p class="pillar-row-text">Cover art and poster design are the foundation of everything Project Nr. 13 creates. Each piece starts as a response to a specific track, an energy, a frequency. The process is intuitive but deliberate: concepts are developed from scratch, references drawn from cyberpunk aesthetics, brutalist architecture, Japanese minimalism and underground rave culture. The goal is never decoration. The goal is to give sound a visual body that feels as honest and uncompromising as the music itself.</p>
+        </div>
+        <svg class="pillar-row-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 8L46 24L30 52L14 24Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M14 24L30 30L46 24" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="30" y1="30" x2="30" y2="52" stroke="#FFFFFF" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </section>
+
+    <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:3;padding:80px;">
+      <div class="pillar-row">
+        <span class="pillar-row-num">02</span>
+        <div>
+          <h3 class="pillar-row-title">Brand &amp; Strategy</h3>
+          <p class="pillar-row-text">A strong visual identity is not just about aesthetics. It is about coherence, consistency and the ability to communicate the same values across every single touchpoint. With professional experience in CI/CD governance, brand voice development and visual systems for organisations ranging from Swiss private banking to social innovation agencies, I bring the same strategic rigour to creative work that most people reserve only for corporate briefs. Brand thinking and artistic instinct are not opposites. They are the same skill applied at different scales.</p>
+        </div>
+        <svg class="pillar-row-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="22" stroke="#FFFFFF" stroke-width="1.5"/>
+          <circle cx="30" cy="30" r="13" stroke="#FFFFFF" stroke-width="1.5"/>
+          <circle cx="30" cy="30" r="4" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="8" y1="30" x2="17" y2="30" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="43" y1="30" x2="52" y2="30" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="30" y1="8" x2="30" y2="17" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="30" y1="43" x2="30" y2="52" stroke="#FFFFFF" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </section>
+
+    <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:4;padding:80px;">
+      <div class="pillar-row">
+        <span class="pillar-row-num">03</span>
+        <div>
+          <h3 class="pillar-row-title">Music &amp; Culture</h3>
+          <p class="pillar-row-text">Underground music culture is not a backdrop or an inspiration board. It is the actual reason any of this exists. Drum and bass, techno, trance and ambient music have shaped the way I see contrast, tension, silence and energy in visual work. The rave, the record sleeve, the club flyer, the anonymous poster on a concrete wall: these are the design traditions that matter most to me. Culture built from the bottom up, with no brief and no budget, that somehow communicates more clearly than anything produced in a boardroom ever could.</p>
+        </div>
+        <svg class="pillar-row-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="6" x2="30" y2="54" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="24" y1="12" x2="24" y2="48" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="18" y1="18" x2="18" y2="42" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="12" y1="23" x2="12" y2="37" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="36" y1="12" x2="36" y2="48" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="42" y1="18" x2="42" y2="42" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="48" y1="23" x2="48" y2="37" stroke="#FFFFFF" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="quote-image-section" style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111111;">
+    <div style="position:absolute;inset:0;background:#0032FF;"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:80px;z-index:2;">
+      <div style="max-width:860px;text-align:center;">
+        <p style="font-family:'Inter',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:500;color:#FFFFFF;line-height:1.6;margin:0 0 32px;">The design work taught me that before you touch a single tool, you need to understand what someone is trying to say.</p>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);">NICO BIGLER — PROJECT NR. 13</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Section C: Showreel Placeholder -->
+<section id="showreel">
+  <div id="showreel-placeholder">
+    <span>SHOWREEL — COMING SOON</span>
+  </div>
+</section>
+
+<!-- Section D: Navigation Cards -->
+<section id="nav-cards-section">
+  <span class="nav-cards-label">EXPLORE</span>
+  <div class="nav-cards-grid">
+    <a href="about.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#1a1a2e 100%)">
+      <div class="nav-card-overlay"></div>
+      <div class="nav-card-hover-content">
+        <span class="nav-card-hover-title">MY STORY</span>
+        <span class="nav-card-hover-badge">[ READ MORE ]</span>
+      </div>
+      <span class="nav-card-bottom">ABOUT — NICO BIGLER</span>
+    </a>
+    <a href="archive.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#0d1117 100%)">
+      <div class="nav-card-overlay"></div>
+      <div class="nav-card-hover-content">
+        <span class="nav-card-hover-title">ARCHIVE</span>
+        <span class="nav-card-hover-badge">[ VIEW ]</span>
+      </div>
+      <span class="nav-card-bottom">ARCHIVE — PROJECT NR. 13</span>
+    </a>
+    <a href="thesis.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#1a0d1a 100%)">
+      <div class="nav-card-overlay"></div>
+      <div class="nav-card-hover-content">
+        <span class="nav-card-hover-title">THESIS</span>
+        <span class="nav-card-hover-badge">[ READ ]</span>
+      </div>
+      <span class="nav-card-bottom">THESIS — HWZ 2025</span>
+    </a>
+  </div>
+</section>
 
 <!-- Contact -->
 <section id="contact">
@@ -453,11 +654,11 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     </div>
     <div class="contact-bottom anim" data-delay="120">
       <span class="contact-social-label">Socials</span>
-      <a href="https://instagram.com/studionumber13" target="_blank" class="contact-social-link">Instagram</a>
-      <a href="#" class="contact-social-link">LinkedIn</a>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
       <span class="contact-dl-label">Downloads</span>
-      <a href="assets/cv/cv-deutsch.pdf" class="contact-dl-link" target="_blank">↓ CV Deutsch</a>
-      <a href="assets/cv/cv-english.pdf" class="contact-dl-link" target="_blank">↓ CV English</a>
+      <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
+      <a href="assets/cv/cv-nico-bigler-en.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV English</a>
     </div>
   </div>
   <div class="contact-right">
@@ -1093,6 +1294,19 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight') nextWork();
   }
 });
+</script>
+
+<script>
+(function() {
+  var showreel = document.getElementById('showreel');
+  if (showreel) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) showreel.classList.add('visible');
+      });
+    }, { threshold: 0.1 }).observe(showreel);
+  }
+})();
 </script>
 </body>
 </html>

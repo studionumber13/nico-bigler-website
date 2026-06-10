@@ -58,11 +58,10 @@ img{display:block;max-width:100%}
 /* ── NAV ── */
 #nav{
   position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
-  background:rgba(9,10,12,0.92);
-  backdrop-filter:blur(12px);
+  background:#0D0D0D;
+  border-bottom:1px solid #323338;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
-  border-bottom:1px solid var(--dim);
 }
 .nav-left,.nav-right{display:flex;align-items:center;gap:24px}
 .nav-btn{
@@ -75,7 +74,12 @@ img{display:block;max-width:100%}
   transition:color 0.2s;
 }
 .nav-cv:hover{color:#EFE9E7}
-.nav-center{cursor:none;position:relative}
+.nav-menu-btn{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;}
+.nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
+.nav-menu-btn:hover svg line{stroke:#0032FF;}
+.nav-back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;text-decoration:none;transition:color 0.2s;}
+.nav-back-link:hover{color:#FFFFFF;}
+.nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center::after{
   content:'';position:absolute;top:50%;left:50%;
   width:28px;height:28px;border-radius:50%;
@@ -87,8 +91,9 @@ img{display:block;max-width:100%}
 .nav-center:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1;}
 .nav-link{
   font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:#EFE9E7;letter-spacing:0.08em;
+  color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
+.nav-link:hover{color:#0032FF;}
 
 /* ── MEGA MENU ── */
 #megaMenu{
@@ -118,27 +123,29 @@ img{display:block;max-width:100%}
   opacity:1;transform:translateY(0);
   transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;
 }
-.mm-nav-link:hover{color:rgba(239,233,231,0.3);transform:translateX(8px)!important}
+.mm-nav-link:hover{color:#0032FF;transform:translateX(8px)!important}
 .mm-right{padding-top:80px}
 .mm-section-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
   text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;
 }
 .mm-right-link{
-  font-family:'Inter',sans-serif;font-size:14px;color:#69626D;
-  display:block;padding:4px 0;transition:color 0.2s;
+  font-family:'Inter',sans-serif;font-size:14px;color:#EFE9E7;
+  display:block;padding:4px 0;transition:color 0.2s ease;
 }
-.mm-right-link:hover{color:#EFE9E7}
+.mm-right-link:hover{color:#0032FF}
 .mm-section{margin-top:28px}
 .mm-manifesto{margin-top:48px}
 .mm-manifesto-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;margin-bottom:8px;display:block;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;display:block;
 }
 .mm-manifesto-text{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:16px;
-  color:#EFE9E7;opacity:0.25;letter-spacing:-0.02em;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:28px;
+  color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;
+  animation:pulse 3s ease-in-out infinite alternate;
 }
+@keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
 
 /* ── PAGE HEADER ── */
 #arch-header{
@@ -200,6 +207,35 @@ footer{
 .foot-back{cursor:none;transition:color 0.2s}
 .foot-back:hover{color:#EFE9E7}
 
+/* ── CONTACT SECTION ── */
+.dl-arrow{color:#0032FF;margin-right:8px;}
+#contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
+.contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
+.contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
+.contact-email:hover{text-decoration:underline}
+.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;display:block}
+.contact-dl-label{margin-top:40px}
+.contact-social-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-social-link:hover{color:#FFFFFF}
+.contact-dl-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-dl-link:hover{color:#FFFFFF}
+.contact-right{padding:120px 80px;display:flex;flex-direction:column}
+.contact-cover{margin-bottom:48px;overflow:hidden}
+.contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
+.contact-field::placeholder{color:rgba(239,233,231,0.2)}
+.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
+textarea.contact-field{resize:none}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
+.contact-submit:hover{background:#fff;transform:translateY(-2px)}
+#archive-btn{display:block;width:100%;padding:64px 48px;border:none;border-top:1px solid rgba(239,233,231,0.12);background:transparent;text-align:center;color:#EFE9E7;position:relative;overflow:hidden;transition:color 0.4s ease;font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(40px,7vw,88px);letter-spacing:-0.04em;line-height:1;cursor:none;text-decoration:none;}
+#archive-btn::before{content:'';position:absolute;inset:0;background:#EFE9E7;transform:translateX(-100%);transition:transform 0.4s ease;}
+#archive-btn:hover{color:#000;}
+#archive-btn:hover::before{transform:translateX(0);}
+#archive-btn span{position:relative;z-index:1;}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
@@ -213,8 +249,13 @@ footer{
 <!-- Nav -->
 <nav id="nav">
   <div class="nav-left">
-    <button class="nav-btn" id="menuOpen">WORKS +</button>
-    <a href="assets/cv/cv-nico-bigler.pdf" class="nav-cv" target="_blank">CV</a>
+    <button class="nav-menu-btn" id="menuOpen" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="3" y1="6" x2="21" y2="6" stroke-width="1.5"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke-width="1.5"/>
+        <line x1="3" y1="18" x2="15" y2="18" stroke-width="1.5"/>
+      </svg>
+    </button>
   </div>
   <a href="index.html" class="nav-center" title="Home">
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
@@ -258,8 +299,8 @@ footer{
     </div>
     <div class="mm-section">
       <span class="mm-section-label">SOCIAL</span>
-      <a href="https://instagram.com/studionumber13" target="_blank" class="mm-right-link">Instagram ↗</a>
-      <a href="#" class="mm-right-link">LinkedIn ↗</a>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="mm-right-link">LinkedIn ↗</a>
     </div>
     <div class="mm-manifesto">
       <span class="mm-manifesto-label">Art is...</span>
@@ -281,260 +322,279 @@ footer{
 <div id="arch-gallery">
 
   <div class="arch-item" onclick="openLightbox(0)">
-    <img src="assets/covers/archive/arch01.jpg" alt="Archive 01" loading="lazy">
+    <img src="assets/covers/archive/arch02.jpg" alt="Archive 02" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'01)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 01</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'02)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 02</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(1)">
-    <img src="assets/covers/archive/arch02.jpg" alt="Archive 02" loading="lazy">
+    <img src="assets/covers/archive/arch03.jpg" alt="Archive 03" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'02)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 02</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'03)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 03</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(2)">
-    <img src="assets/covers/archive/arch03.jpg" alt="Archive 03" loading="lazy">
+    <img src="assets/covers/archive/arch04.jpg" alt="Archive 04" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'03)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 03</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'04)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 04</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(3)">
-    <img src="assets/covers/archive/arch04.jpg" alt="Archive 04" loading="lazy">
+    <img src="assets/covers/archive/arch05.jpg" alt="Archive 05" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'04)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 04</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'05)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 05</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(4)">
-    <img src="assets/covers/archive/arch05.jpg" alt="Archive 05" loading="lazy">
+    <img src="assets/covers/archive/arch06.jpg" alt="Archive 06" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'05)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 05</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'06)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 06</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(5)">
-    <img src="assets/covers/archive/arch06.jpg" alt="Archive 06" loading="lazy">
+    <img src="assets/covers/archive/arch07.jpg" alt="Archive 07" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'06)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 06</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'07)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 07</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(6)">
-    <img src="assets/covers/archive/arch07.jpg" alt="Archive 07" loading="lazy">
+    <img src="assets/covers/archive/arch08.jpg" alt="Archive 08" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'07)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 07</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'08)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 08</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(7)">
-    <img src="assets/covers/archive/arch08.jpg" alt="Archive 08" loading="lazy">
+    <img src="assets/covers/archive/arch09.jpg" alt="Archive 09" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'08)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 08</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'09)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 09</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(8)">
-    <img src="assets/covers/archive/arch09.jpg" alt="Archive 09" loading="lazy">
+    <img src="assets/covers/archive/arch10.png" alt="Archive 10" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'09)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 09</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'10)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 10</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(9)">
-    <img src="assets/covers/archive/arch10.png" alt="Archive 10" loading="lazy">
+    <img src="assets/covers/archive/arch11.jpg" alt="Archive 11" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'10)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 10</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'11)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 11</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(10)">
-    <img src="assets/covers/archive/arch11.jpg" alt="Archive 11" loading="lazy">
+    <img src="assets/covers/archive/arch12.jpg" alt="Archive 12" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'11)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 11</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'12)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 12</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(11)">
-    <img src="assets/covers/archive/arch12.jpg" alt="Archive 12" loading="lazy">
+    <img src="assets/covers/archive/arch13.jpg" alt="Archive 13" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'12)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 12</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'13)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 13</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(12)">
-    <img src="assets/covers/archive/arch13.jpg" alt="Archive 13" loading="lazy">
+    <img src="assets/covers/archive/arch14.jpg" alt="Archive 14" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'13)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 13</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'14)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 14</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(13)">
-    <img src="assets/covers/archive/arch14.jpg" alt="Archive 14" loading="lazy">
+    <img src="assets/covers/archive/arch15.jpg" alt="Archive 15" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'14)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 14</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'15)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 15</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(14)">
-    <img src="assets/covers/archive/arch15.jpg" alt="Archive 15" loading="lazy">
+    <img src="assets/covers/archive/arch16.jpg" alt="Archive 16" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'15)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 15</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'16)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 16</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(15)">
-    <img src="assets/covers/archive/arch16.jpg" alt="Archive 16" loading="lazy">
+    <img src="assets/covers/archive/arch17.jpg" alt="Archive 17" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'16)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 16</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'17)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 17</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(16)">
-    <img src="assets/covers/archive/arch17.jpg" alt="Archive 17" loading="lazy">
+    <img src="assets/covers/archive/arch18.jpg" alt="Archive 18" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'17)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 17</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'18)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 18</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(17)">
-    <img src="assets/covers/archive/arch18.jpg" alt="Archive 18" loading="lazy">
+    <img src="assets/covers/archive/arch19.jpg" alt="Archive 19" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'18)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 18</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'19)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 19</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(18)">
-    <img src="assets/covers/archive/arch19.jpg" alt="Archive 19" loading="lazy">
+    <img src="assets/covers/archive/arch20.jpg" alt="Archive 20" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'19)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 19</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'20)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 20</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(19)">
-    <img src="assets/covers/archive/arch20.jpg" alt="Archive 20" loading="lazy">
+    <img src="assets/covers/archive/arch21.jpg" alt="Archive 21" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'20)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 20</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'21)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 21</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(20)">
-    <img src="assets/covers/archive/arch21.jpg" alt="Archive 21" loading="lazy">
+    <img src="assets/covers/archive/arch22.jpg" alt="Archive 22" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'21)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 21</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'22)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 22</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(21)">
-    <img src="assets/covers/archive/arch22.jpg" alt="Archive 22" loading="lazy">
+    <img src="assets/covers/archive/arch24.jpg" alt="Archive 24" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'22)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 22</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'24)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 24</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(22)">
-    <img src="assets/covers/archive/arch23.png" alt="Archive 23" loading="lazy">
+    <img src="assets/covers/archive/arch25.jpg" alt="Archive 25" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'23)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 23</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'25)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 25</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(23)">
-    <img src="assets/covers/archive/arch24.jpg" alt="Archive 24" loading="lazy">
+    <img src="assets/covers/archive/arch26.jpg" alt="Archive 26" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'24)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 24</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'26)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 26</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(24)">
-    <img src="assets/covers/archive/arch25.jpg" alt="Archive 25" loading="lazy">
+    <img src="assets/covers/archive/arch27.jpg" alt="Archive 27" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'25)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 25</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'27)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 27</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(25)">
-    <img src="assets/covers/archive/arch26.jpg" alt="Archive 26" loading="lazy">
+    <img src="assets/covers/archive/arch28.jpg" alt="Archive 28" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'26)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 26</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'28)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 28</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(26)">
-    <img src="assets/covers/archive/arch27.jpg" alt="Archive 27" loading="lazy">
+    <img src="assets/covers/archive/arch29.jpg" alt="Archive 29" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'27)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 27</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'29)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 29</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(27)">
-    <img src="assets/covers/archive/arch28.jpg" alt="Archive 28" loading="lazy">
+    <img src="assets/covers/archive/arch30.jpg" alt="Archive 30" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'28)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 28</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'30)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 30</span>
     </div>
   </div>
 
   <div class="arch-item" onclick="openLightbox(28)">
-    <img src="assets/covers/archive/arch29.jpg" alt="Archive 29" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'29)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 29</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(29)">
-    <img src="assets/covers/archive/arch30.jpg" alt="Archive 30" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'30)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 30</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(30)">
     <img src="assets/covers/archive/arch31.jpg" alt="Archive 31" loading="lazy">
     <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.1em;">(ARCH'31)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#EFE9E7;margin-top:4px;">Untitled 31</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'31)</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 31</span>
     </div>
   </div>
 
 </div>
 
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-left">
+    <div>
+      <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
+      <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
+      <span class="contact-name anim" data-delay="160">Nico Bigler</span>
+      <a href="mailto:hello@nicobigler.ch" class="contact-email anim" data-delay="200">hello@nicobigler.ch</a>
+    </div>
+    <div class="contact-bottom anim" data-delay="120">
+      <span class="contact-social-label">Socials</span>
+      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
+      <span class="contact-dl-label">Downloads</span>
+      <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
+      <a href="assets/cv/cv-nico-bigler-en.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV English</a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-cover anim">
+      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
+           onerror="this.style.background='#111111';this.style.minHeight='480px';">
+    </div>
+    <form class="anim" data-delay="120" onsubmit="return false">
+      <input type="text" class="contact-field" placeholder="Name" required>
+      <input type="email" class="contact-field" placeholder="Email" required>
+      <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
+      <button type="submit" class="contact-submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- Archive Button -->
+<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
+
 <!-- Footer -->
 <footer>
   <span class="foot">© All Rights Reserved. Project Nr. 13</span>
   <span class="foot">Bern · Zürich · Est. 2026</span>
-  <a href="index.html" class="foot foot-back">← Back to Works</a>
+  <span class="foot foot-back" id="backTop">↑ Back to Top</span>
 </footer>
 
 <!-- Lightbox -->
@@ -643,7 +703,6 @@ footer{
 
 /* ── LIGHTBOX ── */
 const archItems = [
-  {src:'assets/covers/archive/arch01.jpg',release:"(ARCH'01)",title:'Untitled 01'},
   {src:'assets/covers/archive/arch02.jpg',release:"(ARCH'02)",title:'Untitled 02'},
   {src:'assets/covers/archive/arch03.jpg',release:"(ARCH'03)",title:'Untitled 03'},
   {src:'assets/covers/archive/arch04.jpg',release:"(ARCH'04)",title:'Untitled 04'},
@@ -665,7 +724,6 @@ const archItems = [
   {src:'assets/covers/archive/arch20.jpg',release:"(ARCH'20)",title:'Untitled 20'},
   {src:'assets/covers/archive/arch21.jpg',release:"(ARCH'21)",title:'Untitled 21'},
   {src:'assets/covers/archive/arch22.jpg',release:"(ARCH'22)",title:'Untitled 22'},
-  {src:'assets/covers/archive/arch23.png',release:"(ARCH'23)",title:'Untitled 23'},
   {src:'assets/covers/archive/arch24.jpg',release:"(ARCH'24)",title:'Untitled 24'},
   {src:'assets/covers/archive/arch25.jpg',release:"(ARCH'25)",title:'Untitled 25'},
   {src:'assets/covers/archive/arch26.jpg',release:"(ARCH'26)",title:'Untitled 26'},
