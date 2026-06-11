@@ -146,93 +146,93 @@ img{display:block;max-width:100%}
 }
 @keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
 
-/* ── ABOUT ── */
-#about{
-  background:#000;
-  min-height:100vh;
-  padding-top:56px;
+/* ── HERO 16:9 ── */
+#about-hero{
   position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+  background:#000;
   overflow:hidden;
+  margin-top:56px;
 }
-.about-ghost{
+.hero-location{
   position:absolute;
-  bottom:-40px;left:-20px;
-  font-family:'Inter',sans-serif;
-  font-weight:900;font-style:italic;
-  font-size:clamp(160px,20vw,280px);
-  color:#EFE9E7;opacity:0.03;
-  pointer-events:none;white-space:nowrap;
-  z-index:0;letter-spacing:-0.05em;line-height:1;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:clamp(0.65rem,1vw,0.85rem);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#EFE9E7;
+  opacity:0.5;
 }
-.about-grid{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:1fr 320px 1fr;
-  gap:0 64px;
-  padding:120px 80px 160px;
-  align-items:start;
-  max-width:1440px;
-  margin:0 auto;
-  box-sizing:border-box;
+.hero-loc-left{bottom:2rem;left:2.5rem;}
+.hero-loc-right{bottom:2rem;right:2.5rem;}
+.hero-center-text{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
 }
-.about-left{padding-top:24px}
-.about-intro{
-  font-family:'Inter',sans-serif;font-weight:400;
-  font-size:20px;color:#EFE9E7;line-height:1.7;
-  margin-bottom:40px;
-}
-.about-body{
-  font-family:'Inter',sans-serif;font-size:15px;
-  color:#69626D;line-height:1.85;margin-bottom:20px;
-}
-.about-body.bright{color:#EFE9E7}
-.about-center{position:relative;width:320px}
-.about-portrait{width:100%;aspect-ratio:3/4;object-fit:contain;display:block;background:#EFE9E7;padding:40px;}
-.about-portrait-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;
-  color:#69626D;text-align:center;margin-top:12px;
-  letter-spacing:0.08em;text-transform:uppercase;
-}
-.about-right{padding-top:24px}
-.about-stmt{
+.hero-center-text span{
   display:block;
-  font-family:'Inter',sans-serif;font-weight:900;font-size:20px;
-  color:#EFE9E7;letter-spacing:-0.02em;
-  opacity:0.5;line-height:1.4;margin-bottom:20px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:clamp(0.65rem,1vw,0.85rem);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#EFE9E7;
+  opacity:0.5;
+  line-height:2;
 }
-.about-divider{
-  width:100%;height:1px;border:none;
-  background:rgba(239,233,231,0.08);
-  margin:40px 0;
+
+/* ── QUOTE ── */
+#about-quote{
+  background:#000;
+  padding:clamp(5rem,10vw,9rem) 2.5rem;
 }
-.about-info-row{
-  display:flex;justify-content:space-between;
-  align-items:flex-start;
-  border-bottom:1px solid rgba(239,233,231,0.07);
-  padding:14px 0;gap:16px;
+.quote-text{
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  line-height:1.2;
+  color:#EFE9E7;
+  max-width:900px;
+  transition:color 0.3s ease;
+  display:block;
 }
-.about-info-label{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;text-transform:uppercase;letter-spacing:0.12em;
-  flex-shrink:0;padding-top:2px;
+.quote-text:hover{color:#0032FF}
+.quote-attr{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#69626D;
+  margin-top:2rem;
+  display:block;
 }
-.about-info-val{
-  font-family:'Inter',sans-serif;font-size:13px;
-  color:#EFE9E7;text-align:right;word-break:break-word;
+
+/* ── MY STORY ── */
+#about-story{
+  background:#000;
+  padding:clamp(5rem,10vw,9rem) 2.5rem;
 }
-.about-cv-btns{
-  margin-top:28px;display:flex;flex-direction:column;gap:10px;
+.story-label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#69626D;
+  margin-bottom:4rem;
 }
-.about-cv-btn{
-  display:block;text-align:center;
-  border:1px solid rgba(239,233,231,0.15);
-  color:#69626D;padding:11px 20px;
-  font-family:'IBM Plex Mono',monospace;font-size:10px;
-  text-transform:uppercase;letter-spacing:0.08em;
-  border-radius:3px;
-  transition:border-color 0.2s ease,color 0.2s ease;
+.story-body{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:clamp(1rem,1.5vw,1.15rem);
+  line-height:1.9;
+  color:#EFE9E7;
+  max-width:780px;
 }
-.about-cv-btn:hover{border-color:#EFE9E7;color:#EFE9E7}
+.story-body p{margin-bottom:2rem;}
+.story-body p:last-child{margin-bottom:0;}
 
 /* ── CAREER ── */
 #career{background:#090A0C;padding:120px 80px;}
@@ -271,20 +271,9 @@ footer{
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .about-grid{
-    grid-template-columns:1fr 260px 1fr;
-    padding:80px 48px 120px;
-    gap:0 40px;
-  }
   #career{padding:80px 48px}
 }
 @media(max-width:768px){
-  .about-grid{
-    grid-template-columns:1fr;
-    padding:80px 24px;
-    gap:48px;
-  }
-  .about-center{width:100%;max-width:320px;margin:0 auto}
   #career{padding:80px 24px}
   .career-card{grid-template-columns:1fr;gap:24px}
   .career-link{text-align:left;margin-top:16px;}
@@ -390,86 +379,36 @@ textarea.contact-field{resize:none}
   </div>
 </div>
 
-<!-- About -->
-<section id="about">
-  <div class="about-ghost" aria-hidden="true">about</div>
-  <div class="about-grid">
+<!-- Hero 16:9 -->
+<section id="about-hero">
+  <span class="hero-location hero-loc-left">Bern</span>
+  <div class="hero-center-text">
+    <span>Sound becomes image.</span>
+    <span>The unknown becomes art.</span>
+  </div>
+  <span class="hero-location hero-loc-right">Zürich</span>
+</section>
 
-    <!-- Left Column -->
-    <div class="about-left">
-      <p class="about-intro anim">
-        Ich bin am <strong>13. Februar</strong> geboren.<br>
-        Für die meisten ist das eine schlechte Zahl.<br>
-        Für mich war es immer eine Einladung —<br>
-        auf die andere Seite zu schauen.
-      </p>
-      <p class="about-body anim" data-delay="100">
-        Das ist es was ich tue.<br>
-        Bei Tag als <strong style="color:#EFE9E7">Communications Specialist</strong><br>
-        und <strong style="color:#EFE9E7">Brand Manager</strong> — für Privatbanken,<br>
-        soziale Institutionen, öffentliche Stellen.<br>
-        Ich baue Systeme die halten.<br>
-        Identitäten die etwas bedeuten.
-      </p>
-      <p class="about-body anim" data-delay="200">
-        Bei Nacht folge ich einem anderen Instinkt.<br>
-        <strong style="color:#EFE9E7">Project Nr. 13</strong> ist mein Ort wo Strategie<br>
-        aufhört und Übersetzung beginnt.<br>
-        Wo Musik zu Bildern wird.<br>
-        Wo das Unbekannte sichtbar wird.
-      </p>
-      <p class="about-body anim" data-delay="300">
-        Aufgewachsen in <strong style="color:#EFE9E7">Bern</strong> — einer Stadt<br>
-        die lehrt, dass Tiefe Zeit braucht.<br>
-        Heute in <strong style="color:#EFE9E7">Zürich</strong> — wo Präzision<br>
-        und Schärfe den Standard setzen.
-      </p>
-      <p class="about-body bright anim" data-delay="400">
-        Beides lebt in mir.<br>
-        Beides zeigt sich in meiner Arbeit.
-      </p>
-    </div>
+<!-- Quote -->
+<section id="about-quote">
+  <span class="quote-text">The design work taught me that before you touch a single tool, you need to understand what someone is trying to say.</span>
+  <span class="quote-attr">Nico Bigler — Project Nr. 13</span>
+</section>
 
-    <!-- Center Column — Portrait -->
-    <div class="about-center anim" data-delay="150">
-      <img class="about-portrait" src="assets/images/logo.png" alt="Project Nr. 13" style="width:100%;height:auto;display:block;background:#EFE9E7;padding:40px;">
-      <p class="about-portrait-label">NICO BIGLER · BERN &amp; ZÜRICH</p>
-    </div>
-
-    <!-- Right Column -->
-    <div class="about-right">
-      <span class="about-stmt anim">Sound becomes image.</span>
-      <span class="about-stmt anim" data-delay="80">The unknown becomes art.</span>
-      <span class="about-stmt anim" data-delay="160">Something beautiful on<br>the other side of 13.</span>
-      <hr class="about-divider anim" data-delay="200">
-      <div class="anim" data-delay="240">
-        <div class="about-info-row">
-          <span class="about-info-label">BASED IN</span>
-          <span class="about-info-val">Bern &amp; Zürich, Switzerland</span>
-        </div>
-        <div class="about-info-row">
-          <span class="about-info-label">AVAILABLE</span>
-          <span class="about-info-val">Q3 2026</span>
-        </div>
-        <div class="about-info-row">
-          <span class="about-info-label">LANGUAGES</span>
-          <span class="about-info-val">DE · EN · FR</span>
-        </div>
-        <div class="about-info-row">
-          <span class="about-info-label">EDUCATION</span>
-          <span class="about-info-val">B.Sc. HWZ Zürich · Note 6.0</span>
-        </div>
-        <div class="about-info-row">
-          <span class="about-info-label">INSTAGRAM</span>
-          <span class="about-info-val">@studionumber13</span>
-        </div>
-      </div>
-      <div class="about-cv-btns anim" data-delay="320">
-        <a href="assets/cv/cv-nico-bigler-de.pdf" class="about-cv-btn" target="_blank">↓ CV GERMAN</a>
-        <a href="assets/cv/cv-nico-bigler-en.pdf" class="about-cv-btn" target="_blank">↓ CV ENGLISH</a>
-      </div>
-    </div>
-
+<!-- My Story -->
+<section id="about-story">
+  <span class="story-label">My Story</span>
+  <div class="story-body">
+    <p>I was born on the 13th of February. For most people, that's a bad number. For me, it was always an invitation to look at what's on the other side.</p>
+    <p>That's what I do. By day as a Communications Specialist and Brand Manager for private banks, social institutions, public agencies. I build systems that hold. Identities that mean something.</p>
+    <p>By night, I follow a different instinct. Project Nr. 13 is my place where strategy ends and translation begins. Where music becomes image. Where the unknown becomes visible.</p>
+    <p>I start with a track. I put it on loop, sometimes for hours, until I can feel what it's trying to say. Then I try to say it back. In colour. In composition. In image. What you see here are final versions. Behind each one are twenty others that didn't make it.</p>
+    <p>Art has always been my reference point. Not as decoration, but as a way of thinking. Dalí taught me that the subconscious is a design tool. Basquiat that raw energy and precision can coexist. Warhol that culture and commerce aren't opposites, they're in constant conversation. KAWS, Haring, Arsham, Murakami — all of them working at the edge of what art is allowed to be.</p>
+    <p>I spend a lot of time in museums. Renaissance, modern, contemporary. I'm not loyal to an era, only to the feeling a work gives you when it lands.</p>
+    <p>I also spend a lot of time on dancefloors. Techno, DnB, Hardstyle, Trance. The genre matters, but never more than the energy in the room. The people around you. The scene behind it all. Whether it's a bunker where there's nothing but raw concrete, steel and bass, or a festival stage that looks like it came from another universe, with lasers, video walls and fire. What I'm looking for is the same thing. A room that commits completely to a feeling.</p>
+    <p>I used to be introverted. Quietly observing from the edges. That changed, slowly, then completely. Now I'm someone who genuinely wants to know what drives people. Not the surface version. The real one. What keeps them up at night. What they're building toward.</p>
+    <p>Raised in Bern, a city that teaches you that depth takes time. Now in Zürich, where precision and sharpness set the standard.</p>
+    <p>Both live in me. Both show up in my work. So does the humour. So does the perfectionism. So does the loop that keeps playing until something finally feels right.</p>
   </div>
 </section>
 

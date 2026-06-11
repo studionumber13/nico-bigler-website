@@ -224,6 +224,7 @@ img{display:block;max-width:100%}
 .proj-grid:hover .proj-grid-overlay{opacity:1}
 .proj-grid-release{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D}
 .proj-grid-title{font-family:'Inter',sans-serif;font-weight:500;font-size:13px;color:#EFE9E7;margin-top:4px}
+#works-grid .proj-grid:last-child:nth-child(3n+1){grid-column:2;}
 #works-list{padding:0 48px}
 .proj-list{
   display:flex;align-items:center;
@@ -260,9 +261,9 @@ img{display:block;max-width:100%}
 .contact-right{padding:120px 80px;display:flex;flex-direction:column}
 .contact-cover{margin-bottom:48px;overflow:hidden}
 .contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
-.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
-.contact-field::placeholder{color:rgba(239,233,231,0.2)}
-.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.3s ease}
+.contact-field::placeholder{color:#69626D}
+.contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
 textarea.contact-field{resize:none}
 .contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
 .contact-submit:hover{background:#fff;transform:translateY(-2px)}
@@ -594,15 +595,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
   </div>
 
-  <section class="quote-image-section" style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111111;">
-    <div style="position:absolute;inset:0;background:#0032FF;"></div>
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:80px;z-index:2;">
-      <div style="max-width:860px;text-align:center;">
-        <p style="font-family:'Inter',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:500;color:#FFFFFF;line-height:1.6;margin:0 0 32px;">The design work taught me that before you touch a single tool, you need to understand what someone is trying to say.</p>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);">NICO BIGLER — PROJECT NR. 13</span>
-      </div>
-    </div>
-  </section>
 </div>
 
 <!-- Section C: Showreel Placeholder -->
@@ -647,14 +639,14 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 <section id="contact">
   <div class="contact-left">
     <div>
-      <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
+      <h2 class="contact-h anim">Make it mean something.</h2>
       <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
       <span class="contact-name anim" data-delay="160">Nico Bigler</span>
       <a href="mailto:hello@nicobigler.ch" class="contact-email anim" data-delay="200">hello@nicobigler.ch</a>
     </div>
     <div class="contact-bottom anim" data-delay="120">
       <span class="contact-social-label">Socials</span>
-      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+      <a href="https://www.instagram.com/project_nr.13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
       <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
       <span class="contact-dl-label">Downloads</span>
       <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
@@ -670,7 +662,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       <input type="text" class="contact-field" placeholder="Name" required>
       <input type="email" class="contact-field" placeholder="Email" required>
       <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
-      <button type="submit" class="contact-submit">Send Message →</button>
+      <button type="submit" class="contact-submit">LET'S TALK →</button>
     </form>
   </div>
 </section>
@@ -717,15 +709,12 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
   /* ── PROJECTS DATA ── */
   var projects = [
-    { src:'assets/covers/drp01-13_chains.jpg',    release:"(DRP'01–13)", line1:'The Art of',    line2:'Chains'        },
-    { src:'assets/covers/drp02-13_swords.jpg',    release:"(DRP'02–13)", line1:'Through',       line2:'Swords'        },
-    { src:'assets/covers/drp03-13_flora.jpg',     release:"(DRP'03–13)", line1:'Stillness in',  line2:'Contrast'      },
     { src:'assets/covers/drp04-13_face.jpg',      release:"(DRP'04–13)", line1:'The Art of',    line2:'Cover Design'  },
+    { src:'assets/covers/drp11-13_astro.jpg',     release:"(DRP'11–13)", line1:'Into the',      line2:'Stars'         },
     { src:'assets/covers/drp05-13_cyber.jpg',     release:"(DRP'05–13)", line1:'Digital',       line2:'Alchemy'       },
+    { src:'assets/covers/drp12-13_vinyl.jpg',     release:"(DRP'12–13)", line1:'Vinyl',         line2:'Archive'       },
     { src:'assets/covers/drp06-13_cube.png',      release:"(DRP'06–13)", line1:'Fragments',     line2:'of Sound'      },
-    { src:'assets/covers/drp07-13_tripset.jpg',   release:"(DRP'07–13)", line1:'Signal &',      line2:'Noise'         },
-    { src:'assets/covers/drp08-13_distorted.png', release:"(DRP'08–13)", line1:'The',           line2:'Threshold'     },
-    { src:'assets/covers/drp09-13_silence.png',   release:"(DRP'09–13)", line1:'Underground',   line2:'Archive'       },
+    { src:'assets/covers/drp13-13_basquiat.jpg',  release:"(DRP'13–13)", line1:'Crown',         line2:'Energy'        },
     { src:'assets/covers/drp10-13_self.jpg',      release:"(DRP'10–13)", line1:'Sound Becomes', line2:'Image'         }
   ];
 

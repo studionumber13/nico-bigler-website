@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,58 +186,103 @@ img{display:block;max-width:100%}
   transition:border-color 0.2s,color 0.2s;
 }
 .thesis-btn-sec:hover{border-color:#EFE9E7;color:#EFE9E7}
+.thesis-note{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  color:#69626D;margin-top:1rem;display:block;
+}
 
-/* ── THOUGHTS ── */
-#thoughts{
-  padding:80px;background:#000;
-  border-top:1px solid var(--dim);
+/* ── SHARED SECTION LABEL ── */
+.th-section-label{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:#69626D;margin-bottom:3rem;
 }
-.thoughts-label{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+
+/* ── RESEARCH QUESTION ── */
+#th-rq{background:#000;padding:clamp(5rem,10vw,9rem) 2.5rem;}
+.th-rq-text{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.3;
+  color:#EFE9E7;max-width:900px;
+}
+
+/* ── KEY FINDINGS ── */
+#th-findings{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
+.th-findings-list{border-top:1px solid #323338;}
+.th-finding-row{
+  display:grid;grid-template-columns:80px 1fr;gap:2rem;
+  padding:2.5rem 0;border-bottom:1px solid #323338;
+}
+.th-finding-num{
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  color:#69626D;padding-top:4px;
+}
+.th-finding-title{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(1.2rem,2vw,1.6rem);color:#EFE9E7;margin-bottom:0.75rem;
+}
+.th-finding-desc{
+  font-family:'Inter',sans-serif;font-size:0.95rem;
+  color:#69626D;max-width:700px;line-height:1.7;
+}
+
+/* ── CASE STUDIES ── */
+#th-cases{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
+.th-cases-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:2px;margin-top:0;
+}
+.th-card{background:#090A0C;border:1px solid #323338;padding:2rem;}
+.th-card-label{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;margin-bottom:0.75rem;
+}
+.th-card-title{
+  font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:#EFE9E7;
+}
+.th-card-text{
+  font-family:'Inter',sans-serif;font-size:0.9rem;
+  color:#69626D;margin-top:0.75rem;line-height:1.7;
+}
+
+/* ── DALÍ QUOTE ── */
+#th-quote{background:#000;padding:clamp(5rem,10vw,9rem) 2.5rem;}
+.th-quote-text{
+  display:block;font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;
+  color:#EFE9E7;max-width:800px;transition:color 0.3s ease;
+}
+.th-quote-text:hover{color:#0032FF;}
+.th-quote-attr{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:#69626D;margin-top:1.5rem;
+}
+
+/* ── THOUGHTS & CONTRIBUTIONS ── */
+#th-thoughts{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
+.th-thoughts-subtitle{
+  font-family:'Inter',sans-serif;font-size:clamp(1rem,1.5vw,1.2rem);
+  color:#69626D;margin-bottom:4rem;display:block;
+}
+.th-article-row{
+  display:grid;grid-template-columns:180px 1fr 120px;gap:2rem;
+  align-items:start;border-bottom:1px solid #323338;padding:2.5rem 0;
+}
+.th-article-cat{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;padding-top:4px;
+}
+.th-article-title{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(1.1rem,1.8vw,1.4rem);color:#EFE9E7;margin-bottom:0.5rem;
+}
+.th-article-desc{
+  font-family:'Inter',sans-serif;font-size:0.9rem;
+  color:#69626D;max-width:600px;line-height:1.7;
+}
+.th-article-status{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
   text-transform:uppercase;letter-spacing:0.15em;
-  margin-bottom:48px;display:block;
-}
-.thoughts-subtitle{
-  font-family:'Inter',sans-serif;font-size:18px;color:#69626D;
-  line-height:1.6;margin-bottom:64px;max-width:520px;
-}
-.post{
-  padding:40px 0;border-bottom:1px solid var(--dim);
-  display:grid;grid-template-columns:160px 1fr;
-  gap:0 48px;cursor:none;
-  transition:background 0.2s;
-}
-.post:hover{background:rgba(239,233,231,0.02)}
-.post-date{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;
-  color:#69626D;letter-spacing:0.08em;padding-top:6px;
-  text-transform:uppercase;
-}
-.post-body{}
-.post-tag{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;text-transform:uppercase;letter-spacing:0.1em;
-  margin-bottom:12px;display:block;
-}
-.post-title{
-  font-family:'Inter',sans-serif;font-weight:900;font-size:28px;
-  color:#EFE9E7;letter-spacing:-0.02em;line-height:1.1;
-  margin-bottom:12px;
-}
-.post-excerpt{
-  font-family:'Inter',sans-serif;font-size:15px;
-  color:#69626D;line-height:1.6;max-width:560px;
-}
-.post-read-more{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#69626D;margin-top:16px;display:block;
-  transition:color 0.2s,transform 0.2s;
-}
-.post:hover .post-read-more{color:#EFE9E7;transform:translateX(6px)}
-.thoughts-coming-soon{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;
-  color:#69626D;letter-spacing:0.1em;text-transform:uppercase;
-  margin-top:48px;text-align:center;display:block;
+  color:#69626D;text-align:right;padding-top:4px;white-space:nowrap;
 }
 
 /* ── FOOTER ── */
@@ -250,35 +295,15 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
 .anim.visible{opacity:1;transform:translateY(0)}
 
-/* ── CONTACT SECTION ── */
-.dl-arrow{color:#0032FF;margin-right:8px;}
-#contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
-.contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
-.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
-.contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
-.contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
-.contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
-.contact-email:hover{text-decoration:underline}
-.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;display:block}
-.contact-dl-label{margin-top:40px}
-.contact-social-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
-.contact-social-link:hover{color:#FFFFFF}
-.contact-dl-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
-.contact-dl-link:hover{color:#FFFFFF}
-.contact-right{padding:120px 80px;display:flex;flex-direction:column}
-.contact-cover{margin-bottom:48px;overflow:hidden}
-.contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
-.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
-.contact-field::placeholder{color:rgba(239,233,231,0.2)}
-.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
-textarea.contact-field{resize:none}
-.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
-.contact-submit:hover{background:#fff;transform:translateY(-2px)}
-#archive-btn{display:block;width:100%;padding:64px 48px;border:none;border-top:1px solid rgba(239,233,231,0.12);background:transparent;text-align:center;color:#EFE9E7;position:relative;overflow:hidden;transition:color 0.4s ease;font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(40px,7vw,88px);letter-spacing:-0.04em;line-height:1;cursor:none;text-decoration:none;}
-#archive-btn::before{content:'';position:absolute;inset:0;background:#EFE9E7;transform:translateX(-100%);transition:transform 0.4s ease;}
-#archive-btn:hover{color:#000;}
-#archive-btn:hover::before{transform:translateX(0);}
-#archive-btn span{position:relative;z-index:1;}
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .th-finding-row{grid-template-columns:1fr;}
+  .th-cases-grid{grid-template-columns:1fr;}
+  .th-article-row{grid-template-columns:1fr;}
+  .th-article-status{text-align:left;}
+}
+
+/* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
 </head>
@@ -347,99 +372,99 @@ textarea.contact-field{resize:none}
   </div>
 </div>
 
-<!-- Thesis Hero -->
+<!-- Section 1: Hero -->
 <section id="thesis-hero">
   <span class="thesis-eyebrow anim">BACHELOR THESIS · HWZ ZÜRICH · 2025</span>
   <span class="thesis-h1 anim" data-delay="60">Artist–Brand</span>
   <span class="thesis-h2 anim" data-delay="120">Collaborations</span>
   <span class="thesis-grade anim" data-delay="200">GRADE 6.0</span>
-  <p class="thesis-desc anim" data-delay="280">
-    Eine Untersuchung der strategischen Mechanismen hinter Künstler-Marken-Kollaborationen —
-    wo Musik, Kultur und Markenidentität aufeinandertreffen.
-  </p>
+  <p class="thesis-desc anim" data-delay="280">An investigation into the strategic mechanisms behind artist-brand collaborations — where music, culture and brand identity converge.</p>
   <div class="thesis-btns anim" data-delay="360">
-    <a href="#" class="thesis-btn-pri">↓ READ THESIS</a>
-    <a href="#" class="thesis-btn-sec">↓ DOWNLOAD PDF</a>
+    <a href="cv/nico-bigler-bachelorthesis-2025.pdf" target="_blank" class="thesis-btn-pri">↓ READ THESIS</a>
+  </div>
+  <span class="thesis-note anim" data-delay="440">Note: The thesis is only available in German.</span>
+</section>
+
+<!-- Section 2: Research Question -->
+<section id="th-rq">
+  <span class="th-section-label anim">Research Question</span>
+  <p class="th-rq-text anim" data-delay="80">Which economic and cultural factors determine the success of an artist-brand collaboration — and how do these collaborations influence brand perception in the luxury and mass market?</p>
+</section>
+
+<!-- Section 3: Key Findings -->
+<section id="th-findings">
+  <span class="th-section-label anim">Key Findings</span>
+  <div class="th-findings-list">
+    <div class="th-finding-row anim">
+      <span class="th-finding-num">01</span>
+      <div>
+        <h3 class="th-finding-title">Authenticity Over Aesthetics</h3>
+        <p class="th-finding-desc">Collaborations succeed when artistic integrity is preserved. The moment art becomes pure decoration, both the brand and the artist lose cultural credibility.</p>
+      </div>
+    </div>
+    <div class="th-finding-row anim" data-delay="80">
+      <span class="th-finding-num">02</span>
+      <div>
+        <h3 class="th-finding-title">Brand Fit Is Cultural, Not Just Visual</h3>
+        <p class="th-finding-desc">A credible collaboration requires value-based alignment — stylistic, ethical and cultural coherence between artist and brand, not just a matching colour palette.</p>
+      </div>
+    </div>
+    <div class="th-finding-row anim" data-delay="160">
+      <span class="th-finding-num">03</span>
+      <div>
+        <h3 class="th-finding-title">Art as Strategic Capital</h3>
+        <p class="th-finding-desc">Art functions as a semantic amplifier. It transfers meaning, elevates perceived value and creates cultural relevance that conventional marketing instruments cannot replicate.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Thoughts / Blog -->
-<section id="thoughts">
-  <span class="thoughts-label anim">GEDANKEN &amp; BEITRÄGE</span>
-  <p class="thoughts-subtitle anim" data-delay="80">
-    Reflexionen über Design, Musik und Markenkultur.
-  </p>
-
-  <!-- Post 1 -->
-  <div class="post anim" data-delay="100">
-    <span class="post-date">DEMNÄCHST</span>
-    <div class="post-body">
-      <span class="post-tag">BRAND STRATEGY</span>
-      <h2 class="post-title">Wenn Musik zur Marke wird</h2>
-      <p class="post-excerpt">Über die strategischen Mechanismen hinter Künstler-Brand-Kollaborationen und warum die Authentizität der entscheidende Faktor ist.</p>
-      <span class="post-read-more">Read more →</span>
+<!-- Section 4: Case Studies -->
+<section id="th-cases">
+  <span class="th-section-label anim">Case Studies</span>
+  <div class="th-cases-grid">
+    <div class="th-card anim">
+      <span class="th-card-label">LUXURY MARKET</span>
+      <h3 class="th-card-title">KAWS × Dior</h3>
+      <p class="th-card-text">A study in cultural legitimacy. KAWS brought streetwear credibility into the haute couture world — generating global media attention while testing the boundaries of luxury brand identity.</p>
+    </div>
+    <div class="th-card anim" data-delay="80">
+      <span class="th-card-label">MASS MARKET</span>
+      <h3 class="th-card-title">KAWS × Uniqlo</h3>
+      <p class="th-card-text">Democratisation of art through commerce. The collaboration made KAWS accessible to millions — sparking debate around authenticity, the sell-out discourse and the value of art at scale.</p>
+    </div>
+    <div class="th-card anim" data-delay="160">
+      <span class="th-card-label">CULTURAL CONTINUITY</span>
+      <h3 class="th-card-title">Keith Haring × Swatch</h3>
+      <p class="th-card-text">A collaboration rooted in shared values. Haring's social and political mission found a natural extension in Swatch's democratic positioning — proof that brand fit runs deeper than aesthetics.</p>
+    </div>
+    <div class="th-card anim" data-delay="240">
+      <span class="th-card-label">TENSION BETWEEN ART AND COMMERCE</span>
+      <h3 class="th-card-title">Yayoi Kusama × Louis Vuitton</h3>
+      <p class="th-card-text">The most contested case. Critics questioned whether LVMH's commercialisation of Kusama's life work crossed into exploitation — raising fundamental questions about artistic authenticity in luxury branding.</p>
     </div>
   </div>
-
-  <!-- Post 2 -->
-  <div class="post anim" data-delay="160">
-    <span class="post-date">DEMNÄCHST</span>
-    <div class="post-body">
-      <span class="post-tag">VISUAL CULTURE</span>
-      <h2 class="post-title">Cover Art als Kommunikation</h2>
-      <p class="post-excerpt">Wie ein Albumcover mehr über eine Marke aussagt als jede Kampagne — und was Kommunikationsspezialisten davon lernen können.</p>
-      <span class="post-read-more">Read more →</span>
-    </div>
-  </div>
-
-  <!-- Post 3 -->
-  <div class="post anim" data-delay="220">
-    <span class="post-date">DEMNÄCHST</span>
-    <div class="post-body">
-      <span class="post-tag">DESIGN SYSTEMS</span>
-      <h2 class="post-title">Zwischen Bern und Zürich</h2>
-      <p class="post-excerpt">Was zwei Städte über Designphilosophie lehren: Ruhe als Stärke, Präzision als Haltung.</p>
-      <span class="post-read-more">Read more →</span>
-    </div>
-  </div>
-
-  <span class="thoughts-coming-soon anim" data-delay="280">Neue Beiträge folgen bald.</span>
 </section>
 
-<!-- Contact -->
-<section id="contact">
-  <div class="contact-left">
+<!-- Section 5: Dalí Quote -->
+<section id="th-quote">
+  <span class="th-quote-text anim">Intelligence without Ambition is like a Bird without Wings.</span>
+  <span class="th-quote-attr anim" data-delay="80">Salvador Dalí</span>
+</section>
+
+<!-- Section 6: Thoughts & Contributions -->
+<section id="th-thoughts">
+  <span class="th-section-label anim">Thoughts &amp; Contributions</span>
+  <span class="th-thoughts-subtitle anim" data-delay="80">Reflections on design, music and brand culture.</span>
+  <div class="th-article-row anim" data-delay="160">
+    <span class="th-article-cat">BRAND STRATEGY</span>
     <div>
-      <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
-      <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
-      <span class="contact-name anim" data-delay="160">Nico Bigler</span>
-      <a href="mailto:hello@nicobigler.ch" class="contact-email anim" data-delay="200">hello@nicobigler.ch</a>
+      <h3 class="th-article-title">Wenn Musik zur Marke wird</h3>
+      <p class="th-article-desc">Über die strategischen Mechanismen hinter Künstler-Brand-Kollaborationen und warum die Authentizität der entscheidende Faktor ist.</p>
     </div>
-    <div class="contact-bottom anim" data-delay="120">
-      <span class="contact-social-label">Socials</span>
-      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
-      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
-      <span class="contact-dl-label">Downloads</span>
-      <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
-      <a href="assets/cv/cv-nico-bigler-en.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV English</a>
-    </div>
-  </div>
-  <div class="contact-right">
-    <div class="contact-cover anim">
-      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
-           onerror="this.style.background='#111111';this.style.minHeight='480px';">
-    </div>
-    <form class="anim" data-delay="120" onsubmit="return false">
-      <input type="text" class="contact-field" placeholder="Name" required>
-      <input type="email" class="contact-field" placeholder="Email" required>
-      <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
-      <button type="submit" class="contact-submit">Send Message →</button>
-    </form>
+    <span class="th-article-status">COMING SOON</span>
   </div>
 </section>
-
-<!-- Archive Button -->
-<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
 
 <!-- Footer -->
 <footer>

@@ -154,45 +154,16 @@ img{display:block;max-width:100%}
   border-bottom:1px solid var(--dim);
 }
 
-/* ── MASONRY GALLERY ── */
-#arch-gallery{
-  background:#090A0C;
-  padding:48px 48px 120px;
-  column-count:3;
-  column-gap:6px;
-}
-@media(max-width:1024px){#arch-gallery{column-count:2}}
-@media(max-width:640px){#arch-gallery{column-count:1}}
-
-.arch-item{
-  break-inside:avoid;
-  margin-bottom:6px;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  display:block;
-  background:#111111;
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity 0.7s ease-out,transform 0.7s ease-out;
-}
-.arch-item.visible{opacity:1;transform:translateY(0)}
-.arch-item img{
-  width:100%;height:auto;display:block;
-  transition:transform 0.6s ease,filter 0.6s ease;
-}
-.arch-item:hover img{transform:scale(1.04);filter:brightness(0.65)}
-.arch-overlay{
-  position:absolute;inset:0;
-  background:rgba(9,10,12,0);
-  transition:background 0.3s ease;
-  display:flex;flex-direction:column;
-  justify-content:flex-end;padding:20px;
-  pointer-events:none;
-}
-.arch-item:hover .arch-overlay{background:rgba(9,10,12,0.65)}
-.arch-overlay span{opacity:0;transition:opacity 0.3s ease}
-.arch-item:hover .arch-overlay span{opacity:1}
+/* ── ARCHIVE GRID ── */
+#arch-section{background:#090A0C;padding:48px 48px 80px;}
+#arch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+@media(max-width:768px){#arch-grid{grid-template-columns:repeat(2,1fr)}}
+.arch-img-wrap{position:relative;overflow:hidden;cursor:none;}
+.arch-img-wrap img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;transition:opacity 0.2s ease;}
+.arch-img-wrap:hover img{opacity:0.7}
+#arch-shuffle-wrap{display:flex;justify-content:center;padding-top:48px;}
+#shuffle-btn{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#EFE9E7;border:1px solid rgba(239,233,231,0.2);padding:12px 32px;cursor:none;transition:border-color 0.2s,color 0.2s;background:transparent;}
+#shuffle-btn:hover{border-color:rgba(239,233,231,0.6);}
 
 /* ── FOOTER ── */
 footer{
@@ -318,242 +289,15 @@ textarea.contact-field{resize:none}
   <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:100px;padding:5px 14px;display:inline-block;margin-top:20px;">31 RELEASES</span>
 </header>
 
-<!-- Masonry Gallery -->
-<div id="arch-gallery">
-
-  <div class="arch-item" onclick="openLightbox(0)">
-    <img src="assets/covers/archive/arch02.jpg" alt="Archive 02" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'02)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 02</span>
-    </div>
+<!-- Archive Grid -->
+<section id="arch-section">
+  <div id="arch-grid"></div>
+  <div id="arch-shuffle-wrap">
+    <button id="shuffle-btn">SHUFFLE</button>
   </div>
+</section>
 
-  <div class="arch-item" onclick="openLightbox(1)">
-    <img src="assets/covers/archive/arch03.jpg" alt="Archive 03" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'03)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 03</span>
-    </div>
-  </div>
 
-  <div class="arch-item" onclick="openLightbox(2)">
-    <img src="assets/covers/archive/arch04.jpg" alt="Archive 04" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'04)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 04</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(3)">
-    <img src="assets/covers/archive/arch05.jpg" alt="Archive 05" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'05)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 05</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(4)">
-    <img src="assets/covers/archive/arch06.jpg" alt="Archive 06" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'06)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 06</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(5)">
-    <img src="assets/covers/archive/arch07.jpg" alt="Archive 07" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'07)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 07</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(6)">
-    <img src="assets/covers/archive/arch08.jpg" alt="Archive 08" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'08)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 08</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(7)">
-    <img src="assets/covers/archive/arch09.jpg" alt="Archive 09" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'09)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 09</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(8)">
-    <img src="assets/covers/archive/arch10.png" alt="Archive 10" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'10)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 10</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(9)">
-    <img src="assets/covers/archive/arch11.jpg" alt="Archive 11" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'11)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 11</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(10)">
-    <img src="assets/covers/archive/arch12.jpg" alt="Archive 12" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'12)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 12</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(11)">
-    <img src="assets/covers/archive/arch13.jpg" alt="Archive 13" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'13)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 13</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(12)">
-    <img src="assets/covers/archive/arch14.jpg" alt="Archive 14" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'14)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 14</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(13)">
-    <img src="assets/covers/archive/arch15.jpg" alt="Archive 15" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'15)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 15</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(14)">
-    <img src="assets/covers/archive/arch16.jpg" alt="Archive 16" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'16)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 16</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(15)">
-    <img src="assets/covers/archive/arch17.jpg" alt="Archive 17" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'17)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 17</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(16)">
-    <img src="assets/covers/archive/arch18.jpg" alt="Archive 18" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'18)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 18</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(17)">
-    <img src="assets/covers/archive/arch19.jpg" alt="Archive 19" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'19)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 19</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(18)">
-    <img src="assets/covers/archive/arch20.jpg" alt="Archive 20" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'20)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 20</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(19)">
-    <img src="assets/covers/archive/arch21.jpg" alt="Archive 21" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'21)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 21</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(20)">
-    <img src="assets/covers/archive/arch22.jpg" alt="Archive 22" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'22)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 22</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(21)">
-    <img src="assets/covers/archive/arch24.jpg" alt="Archive 24" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'24)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 24</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(22)">
-    <img src="assets/covers/archive/arch25.jpg" alt="Archive 25" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'25)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 25</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(23)">
-    <img src="assets/covers/archive/arch26.jpg" alt="Archive 26" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'26)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 26</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(24)">
-    <img src="assets/covers/archive/arch27.jpg" alt="Archive 27" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'27)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 27</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(25)">
-    <img src="assets/covers/archive/arch28.jpg" alt="Archive 28" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'28)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 28</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(26)">
-    <img src="assets/covers/archive/arch29.jpg" alt="Archive 29" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'29)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 29</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(27)">
-    <img src="assets/covers/archive/arch30.jpg" alt="Archive 30" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'30)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 30</span>
-    </div>
-  </div>
-
-  <div class="arch-item" onclick="openLightbox(28)">
-    <img src="assets/covers/archive/arch31.jpg" alt="Archive 31" loading="lazy">
-    <div class="arch-overlay">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:4px;">(ARCH'31)</span>
-      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#EFE9E7;">Untitled 31</span>
-    </div>
-  </div>
-
-</div>
 
 <!-- Contact -->
 <section id="contact">
@@ -684,100 +428,108 @@ textarea.contact-field{resize:none}
     nav.classList.toggle('scrolled', window.scrollY > 80);
   }, { passive: true });
 
-  /* ── SCROLL ANIMATIONS ── */
-  var items = document.querySelectorAll('.arch-item');
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry, i) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var idx = Array.from(items).indexOf(el);
-        var delay = (idx % 3) * 40;
-        setTimeout(function () { el.classList.add('visible'); }, delay);
-        obs.unobserve(el);
-      }
-    });
-  }, { threshold: 0.08 });
-  items.forEach(function (el) { obs.observe(el); });
-
 })();
 
-/* ── LIGHTBOX ── */
-const archItems = [
-  {src:'assets/covers/archive/arch02.jpg',release:"(ARCH'02)",title:'Untitled 02'},
-  {src:'assets/covers/archive/arch03.jpg',release:"(ARCH'03)",title:'Untitled 03'},
-  {src:'assets/covers/archive/arch04.jpg',release:"(ARCH'04)",title:'Untitled 04'},
-  {src:'assets/covers/archive/arch05.jpg',release:"(ARCH'05)",title:'Untitled 05'},
-  {src:'assets/covers/archive/arch06.jpg',release:"(ARCH'06)",title:'Untitled 06'},
-  {src:'assets/covers/archive/arch07.jpg',release:"(ARCH'07)",title:'Untitled 07'},
-  {src:'assets/covers/archive/arch08.jpg',release:"(ARCH'08)",title:'Untitled 08'},
-  {src:'assets/covers/archive/arch09.jpg',release:"(ARCH'09)",title:'Untitled 09'},
-  {src:'assets/covers/archive/arch10.png',release:"(ARCH'10)",title:'Untitled 10'},
-  {src:'assets/covers/archive/arch11.jpg',release:"(ARCH'11)",title:'Untitled 11'},
-  {src:'assets/covers/archive/arch12.jpg',release:"(ARCH'12)",title:'Untitled 12'},
-  {src:'assets/covers/archive/arch13.jpg',release:"(ARCH'13)",title:'Untitled 13'},
-  {src:'assets/covers/archive/arch14.jpg',release:"(ARCH'14)",title:'Untitled 14'},
-  {src:'assets/covers/archive/arch15.jpg',release:"(ARCH'15)",title:'Untitled 15'},
-  {src:'assets/covers/archive/arch16.jpg',release:"(ARCH'16)",title:'Untitled 16'},
-  {src:'assets/covers/archive/arch17.jpg',release:"(ARCH'17)",title:'Untitled 17'},
-  {src:'assets/covers/archive/arch18.jpg',release:"(ARCH'18)",title:'Untitled 18'},
-  {src:'assets/covers/archive/arch19.jpg',release:"(ARCH'19)",title:'Untitled 19'},
-  {src:'assets/covers/archive/arch20.jpg',release:"(ARCH'20)",title:'Untitled 20'},
-  {src:'assets/covers/archive/arch21.jpg',release:"(ARCH'21)",title:'Untitled 21'},
-  {src:'assets/covers/archive/arch22.jpg',release:"(ARCH'22)",title:'Untitled 22'},
-  {src:'assets/covers/archive/arch24.jpg',release:"(ARCH'24)",title:'Untitled 24'},
-  {src:'assets/covers/archive/arch25.jpg',release:"(ARCH'25)",title:'Untitled 25'},
-  {src:'assets/covers/archive/arch26.jpg',release:"(ARCH'26)",title:'Untitled 26'},
-  {src:'assets/covers/archive/arch27.jpg',release:"(ARCH'27)",title:'Untitled 27'},
-  {src:'assets/covers/archive/arch28.jpg',release:"(ARCH'28)",title:'Untitled 28'},
-  {src:'assets/covers/archive/arch29.jpg',release:"(ARCH'29)",title:'Untitled 29'},
-  {src:'assets/covers/archive/arch30.jpg',release:"(ARCH'30)",title:'Untitled 30'},
-  {src:'assets/covers/archive/arch31.jpg',release:"(ARCH'31)",title:'Untitled 31'},
+/* ── ARCHIVE SHUFFLE ── */
+const archiveImages = [
+  'arch02.jpg','arch03.jpg','arch04.jpg','arch05.jpg',
+  'arch06.jpg','arch07.jpg','arch08.jpg','arch09.jpg',
+  'arch10.png','arch11.jpg','arch12.jpg','arch13.jpg',
+  'arch14.jpg','arch15.jpg','arch16.jpg','arch17.jpg',
+  'arch18.jpg','arch19.jpg','arch20.jpg','arch21.jpg',
+  'arch22.jpg','arch24.jpg','arch25.jpg','arch26.jpg',
+  'arch27.jpg','arch28.jpg','arch29.jpg','arch30.jpg',
+  'arch31.jpg','arch32.jpg','arch33.jpg','arch34.jpg',
+  'arch35.jpg','arch36.jpg','arch37.jpg','arch38.png',
+  'arch39.png','arch40.jpg','arch41.jpg','arch42.jpg',
+  'arch43.jpg','arch44.png','arch45.png','arch46.png',
+  'arch47.jpg','arch48.jpg','arch49.jpg','arch50.jpg',
+  'arch51.jpg','arch52.png'
 ];
 
+let currentBatch = [];
 let currentLightbox = 0;
 
+function fisherYates(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function shuffleAndDisplay() {
+  currentBatch = fisherYates(archiveImages).slice(0, 16);
+  const grid = document.getElementById('arch-grid');
+  const ring = document.getElementById('cursor-ring');
+  grid.innerHTML = '';
+  currentBatch.forEach(function(filename, idx) {
+    const wrap = document.createElement('div');
+    wrap.className = 'arch-img-wrap';
+    wrap.addEventListener('click', function() { openLightbox(idx); });
+    const img = document.createElement('img');
+    img.src = 'assets/covers/archive/' + filename;
+    img.alt = filename.replace(/\.[^.]+$/, '');
+    img.loading = 'lazy';
+    img.addEventListener('mouseenter', function() {
+      ring.classList.add('hover-img'); ring.classList.remove('hover-link');
+    });
+    img.addEventListener('mouseleave', function() { ring.classList.remove('hover-img'); });
+    wrap.appendChild(img);
+    grid.appendChild(wrap);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  shuffleAndDisplay();
+  document.getElementById('shuffle-btn').addEventListener('click', shuffleAndDisplay);
+});
+
+/* ── LIGHTBOX ── */
 function openLightbox(index) {
   currentLightbox = index;
   updateLightbox();
   const lb = document.getElementById('lightbox');
   lb.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  setTimeout(() => { lb.style.opacity = '1'; }, 10);
+  setTimeout(function() { lb.style.opacity = '1'; }, 10);
 }
 
 function updateLightbox() {
-  const item = archItems[currentLightbox];
-  document.getElementById('lbImg').src = item.src;
-  document.getElementById('lbRelease').textContent = item.release;
-  document.getElementById('lbTitle').textContent = item.title;
+  const filename = currentBatch[currentLightbox];
+  const num = filename.match(/\d+/)[0];
+  document.getElementById('lbImg').src = 'assets/covers/archive/' + filename;
+  document.getElementById('lbRelease').textContent = "(ARCH'" + num + ")";
+  document.getElementById('lbTitle').textContent = 'Untitled ' + num;
   document.getElementById('lbCounter').textContent =
-    String(currentLightbox + 1).padStart(2, '0') + ' / 31';
+    String(currentLightbox + 1).padStart(2, '0') + ' / 16';
 }
 
 function closeLightbox() {
   const lb = document.getElementById('lightbox');
   lb.style.opacity = '0';
-  setTimeout(() => {
+  setTimeout(function() {
     lb.style.display = 'none';
     document.body.style.overflow = '';
   }, 400);
 }
 
 function prevImage() {
-  currentLightbox = (currentLightbox - 1 + archItems.length) % archItems.length;
+  currentLightbox = (currentLightbox - 1 + currentBatch.length) % currentBatch.length;
   updateLightbox();
 }
 
 function nextImage() {
-  currentLightbox = (currentLightbox + 1) % archItems.length;
+  currentLightbox = (currentLightbox + 1) % currentBatch.length;
   updateLightbox();
 }
 
-document.getElementById('lightbox').addEventListener('click', function (e) {
+document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
 
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') prevImage();
   if (e.key === 'ArrowRight') nextImage();
