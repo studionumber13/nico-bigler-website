@@ -308,6 +308,20 @@ textarea.contact-field{resize:none}
 #archive-btn:hover{color:#000;}
 #archive-btn:hover::before{transform:translateX(0);}
 #archive-btn span{position:relative;z-index:1;}
+@media(max-width:1024px){
+  #nav{padding:0 32px}
+}
+@media(max-width:768px){
+  #nav{padding:0 20px}
+  .nav-right{display:none}
+  .career-title{font-size:clamp(22px,5vw,30px)}
+  #contact{grid-template-columns:1fr}
+  .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
+  .contact-right{padding:56px 20px}
+  .contact-h{font-size:clamp(32px,10vw,56px)}
+  .contact-cover{display:none}
+  #archive-btn{padding:40px 20px}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
 }

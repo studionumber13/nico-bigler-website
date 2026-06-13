@@ -229,6 +229,19 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
 .foot-back{cursor:none;transition:color 0.2s}
 .foot-back:hover{color:#EFE9E7}
+@media(max-width:480px){
+  .nav-right{display:none}
+}
+@media(max-width:768px){
+  #contact{grid-template-columns:1fr}
+  .contact-left{padding:64px 24px;border-right:none;border-bottom:1px solid var(--dim)}
+  .contact-right{padding:64px 24px}
+  .contact-h{font-size:clamp(32px,10vw,56px)}
+  .contact-cover{display:none}
+  .case-nav{padding:32px 24px;flex-direction:column;gap:16px;text-align:center}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+  #archive-btn{padding:40px 24px}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;animation-delay:.01ms!important;}
 }

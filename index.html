@@ -375,6 +375,44 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .nav-card-hover-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#FFFFFF;border:1px solid #FFFFFF;padding:5px 12px;letter-spacing:0.1em}
 .nav-card-bottom{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.12em;z-index:2}
 
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  #nav{padding:0 32px}
+  #nr13-intro,#nav-cards-section{padding:80px 32px}
+  #career{padding:80px 32px}
+  .proj-scroll{padding:64px 32px}
+  #works-grid{padding:40px 32px}
+  #works-list{padding:0 32px}
+  footer{padding:28px 32px}
+}
+@media(max-width:768px){
+  #nav{padding:0 20px}
+  .nav-right{display:none}
+  #nr13-intro{padding:56px 20px}
+  .nr13-grid{grid-template-columns:1fr;gap:40px}
+  #career{padding:56px 20px}
+  .career-card{grid-template-columns:1fr;gap:16px}
+  .career-link{text-align:left}
+  #pillars-section .pillars-intro{padding:72px 20px 40px!important}
+  #pillars-section section{padding:56px 20px!important}
+  .pillar-row{grid-template-columns:1fr;gap:20px;padding:36px 0}
+  .pillar-row-icon{display:none}
+  .pillar-row-title{font-size:clamp(26px,6vw,36px)}
+  .proj-scroll{padding:48px 20px}
+  #works-grid{padding:0;grid-template-columns:repeat(2,1fr)}
+  #works-list{padding:0 20px}
+  #worksToggle{padding:14px 20px!important}
+  #nav-cards-section{padding:56px 20px}
+  .nav-cards-grid{grid-template-columns:1fr}
+  .nav-card{min-height:240px}
+  #contact{grid-template-columns:1fr}
+  .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
+  .contact-right{padding:56px 20px}
+  .contact-h{font-size:clamp(32px,10vw,56px)}
+  .contact-cover{display:none}
+  #archive-btn{padding:40px 20px}
+  footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
+}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>

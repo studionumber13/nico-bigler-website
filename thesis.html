@@ -303,6 +303,17 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   .th-article-status{text-align:left;}
 }
 
+@media(max-width:1024px){
+  #nav{padding:0 32px}
+  #thesis-hero{padding:100px 48px 64px}
+}
+@media(max-width:768px){
+  #nav{padding:0 20px}
+  .nav-right{display:none}
+  #thesis-hero{padding:88px 20px 48px}
+  .thesis-h1,.thesis-h2{font-size:clamp(40px,11vw,64px)}
+  footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
+}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>

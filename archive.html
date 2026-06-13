@@ -207,6 +207,25 @@ textarea.contact-field{resize:none}
 #archive-btn:hover{color:#000;}
 #archive-btn:hover::before{transform:translateX(0);}
 #archive-btn span{position:relative;z-index:1;}
+@media(max-width:1024px){
+  #nav{padding:0 32px}
+  #arch-header{padding:100px 32px 56px}
+  #arch-section{padding:40px 32px 64px}
+}
+@media(max-width:768px){
+  #nav{padding:0 20px}
+  .nav-right{display:none}
+  #arch-header{padding:88px 20px 48px}
+  #arch-header>span:nth-child(2),#arch-header>span:nth-child(3){font-size:clamp(40px,11vw,64px)!important}
+  #arch-section{padding:24px 0 48px}
+  #contact{grid-template-columns:1fr}
+  .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
+  .contact-right{padding:56px 20px}
+  .contact-h{font-size:clamp(32px,10vw,56px)}
+  .contact-cover{display:none}
+  #archive-btn{padding:40px 20px}
+  footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
+}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
