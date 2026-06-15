@@ -226,6 +226,17 @@ textarea.contact-field{resize:none}
   #archive-btn{padding:40px 20px}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
 }
+/* ── MOBILE MEGA MENU ── */
+@media(max-width:640px){
+  #megaMenu{display:flex;flex-direction:column;overflow-y:auto;}
+  #megaMenu>.mm-col:first-child{display:none;}
+  .mm-col{padding:32px 24px;height:auto;}
+  .mm-nav-links{padding-top:24px;}
+  .mm-nav-link{font-size:36px;}
+  .mm-close{right:20px;top:20px;}
+  .mm-right{padding-top:0;}
+  .mm-manifesto{margin-top:24px;}
+}
 /* ── SCROLL ANIMATIONS ── */
 .anim{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
 .anim.anim-visible{opacity:1;transform:translateY(0)}

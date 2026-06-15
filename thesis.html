@@ -314,6 +314,17 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   .thesis-h1,.thesis-h2{font-size:clamp(40px,11vw,64px)}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
 }
+/* ── MOBILE MEGA MENU ── */
+@media(max-width:640px){
+  #megaMenu{display:flex;flex-direction:column;overflow-y:auto;}
+  #megaMenu>.mm-col:first-child{display:none;}
+  .mm-col{padding:32px 24px;height:auto;}
+  .mm-nav-links{padding-top:24px;}
+  .mm-nav-link{font-size:36px;}
+  .mm-close{right:20px;top:20px;}
+  .mm-right{padding-top:0;}
+  .mm-manifesto{margin-top:24px;}
+}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>

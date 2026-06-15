@@ -322,6 +322,17 @@ textarea.contact-field{resize:none}
   .contact-cover{display:none}
   #archive-btn{padding:40px 20px}
 }
+/* ── MOBILE MEGA MENU ── */
+@media(max-width:640px){
+  #megaMenu{display:flex;flex-direction:column;overflow-y:auto;}
+  #megaMenu>.mm-col:first-child{display:none;}
+  .mm-col{padding:32px 24px;height:auto;}
+  .mm-nav-links{padding-top:24px;}
+  .mm-nav-link{font-size:36px;}
+  .mm-close{right:20px;top:20px;}
+  .mm-right{padding-top:0;}
+  .mm-manifesto{margin-top:24px;}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
 }
@@ -357,8 +368,8 @@ textarea.contact-field{resize:none}
 <!-- Mega Menu -->
 <div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
   <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
-  <div class="mm-col" style="display:flex;align-items:center;justify-content:center;background:#000;">
-    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:100%;max-width:480px;height:auto;display:block;margin:0 auto;">
+  <div class="mm-col">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
   </div>
   <div class="mm-col">
     <nav class="mm-nav-links">
