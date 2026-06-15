@@ -33,18 +33,17 @@ img{display:block;max-width:100%}
   transform:translate(-50%,-50%);transition:opacity 0.2s;
 }
 #cursor-ring{
-  width:32px;height:32px;
+  width:48px;height:48px;
   border:1px solid rgba(239,233,231,0.35);border-radius:50%;
   position:fixed;pointer-events:none;z-index:99997;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
-  transition:width 0.25s ease,height 0.25s ease,
-             border-color 0.25s ease,background 0.25s ease;
+  transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease;
 }
-#cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-link #cursor-label{opacity:0}
 #cursor-ring.hover-img{
-  width:48px;height:48px;
+  transform:translate(-50%,-50%) scale(1);
   background:rgba(239,233,231,0.08);
   border-color:rgba(239,233,231,0.5);
 }
@@ -63,6 +62,7 @@ img{display:block;max-width:100%}
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
 }
+#nav.scrolled{background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .nav-left,.nav-right{display:flex;align-items:center;gap:24px}
 .nav-btn{
   font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
@@ -196,9 +196,9 @@ footer{
 .contact-right{padding:120px 80px;display:flex;flex-direction:column}
 .contact-cover{margin-bottom:48px;overflow:hidden}
 .contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
-.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(239,233,231,0.12);color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
-.contact-field::placeholder{color:rgba(239,233,231,0.2)}
-.contact-field:focus{border-bottom-color:rgba(239,233,231,0.5)}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:16px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
+.contact-field::placeholder{color:rgba(239,233,231,0.62);font-weight:500}
+.contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
 textarea.contact-field{resize:none}
 .contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
 .contact-submit:hover{background:#fff;transform:translateY(-2px)}
@@ -311,8 +311,6 @@ textarea.contact-field{resize:none}
     <a href="about.html" class="mm-right-link">About me</a>
     <a href="about.html#career" class="mm-right-link">Career</a>
     <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
-    <a href="#" class="mm-right-link">Datenschutz</a>
-    <a href="#" class="mm-right-link">Impressum</a>
     <div class="mm-section">
       <span class="mm-section-label">DOWNLOAD</span>
       <a href="assets/cv/cv-nico-bigler.pdf" class="mm-right-link" target="_blank">↓ CV Nico Bigler</a>
@@ -335,7 +333,7 @@ textarea.contact-field{resize:none}
   <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;display:block;">The Full</span>
   <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;display:block;">Collection.</span>
   <p style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#69626D;line-height:1.7;margin-top:24px;max-width:480px;">Every piece ever made. Unfiltered.<br>From early experiments to latest releases —<br>the complete visual archive of Project Nr. 13.</p>
-  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:100px;padding:5px 14px;display:inline-block;margin-top:20px;">31 RELEASES</span>
+  <span id="release-count" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:100px;padding:5px 14px;display:inline-block;margin-top:20px;"></span>
 </header>
 
 <!-- Archive Grid -->
@@ -375,13 +373,13 @@ textarea.contact-field{resize:none}
       <input type="text" class="contact-field" placeholder="Name" required>
       <input type="email" class="contact-field" placeholder="Email" required>
       <textarea class="contact-field" rows="5" placeholder="Message" required></textarea>
-      <button type="submit" class="contact-submit">Send Message →</button>
+      <button type="submit" class="contact-submit">LET'S TALK →</button>
     </form>
   </div>
 </section>
 
 <!-- Archive Button -->
-<a href="archive.html" id="archive-btn" class="anim"><span>Archive — Project Nr. 13</span></a>
+<a href="index.html" id="archive-btn" class="anim"><span>Back to Project Nr. 13</span></a>
 
 <!-- Footer -->
 <footer>
@@ -391,13 +389,13 @@ textarea.contact-field{resize:none}
 </footer>
 
 <!-- Lightbox -->
-<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(9,10,12,0.97);opacity:0;transition:opacity 0.4s ease;align-items:center;justify-content:center;padding:48px;">
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Cover art viewer" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(9,10,12,0.97);opacity:0;transition:opacity 0.4s ease;align-items:center;justify-content:center;padding:48px;">
 
-  <button onclick="closeLightbox()" style="position:absolute;top:28px;right:40px;font-family:'Inter',sans-serif;font-weight:300;font-size:32px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">×</button>
+  <button onclick="closeLightbox()" aria-label="Close lightbox" style="position:absolute;top:28px;right:40px;font-family:'Inter',sans-serif;font-weight:300;font-size:32px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">×</button>
 
-  <button onclick="prevImage()" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">←</button>
+  <button onclick="prevImage()" aria-label="Previous image" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">←</button>
 
-  <button onclick="nextImage()" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">→</button>
+  <button onclick="nextImage()" aria-label="Next image" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:'Inter',sans-serif;font-weight:300;font-size:36px;color:#69626D;background:transparent;border:none;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseenter="this.style.color='#EFE9E7'" onmouseleave="this.style.color='#69626D'">→</button>
 
   <div style="display:grid;grid-template-columns:1fr 280px;gap:48px;max-width:1100px;width:90%;max-height:90vh;">
     <img id="lbImg" style="max-height:80vh;width:100%;object-fit:contain;display:block;" alt="">
@@ -547,6 +545,7 @@ function shuffleAndDisplay() {
 document.addEventListener('DOMContentLoaded', function() {
   shuffleAndDisplay();
   document.getElementById('shuffle-btn').addEventListener('click', shuffleAndDisplay);
+  document.getElementById('release-count').textContent = archiveImages.length + ' RELEASES';
 });
 
 /* ── LIGHTBOX ── */
@@ -563,6 +562,7 @@ function updateLightbox() {
   const filename = currentBatch[currentLightbox];
   const num = filename.match(/\d+/)[0];
   document.getElementById('lbImg').src = 'assets/covers/archive/' + filename;
+  document.getElementById('lbImg').alt = filename.replace(/\.[^.]+$/, '');
   document.getElementById('lbRelease').textContent = "(ARCH'" + num + ")";
   document.getElementById('lbTitle').textContent = 'Untitled ' + num;
   document.getElementById('lbCounter').textContent =
