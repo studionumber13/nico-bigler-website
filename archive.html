@@ -226,6 +226,9 @@ textarea.contact-field{resize:none}
   #archive-btn{padding:40px 20px}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
 }
+/* ── SCROLL ANIMATIONS ── */
+.anim{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
+.anim.anim-visible{opacity:1;transform:translateY(0)}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
@@ -351,7 +354,7 @@ textarea.contact-field{resize:none}
 </section>
 
 <!-- Archive Button -->
-<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
+<a href="archive.html" id="archive-btn" class="anim"><span>Archive — Project Nr. 13</span></a>
 
 <!-- Footer -->
 <footer>
@@ -446,6 +449,20 @@ textarea.contact-field{resize:none}
   window.addEventListener('scroll', function () {
     nav.classList.toggle('scrolled', window.scrollY > 80);
   }, { passive: true });
+
+  /* ── SCROLL ANIMATIONS ── */
+  var animEls = document.querySelectorAll('.anim');
+  var animObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var delay = el.dataset.delay ? +el.dataset.delay : 0;
+        setTimeout(function () { el.classList.add('anim-visible'); }, delay);
+        animObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+  animEls.forEach(function (el) { animObs.observe(el); });
 
 })();
 
