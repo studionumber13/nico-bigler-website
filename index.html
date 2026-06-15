@@ -188,12 +188,12 @@ body.cursor-active #cursor-ring{opacity:1;}
 #home{height:100vh;background:#000;position:relative;overflow:hidden}
 .scroll-ind{
   transform:translateX(-50%);
-  animation:bounceInd 2s ease-in-out infinite;
+  animation:bounceInd 2.4s ease-in-out infinite;
   transition:opacity 0.3s ease;
 }
 @keyframes bounceInd{
-  0%,100%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(6px)}
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:0.5}
+  50%{transform:translateX(-50%) translateY(4px);opacity:1}
 }
 
 /* ── WORKS ── */
@@ -268,8 +268,8 @@ body.cursor-active #cursor-ring{opacity:1;}
 .contact-right{padding:120px 80px;display:flex;flex-direction:column}
 .contact-cover{margin-bottom:48px;overflow:hidden}
 .contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
-.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.3s ease}
-.contact-field::placeholder{color:#69626D}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:16px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.3s ease}
+.contact-field::placeholder{color:rgba(239,233,231,0.62);font-weight:500}
 .contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
 textarea.contact-field{resize:none}
 .contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
@@ -484,7 +484,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
 <!-- Mega Menu -->
 <div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
-  <button class="mm-close" id="menuClose" aria-label="Schliessen">×</button>
+  <button class="mm-close" id="menuClose" aria-label="Close menu">×</button>
   <!-- Left -->
   <div class="mm-col">
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
@@ -536,7 +536,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div style="position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;">
     <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;display:block;">Art is</span>
     <div style="height:clamp(80px,12vw,148px);overflow:hidden;display:flex;align-items:center;justify-content:center;">
-      <span id="heroWord" style="font-family:'Inter',monospace;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;">Creation</span>
+      <span id="heroWord" style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;">Creation</span>
     </div>
   </div>
   <!-- Layer 5: Grid Label -->
@@ -600,7 +600,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
     <section class="pillars-intro" style="background:#000000;padding:120px 80px 80px;position:sticky;top:0;z-index:1;">
       <div style="max-width:1200px;margin:0 auto;">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#5A5B64;display:block;margin-bottom:24px;">[ 02 — APPROACH ]</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#5A5B64;display:block;margin-bottom:24px;">APPROACH</span>
         <h2 style="font-family:'Inter',sans-serif;font-size:clamp(48px,6vw,80px);font-weight:700;color:#EFE9E7;line-height:1.05;margin:0;">My Three<br>Pillars.</h2>
       </div>
     </section>
