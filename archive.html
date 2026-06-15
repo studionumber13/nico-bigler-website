@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -237,6 +237,22 @@ textarea.contact-field{resize:none}
   .mm-right{padding-top:0;}
   .mm-manifesto{margin-top:24px;}
 }
+/* ── LIGHTBOX MOBILE ── */
+@media(max-width:480px){
+  /* Remove padding so image runs edge-to-edge; stack from top */
+  #lightbox{padding:0!important;align-items:flex-start!important;}
+  /* Close ×: top-right with padding for 44px tap target */
+  #lightbox>button:nth-child(1){top:8px!important;right:12px!important;padding:8px!important;}
+  /* ← / → arrows: anchored to image centre (21vh = half of 42vh image) */
+  #lightbox>button:nth-child(2){left:4px!important;top:21vh!important;min-width:44px!important;min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+  #lightbox>button:nth-child(3){right:4px!important;top:21vh!important;min-width:44px!important;min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+  /* Inner wrapper: single column, full screen height */
+  #lightbox>div{display:flex!important;flex-direction:column!important;gap:0!important;width:100%!important;max-width:100%!important;height:100vh!important;max-height:100vh!important;}
+  /* Image: top 42vh; contain preserves full artwork, dark bg fills letterbox bars */
+  #lbImg{width:100%!important;height:42vh!important;max-height:42vh!important;object-fit:contain!important;background:#090A0C!important;flex-shrink:0!important;display:block!important;}
+  /* Text panel: fills remaining 58vh; scrollable if content overflows */
+  #lightbox>div>div{flex:1!important;padding:20px 20px 32px!important;gap:14px!important;justify-content:flex-start!important;overflow-y:auto!important;}
+}
 /* ── SCROLL ANIMATIONS ── */
 .anim{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
 .anim.anim-visible{opacity:1;transform:translateY(0)}
@@ -303,7 +319,7 @@ textarea.contact-field{resize:none}
     </div>
     <div class="mm-section">
       <span class="mm-section-label">SOCIAL</span>
-      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
+      <a href="https://www.instagram.com/project_nr.13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
       <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="mm-right-link">LinkedIn ↗</a>
     </div>
     <div class="mm-manifesto">
@@ -343,7 +359,7 @@ textarea.contact-field{resize:none}
     </div>
     <div class="contact-bottom anim" data-delay="120">
       <span class="contact-social-label">Socials</span>
-      <a href="https://www.instagram.com/studionumber13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+      <a href="https://www.instagram.com/project_nr.13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
       <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
       <span class="contact-dl-label">Downloads</span>
       <a href="assets/cv/cv-nico-bigler-de.pdf" class="contact-dl-link" target="_blank"><span class="dl-arrow">↓</span>CV German</a>
