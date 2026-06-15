@@ -151,35 +151,25 @@ img{display:block;max-width:100%}
   position:relative;
   width:100%;
   padding-bottom:56.25%;
-  background:#000;
+  background:#090A0C;
   overflow:hidden;
   margin-top:56px;
 }
-.hero-location{
-  position:absolute;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:clamp(0.65rem,1vw,0.85rem);
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#EFE9E7;
-  opacity:0.5;
-}
-.hero-loc-left{bottom:2rem;left:2.5rem;}
-.hero-loc-right{bottom:2rem;right:2.5rem;}
 .hero-center-text{
   position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
+  right:clamp(16px,4vw,48px);
+  bottom:clamp(16px,4vw,48px);
+  text-align:right;
+  z-index:2;
 }
 .hero-center-text span{
   display:block;
   font-family:'IBM Plex Mono',monospace;
-  font-size:clamp(0.65rem,1vw,0.85rem);
+  font-size:clamp(1rem,2vw,1.4rem);
   letter-spacing:0.15em;
   text-transform:uppercase;
   color:#EFE9E7;
-  opacity:0.5;
+  opacity:0.75;
   line-height:2;
 }
 
@@ -405,17 +395,17 @@ textarea.contact-field{resize:none}
 
 <!-- Hero 16:9 -->
 <section id="about-hero">
-  <span class="hero-location hero-loc-left">Bern</span>
+  <img src="assets/images/nico-about.jpg" alt="Nico Bigler" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 75%;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.85) 100%);"></div>
   <div class="hero-center-text">
     <span>Sound becomes image.</span>
     <span>The unknown becomes art.</span>
   </div>
-  <span class="hero-location hero-loc-right">Zürich</span>
 </section>
 
 <!-- Quote -->
 <section id="about-quote">
-  <span class="quote-text">The design work taught me that before you touch a single tool, you need to understand what someone is trying to say.</span>
+  <span class="quote-text">There's a version of me in a meeting room, and a version of me at 174 BPM. This site is where they finally meet.</span>
   <span class="quote-attr">Nico Bigler — Project Nr. 13</span>
 </section>
 
