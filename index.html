@@ -255,6 +255,8 @@ body.cursor-active #cursor-ring{opacity:1;}
 .proj-list-arrow{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#69626D;transition:transform 0.2s,color 0.2s}
 .proj-list:hover .proj-list-arrow{transform:translateX(6px);color:#EFE9E7}
 .proj-list-thumb{width:60px;height:60px;object-fit:cover;flex-shrink:0;display:block;}
+.proj-desc{font-family:'Inter',sans-serif;font-size:13px;color:#AAABBC;line-height:1.7;max-width:480px;margin:16px auto 0;text-align:center;}
+.proj-music{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;letter-spacing:0.08em;margin-top:12px;display:block;text-align:center;}
 
 /* ── CONTACT ── */
 #contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
@@ -589,7 +591,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       <img src="assets/images/logo-black.png" alt="Project Nr. 13" class="nr13-logo">
     </div>
     <div>
-      <span class="nr13-label">EST. 2019 — ONGOING</span>
+      <span class="nr13-label">EST. 2026 — ONGOING</span>
       <h2 class="nr13-headline">Sound becomes image.<br>The unknown becomes art.</h2>
       <p class="nr13-body">Project Nr. 13 is a cover art, music and design venture rooted in the personal significance of the number 13. Born on February 13th, the number has always carried a deep personal meaning. Where others see bad luck, I see the threshold between the known and the unknown, the surface and what lies beneath. What started as early graphic design work for musician and DJ Flume grew into a full creative practice spanning cover art, poster design and visual identity. Every piece begins with sound and ends as image. Drum and bass, techno, trance and ambient are not just influences; they are the raw material from which every visual is built.</p>
       <div class="nr13-tags">
@@ -795,7 +797,8 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       <span id="wlbRelease" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;"></span>
       <h2 id="wlbTitle" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;"></h2>
       <div style="height:1px;background:rgba(239,233,231,0.08);"></div>
-      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#69626D;line-height:1.7;">Visual experiment — part of the ongoing Project Nr. 13 archive. Cover art and visual design exploring the intersection of music, identity and image.</p>
+      <p id="wlbDesc" style="font-family:'Inter',sans-serif;font-size:14px;color:#AAABBC;line-height:1.7;"></p>
+      <span id="wlbMusic" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#EFE9E7;letter-spacing:0.08em;display:block;margin-top:-8px;"></span>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">COVER ART</span>
         <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">SELECTED WORKS</span>
@@ -843,13 +846,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
   /* ── PROJECTS DATA ── */
   var projects = [
-    { src:'assets/covers/drp04-13_face.jpg',      release:"(DRP'04–13)", line1:'The Art of',    line2:'Cover Design'  },
-    { src:'assets/covers/drp11-13_astro.jpg',     release:"(DRP'11–13)", line1:'Into the',      line2:'Stars'         },
-    { src:'assets/covers/drp05-13_cyber.jpg',     release:"(DRP'05–13)", line1:'Digital',       line2:'Alchemy'       },
-    { src:'assets/covers/drp12-13_vinyl.jpg',     release:"(DRP'12–13)", line1:'Vinyl',         line2:'Archive'       },
-    { src:'assets/covers/drp06-13_cube.png',      release:"(DRP'06–13)", line1:'Fragments',     line2:'of Sound'      },
-    { src:'assets/covers/drp13-13_basquiat.jpg',  release:"(DRP'13–13)", line1:'Crown',         line2:'Energy'        },
-    { src:'assets/covers/drp10-13_self.jpg',      release:"(DRP'10–13)", line1:'Sound Becomes', line2:'Image'         }
+    { src:'assets/covers/drp04-13_face.jpg',      release:"(DRP'04–13)", title:'Phase Unknown',         desc:'A face dissolving under its own pressure. Something raw and uncontrollable pushes through the surface, red and sharp, like a signal that refuses to be silenced.',                                                              music:'Luca Eck – Ghost Town feat. benzii' },
+    { src:'assets/covers/drp05-13_cyber.jpg',     release:"(DRP'05–13)", title:'Material Ghost',        desc:'Human presence layered beneath cold data. The face stays visible but the system keeps closing in. A tension that never resolves, suspended somewhere between flesh and frequency.',                                          music:'JVNLIII, Jaxifyrt – Lacuna' },
+    { src:'assets/covers/drp06-13_cube.png',      release:"(DRP'06–13)", title:'Void Protocol',         desc:'Power has a shape and this is it. Dense, architectural, intentional. Every element on this cover asks the same question: who decides what a symbol means?',                                                                  music:'Eprom – The Circle' },
+    { src:'assets/covers/drp10-13_self.jpg',      release:"(DRP'10–13)", title:'The Unnamed',           desc:'A body turned away from everything. No gesture, no context, just the weight of being present without being seen. Silence as a design decision.',                                                                           music:'Cult Member – three' },
+    { src:'assets/covers/drp11-13_astro.jpg',     release:"(DRP'11–13)", title:'Transmission: Unknown', desc:'A world compressed into a circle. Anime, orbit, static, motion. The kind of energy that arrives from somewhere unidentifiable and pulls you forward anyway.',                                                                music:'Skelecta, Emz – STEADY' },
+    { src:'assets/covers/drp12-13_vinyl.jpg',     release:"(DRP'12–13)", title:'2099',                  desc:'A chrome figure suspended between two sides of the same record. The tracklist is there but illegible. Something about this image feels like a future that already happened.',                                                music:'orchid.exe – forever' },
+    { src:'assets/covers/drp13-13_basquiat.jpg',  release:"(DRP'13–13)", title:'Nocturna',              desc:'A crown above a coastline. Handwritten systems, layered histories, a figure holding it all together without trying. The image does not explain itself and it does not need to.',                                             music:'Burial – Ghost Hardware' }
   ];
 
   /* ── BUILD PROJECT VIEWS ── */
@@ -859,19 +862,17 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
   projects.forEach(function (p, i) {
     var num = String(i + 1).padStart(2, '0');
-    var alt = p.line1 + ' ' + p.line2;
+    var alt = p.title;
 
     var s = document.createElement('div');
     s.className = 'proj-scroll' + (i > 0 ? ' inactive' : '');
     s.dataset.index = i;
-    s.dataset.line2 = p.line2;
     s.innerHTML =
       '<img class="proj-scroll-img" src="' + p.src + '" alt="' + alt + '" loading="lazy"' +
       ' onerror="this.style.background=\'#111111\';this.style.minHeight=\'300px\';">' +
       '<div class="proj-scroll-info">' +
         '<div class="proj-release">' + p.release + '</div>' +
-        '<div class="proj-t1">' + p.line1 + '</div>' +
-        '<div class="proj-t2">' + p.line2 + '</div>' +
+        '<div class="proj-t2">' + p.title + '</div>' +
       '</div>';
     scrollCont.appendChild(s);
 
@@ -882,7 +883,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       ' onerror="this.style.background=\'#111111\';">' +
       '<div class="proj-grid-overlay">' +
         '<div class="proj-grid-release">' + p.release + '</div>' +
-        '<div class="proj-grid-title">' + p.line1 + ' ' + p.line2 + '</div>' +
+        '<div class="proj-grid-title">' + p.title + '</div>' +
       '</div>';
     gridCont.appendChild(g);
 
@@ -893,7 +894,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       '<img class="proj-list-thumb" src="' + p.src + '" alt="' + alt + '" loading="lazy">' +
       '<span class="proj-list-num">' + num + '</span>' +
       '<span class="proj-list-release">' + p.release + '</span>' +
-      '<span class="proj-list-title">' + p.line1 + ' ' + p.line2 + '</span>' +
+      '<span class="proj-list-title">' + p.title + '</span>' +
       '<span class="proj-list-arrow">→</span>';
     listCont.appendChild(l);
 
@@ -1364,7 +1365,9 @@ function updateWorksLightbox() {
   var item = data[currentWork];
   document.getElementById('wlbImg').src = item.src;
   document.getElementById('wlbRelease').textContent = item.release;
-  document.getElementById('wlbTitle').textContent = item.line1 + ' ' + item.line2;
+  document.getElementById('wlbTitle').textContent = item.title;
+  document.getElementById('wlbDesc').textContent = item.desc;
+  document.getElementById('wlbMusic').textContent = item.music;
   document.getElementById('wlbCounter').textContent =
     String(currentWork + 1).padStart(2, '0') + ' / ' + String(data.length).padStart(2, '0');
 }
