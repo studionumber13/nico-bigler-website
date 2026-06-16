@@ -200,8 +200,8 @@ body.cursor-active #cursor-ring{opacity:1;}
   line-height:1.2;
   color:#EFE9E7;
   max-width:900px;
-  transition:color 0.3s ease;
   display:block;
+  text-wrap:pretty;
 }
 .quote-attr{
   font-family:'IBM Plex Mono',monospace;
@@ -211,6 +211,7 @@ body.cursor-active #cursor-ring{opacity:1;}
   color:#69626D;
   margin-top:2rem;
   display:block;
+  font-style:normal;
 }
 
 /* ── MY STORY ── */
@@ -235,7 +236,7 @@ body.cursor-active #cursor-ring{opacity:1;}
   color:#EFE9E7;
   max-width:68ch;
 }
-.story-body p{margin-bottom:2rem;}
+.story-body p{margin-bottom:2rem;text-wrap:pretty;}
 .story-body p:last-child{margin-bottom:0;}
 
 /* ── CAREER ── */
@@ -270,11 +271,11 @@ footer{
 
 /* ── ANIM ── */
 .anim{
-  opacity:0;transform:translateY(28px);
   transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),
              transform 0.8s cubic-bezier(0.22,1,0.36,1);
 }
-.anim.visible{opacity:1;transform:translateY(0)}
+.js-anim .anim{opacity:0;transform:translateY(28px);}
+.js-anim .anim.visible{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
@@ -308,8 +309,9 @@ footer{
 .contact-field::placeholder{color:rgba(239,233,231,0.62);font-weight:500}
 .contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
 textarea.contact-field{resize:none}
-.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s,opacity 0.2s}
 .contact-submit:hover{background:#fff;transform:translateY(-2px)}
+.contact-submit:disabled{opacity:0.45;transform:none;pointer-events:none;}
 .fs-message{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:24px;}
 .fs-message--error{color:#FF3B30;}
 #fs-success{color:#0032FF;}
@@ -344,6 +346,7 @@ textarea.contact-field{resize:none}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
@@ -430,13 +433,13 @@ textarea.contact-field{resize:none}
 
 <!-- Quote -->
 <section id="about-quote">
-  <span class="quote-text">There's a version of me in a meeting room, and a version of me at 174 BPM. This site is where they finally meet.</span>
-  <span class="quote-attr">Nico Bigler — Project Nr. 13</span>
+  <blockquote class="quote-text">There's a version of me in a meeting room, and a version of me at 174 BPM. This site is where they finally meet.</blockquote>
+  <cite class="quote-attr">Nico Bigler — Project Nr. 13</cite>
 </section>
 
 <!-- My Story -->
 <section id="about-story">
-  <span class="story-label">My Story</span>
+  <h2 class="story-label">My Story</h2>
   <div class="story-body">
     <p>I was born on the 13th of February. For most people, that's a bad number. For me, it was always an invitation to look at what's on the other side.</p>
     <p>That's what I do. By day as a Communications Specialist and Brand Manager for private banks, social institutions, public agencies. I build systems that hold. Identities that mean something.</p>
@@ -453,7 +456,7 @@ textarea.contact-field{resize:none}
 
 <!-- Career -->
 <section id="career">
-  <span class="career-label anim">SELECTED EXPERIENCE</span>
+  <h2 class="career-label anim">SELECTED EXPERIENCE</h2>
 
   <div class="career-card anim" data-delay="80">
     <div class="career-date">2024–2025</div>
@@ -526,17 +529,17 @@ textarea.contact-field{resize:none}
   <div class="contact-right">
     <div class="contact-cover anim">
       <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
-           onerror="this.style.background='#111111';this.style.minHeight='480px';">
+           onerror="this.parentElement.style.display='none'">
     </div>
-    <div id="fs-success" style="display:none;" class="fs-message">Message received. I'll be in touch.</div>
-    <div id="fs-error" style="display:none;" class="fs-message fs-message--error">Something went wrong. Please try again.</div>
+    <div id="fs-success" style="display:none;" class="fs-message" aria-live="polite">Message received. I'll be in touch.</div>
+    <div id="fs-error" style="display:none;" class="fs-message fs-message--error" role="alert">Something went wrong. Please try again.</div>
     <form id="contact-form" class="anim" data-delay="120">
       <label for="field-name" class="visually-hidden">Name</label>
-      <input id="field-name" type="text" name="name" class="contact-field" placeholder="Name" required>
+      <input id="field-name" type="text" name="name" class="contact-field" placeholder="Name" autocomplete="name" required>
       <label for="field-email" class="visually-hidden">Email</label>
-      <input id="field-email" type="email" name="email" class="contact-field" placeholder="Email" required>
+      <input id="field-email" type="email" name="email" class="contact-field" placeholder="Email" autocomplete="email" required>
       <label for="field-message" class="visually-hidden">Message</label>
-      <textarea id="field-message" name="message" class="contact-field" rows="5" placeholder="Message" required></textarea>
+      <textarea id="field-message" name="message" class="contact-field" rows="5" placeholder="Message" autocomplete="off" required></textarea>
       <button type="submit" class="contact-submit">LET'S TALK →</button>
     </form>
   </div>
@@ -553,12 +556,13 @@ textarea.contact-field{resize:none}
     <a href="impressum.html" class="foot-legal">Impressum</a>
   </div>
   <span class="foot">Bern · Zürich · Est. 2019</span>
-  <span class="foot foot-back" id="backTop">↑ Back to Top</span>
+  <button type="button" class="foot foot-back" id="backTop">↑ Back to Top</button>
 </footer>
 
 <script>
 (function () {
   'use strict';
+  document.body.classList.add('js-anim');
 
   /* ── CURSOR ── */
   var dot  = document.getElementById('cursor-dot');
@@ -625,7 +629,8 @@ textarea.contact-field{resize:none}
 
   /* ── BACK TO TOP ── */
   document.getElementById('backTop').addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   });
 
   /* ── SCROLL ANIMATIONS ── */
