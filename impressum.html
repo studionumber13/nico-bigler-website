@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum — Nico Bigler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #090A0C;
+      color: #EFE9E7;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* Cursor */
+    #cursor-dot {
+      position: fixed; width: 5px; height: 5px;
+      background: #EFE9E7; border-radius: 50%;
+      pointer-events: none; z-index: 100001;
+      transform: translate(-50%, -50%);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    #cursor-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(239,233,231,0.5); border-radius: 50%;
+      pointer-events: none; z-index: 100000;
+      transform: translate(-50%, -50%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-dot, #cursor-ring { display: none; }
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid rgba(239,233,231,0.07);
+      background: rgba(9,10,12,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.08em;
+      color: rgba(239,233,231,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #0032FF; }
+
+    /* Hero */
+    .page-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid rgba(239,233,231,0.07);
+    }
+    .page-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: rgba(239,233,231,0.4);
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .page-title {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 900; line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    /* Content */
+    .content {
+      max-width: 720px;
+      padding: 80px 48px 160px;
+    }
+    .content-section { margin-bottom: 64px; }
+    .content-section h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: rgba(239,233,231,0.4);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .content-section p {
+      font-size: 16px; line-height: 1.7;
+      color: rgba(239,233,231,0.75);
+      margin-bottom: 12px;
+    }
+    .content-section a {
+      color: #EFE9E7;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .content-section a:hover { color: #0032FF; }
+    .placeholder {
+      color: rgba(239,233,231,0.3);
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(239,233,231,0.07);
+      padding: 32px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(239,233,231,0.3);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-hero { padding: 120px 24px 48px; }
+      .content { padding: 48px 24px 100px; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Back</a>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-white.png" alt="Project Nr. 13">
+    </a>
+  </nav>
+
+  <section class="page-hero">
+    <p class="page-label">Legal</p>
+    <h1 class="page-title">Impressum</h1>
+  </section>
+
+  <div class="content">
+
+    <div class="content-section">
+      <h2>Verantwortliche Person</h2>
+      <p>Nico Bigler<br>
+      c/o F2BII E-Commerce#1050<br>
+      Hintergoldingerstrasse 30<br>
+      8638 Goldingen</p>
+      <p><a href="mailto:hallo.nicobigler@gmail.com">hallo.nicobigler@gmail.com</a></p>
+    </div>
+
+    <div class="content-section">
+      <h2>Website</h2>
+      <p>Diese Website ist das persönliche Portfolio von Nico Bigler, Communications Specialist und Brand Manager, sowie die digitale Präsenz von Project Nr. 13, einem unabhängigen Cover-Art- und Design-Studio.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Haftungsausschluss</h2>
+      <p>Alle Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird keine Gewähr übernommen. Externe Links werden zum Zeitpunkt der Verlinkung auf ihre Rechtmässigkeit geprüft; für den Inhalt verlinkter Seiten wird keine Verantwortung übernommen.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Urheberrecht</h2>
+      <p>Alle auf dieser Website veröffentlichten Inhalte (Texte, Bilder, Cover-Art, Grafiken) sind urheberrechtlich geschützt. Eine Verwendung ohne ausdrückliche schriftliche Genehmigung ist nicht gestattet.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Streitbeilegung</h2>
+      <p>Nico Bigler ist nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© ALL RIGHTS RESERVED. PROJECT NR. 13</p>
+    <p>BERN · ZÜRICH · EST. 2019</p>
+    <p><a href="datenschutz.html" style="color:rgba(239,233,231,0.3);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;" onmouseover="this.style.color='#0032FF'" onmouseout="this.style.color='rgba(239,233,231,0.3)'">Datenschutz</a></p>
+  </footer>
+
+  <script>
+    // Cursor
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let touchDetected = false;
+    document.addEventListener('touchstart', () => { touchDetected = true; }, { capture: true, passive: true });
+    document.addEventListener('mousemove', (e) => {
+      if (touchDetected) return;
+      document.body.classList.add('cursor-active');
+      dot.style.opacity = 1; ring.style.opacity = 1;
+      dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutz — Nico Bigler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #090A0C;
+      color: #EFE9E7;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    #cursor-dot {
+      position: fixed; width: 5px; height: 5px;
+      background: #EFE9E7; border-radius: 50%;
+      pointer-events: none; z-index: 100001;
+      transform: translate(-50%, -50%);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    #cursor-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(239,233,231,0.5); border-radius: 50%;
+      pointer-events: none; z-index: 100000;
+      transform: translate(-50%, -50%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-dot, #cursor-ring { display: none; }
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid rgba(239,233,231,0.07);
+      background: rgba(9,10,12,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.08em;
+      color: rgba(239,233,231,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #0032FF; }
+
+    .page-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid rgba(239,233,231,0.07);
+    }
+    .page-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: rgba(239,233,231,0.4);
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 80px);
+      font-weight: 900; line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .content {
+      max-width: 720px;
+      padding: 80px 48px 160px;
+    }
+    .content-section { margin-bottom: 64px; }
+    .content-section h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em;
+      color: rgba(239,233,231,0.4);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .content-section p {
+      font-size: 16px; line-height: 1.7;
+      color: rgba(239,233,231,0.75);
+      margin-bottom: 12px;
+    }
+    .content-section a {
+      color: #EFE9E7;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .content-section a:hover { color: #0032FF; }
+    .content-section ul {
+      margin: 12px 0 12px 20px;
+      color: rgba(239,233,231,0.75);
+      font-size: 16px; line-height: 1.7;
+    }
+    .content-section ul li { margin-bottom: 6px; }
+
+    footer {
+      border-top: 1px solid rgba(239,233,231,0.07);
+      padding: 32px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(239,233,231,0.3);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-hero { padding: 120px 24px 48px; }
+      .content { padding: 48px 24px 100px; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="nav-back">← Back</a>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-white.png" alt="Project Nr. 13">
+    </a>
+  </nav>
+
+  <section class="page-hero">
+    <p class="page-label">Legal</p>
+    <h1 class="page-title">Datenschutz&shy;erklärung</h1>
+  </section>
+
+  <div class="content">
+
+    <div class="content-section">
+      <h2>Überblick</h2>
+      <p>Diese Datenschutzerklärung informiert darüber, welche Daten auf dieser Website erhoben werden, zu welchem Zweck und wie damit umgegangen wird. Die Website verwendet keine Tracking-Tools, keine Cookies und kein Analytics.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Verantwortliche Person</h2>
+      <p>Nico Bigler<br>
+      hallo.nicobigler@gmail.com</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Kontaktformular</h2>
+      <p>Beim Absenden des Kontaktformulars werden folgende Daten erhoben:</p>
+      <ul>
+        <li>Name</li>
+        <li>E-Mail-Adresse</li>
+        <li>Nachrichteninhalt</li>
+      </ul>
+      <p>Diese Daten werden ausschliesslich zur Bearbeitung der Anfrage verwendet und nicht an Dritte weitergegeben, ausser an den nachfolgend beschriebenen Dienstleister.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Formspree (Drittanbieter)</h2>
+      <p>Das Kontaktformular nutzt den Dienst Formspree (Formspree, Inc., USA). Beim Absenden werden die eingegebenen Daten an Server in den USA übermittelt. Formspree verarbeitet diese Daten gemäss ihrer eigenen Datenschutzerklärung: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">formspree.io/legal/privacy-policy</a>.</p>
+      <p>Die Übermittlung in die USA erfolgt auf Grundlage der Standardvertragsklauseln (SCCs) der EU-Kommission. Die Daten werden nach Bearbeitung der Anfrage gelöscht.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Hosting</h2>
+      <p>Diese Website wird über GitHub Pages (GitHub, Inc., USA) gehostet. Beim Aufrufen der Website werden serverseitig technische Daten erfasst (IP-Adresse, Browsertyp, Uhrzeit des Zugriffs). Diese Daten werden von GitHub verarbeitet: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages" target="_blank" rel="noopener">GitHub Pages Datenschutz</a>.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Geschäftsadresse (Drittanbieter)</h2>
+      <p>Die im Impressum angegebene Geschäftsadresse wird über den Dienst adressemieten.ch (F2BII E-Commerce, Walderstrasse 23, 8732 Neuhaus SG, Schweiz) bereitgestellt. Mit diesem Dienstleister besteht eine Vereinbarung zur Auftragsverarbeitung personenbezogener Daten gemäss Art. 9 revDSG. Die Verarbeitung erfolgt ausschliesslich in der Schweiz bzw. in Ländern mit gleichwertigem Datenschutzniveau.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Keine Cookies, kein Tracking</h2>
+      <p>Diese Website setzt keine Cookies und verwendet keine Tracking- oder Analyse-Tools (kein Google Analytics, kein Facebook Pixel o.ä.). Es werden keine Profile über das Nutzerverhalten erstellt.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Ihre Rechte</h2>
+      <p>Gemäss dem revidierten Schweizer Datenschutzgesetz (revDSG) haben Sie folgende Rechte:</p>
+      <ul>
+        <li>Recht auf Auskunft über Ihre gespeicherten Daten</li>
+        <li>Recht auf Berichtigung unrichtiger Daten</li>
+        <li>Recht auf Löschung Ihrer Daten</li>
+        <li>Recht auf Einschränkung der Verarbeitung</li>
+      </ul>
+      <p>Für Anfragen wenden Sie sich an: <a href="mailto:hallo.nicobigler@gmail.com">hallo.nicobigler@gmail.com</a></p>
+    </div>
+
+    <div class="content-section">
+      <h2>Änderungen</h2>
+      <p>Diese Datenschutzerklärung kann bei Bedarf angepasst werden. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.</p>
+      <p>Stand: Juni 2026</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© ALL RIGHTS RESERVED. PROJECT NR. 13</p>
+    <p>BERN · ZÜRICH · EST. 2019</p>
+    <p><a href="impressum.html" style="color:rgba(239,233,231,0.3);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;" onmouseover="this.style.color='#0032FF'" onmouseout="this.style.color='rgba(239,233,231,0.3)'">Impressum</a></p>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let touchDetected = false;
+    document.addEventListener('touchstart', () => { touchDetected = true; }, { capture: true, passive: true });
+    document.addEventListener('mousemove', (e) => {
+      if (touchDetected) return;
+      dot.style.opacity = 1; ring.style.opacity = 1;
+      dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+    });
+  </script>
+
+</body>
+</html>

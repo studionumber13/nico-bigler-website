@@ -177,6 +177,9 @@ footer{
 }
 .foot-back{cursor:none;transition:color 0.2s}
 .foot-back:hover{color:#EFE9E7}
+.foot-group{display:flex;align-items:center;gap:20px;}
+.foot-legal{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(239,233,231,0.3);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
+.foot-legal:hover{color:#0032FF;}
 
 /* ── CONTACT SECTION ── */
 .dl-arrow{color:#0032FF;margin-right:8px;}
@@ -314,6 +317,8 @@ textarea.contact-field{resize:none}
     <a href="about.html" class="mm-right-link">About me</a>
     <a href="about.html#career" class="mm-right-link">Career</a>
     <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
+    <a href="datenschutz.html" class="mm-right-link" style="border-top:1px solid rgba(239,233,231,0.07);margin-top:16px;padding-top:16px;">Datenschutz</a>
+    <a href="impressum.html" class="mm-right-link">Impressum</a>
     <div class="mm-section">
       <span class="mm-section-label">DOWNLOAD</span>
       <a href="assets/cv/cv-nico-bigler.pdf" class="mm-right-link" target="_blank">↓ CV Nico Bigler</a>
@@ -388,7 +393,11 @@ textarea.contact-field{resize:none}
 
 <!-- Footer -->
 <footer>
-  <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+  <div class="foot-group">
+    <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+    <a href="datenschutz.html" class="foot-legal">Datenschutz</a>
+    <a href="impressum.html" class="foot-legal">Impressum</a>
+  </div>
   <span class="foot">Bern · Zürich · Est. 2026</span>
   <span class="foot foot-back" id="backTop">↑ Back to Top</span>
 </footer>
