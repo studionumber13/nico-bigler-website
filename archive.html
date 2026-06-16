@@ -97,6 +97,10 @@ img{display:block;max-width:100%}
   color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
 .nav-link:hover{color:#0032FF;}
+.nav-mobile-links{display:none;}
+@media(max-width:768px){.nav-mobile-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;}}
+.nav-mobile-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(239,233,231,0.5);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.nav-mobile-link:hover{color:#0032FF;}
 
 /* ── MEGA MENU ── */
 #megaMenu{
@@ -293,6 +297,10 @@ textarea.contact-field{resize:none}
     <a href="archive.html" class="nav-link" style="color:#EFE9E7">ARCHIVE</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="index.html#contact" class="nav-link">CONTACT</a>
+  </div>
+  <div class="nav-mobile-links">
+    <a href="about.html" class="nav-mobile-link">ABOUT</a>
+    <a href="#contact" class="nav-mobile-link">CONTACT</a>
   </div>
 </nav>
 

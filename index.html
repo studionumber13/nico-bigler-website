@@ -37,12 +37,12 @@ img{display:block;max-width:100%}
   transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;
 }
 #cursor-ring{
-  width:32px;height:32px;
+  width:48px;height:48px;
   border:1px solid rgba(239,233,231,0.35);border-radius:50%;
   position:fixed;pointer-events:none;z-index:100000;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:width 0.25s ease,height 0.25s ease,
+  opacity:0;transition:transform 0.25s ease,
              border-color 0.25s ease,background 0.25s ease,
              opacity 0.3s ease;
 }
@@ -51,10 +51,10 @@ img{display:block;max-width:100%}
 }
 body.cursor-active #cursor-dot,
 body.cursor-active #cursor-ring{opacity:1;}
-#cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-link #cursor-label{opacity:0}
 #cursor-ring.hover-img{
-  width:48px;height:48px;
+  transform:translate(-50%,-50%) scale(1);
   background:rgba(239,233,231,0.08);
   border-color:rgba(239,233,231,0.5);
 }
@@ -134,6 +134,10 @@ body.cursor-active #cursor-ring{opacity:1;}
   color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
 .nav-link:hover{color:#0032FF;}
+.nav-mobile-links{display:none;}
+@media(max-width:768px){.nav-mobile-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;}}
+.nav-mobile-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(239,233,231,0.5);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.nav-mobile-link:hover{color:#0032FF;}
 
 /* ── MEGA MENU ── */
 #megaMenu{
@@ -191,12 +195,12 @@ body.cursor-active #cursor-ring{opacity:1;}
 #home{height:100vh;background:#000;position:relative;overflow:hidden}
 .scroll-ind{
   transform:translateX(-50%);
-  animation:bounceInd 2.4s ease-in-out infinite;
+  animation:bounceInd 2.4s cubic-bezier(0.22,1,0.36,1) infinite;
   transition:opacity 0.3s ease;
 }
 @keyframes bounceInd{
-  0%,100%{transform:translateX(-50%) translateY(0);opacity:0.5}
-  50%{transform:translateX(-50%) translateY(4px);opacity:1}
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:0.4}
+  60%{transform:translateX(-50%) translateY(6px);opacity:1}
 }
 
 /* ── WORKS ── */
@@ -367,12 +371,23 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 /* ── PILLARS SECTION ── */
 #pillars-section{position:relative}
 .pillars-scroll-container{position:relative}
-.pillar-row{display:grid;grid-template-columns:80px 1fr 80px;gap:40px;align-items:start;padding:60px 0}
+.pillar-row{display:grid;grid-template-columns:1fr 80px;gap:40px;align-items:start;padding:60px 0}
 .pillar-row-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.12em;padding-top:6px}
 .pillar-row-title{font-family:'Inter',sans-serif;font-weight:700;font-size:48px;color:#FFFFFF;letter-spacing:-0.02em;margin-bottom:20px}
 .pillar-row-text{font-family:'Inter',sans-serif;font-size:17px;color:rgba(255,255,255,0.85);line-height:1.9;max-width:640px}
 .pillar-row-icon{width:60px;height:60px;display:block;opacity:0.8;margin-top:8px}
 
+/* ── HERO SUBTITLE ── */
+#heroPrefix{font-size:clamp(72px,11vw,140px);}
+#heroWord{font-size:clamp(72px,11vw,140px);}
+#hero-subtitle{margin-top:16px;text-align:center;pointer-events:none;}
+@media(max-width:480px){
+  #heroPrefix{font-size:clamp(36px,9vw,48px);}
+  #heroWord{font-size:clamp(42px,11vw,56px);}
+  #hero-subtitle{padding:0 24px;}
+  #hero-subtitle .hs-title{font-size:15px;}
+  #hero-subtitle .hs-meta{font-size:9px;}
+}
 /* ── SHOWREEL ── */
 #showreel{background:#090A0C;padding:0;opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease}
 #showreel.visible{opacity:1;transform:translateY(0)}
@@ -491,6 +506,10 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="#contact" class="nav-link">CONTACT</a>
   </div>
+  <div class="nav-mobile-links">
+    <a href="about.html" class="nav-mobile-link">ABOUT</a>
+    <a href="#contact" class="nav-mobile-link">CONTACT</a>
+  </div>
 </nav>
 
 <!-- Mega Menu -->
@@ -546,9 +565,13 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   <div style="position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,0.65) 100%);"></div>
   <!-- Layer 4: Hero Content -->
   <div style="position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;">
-    <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;display:block;">Art is</span>
+    <span id="heroPrefix" style="font-family:'Inter',sans-serif;font-weight:900;color:#EFE9E7;letter-spacing:-0.04em;line-height:1;display:block;">Art is</span>
     <div style="height:clamp(80px,12vw,148px);overflow:hidden;display:flex;align-items:center;justify-content:center;">
-      <span id="heroWord" style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(72px,11vw,140px);color:#EFE9E7;letter-spacing:-0.04em;line-height:1;">Creation</span>
+      <span id="heroWord" style="font-family:'Inter',sans-serif;font-weight:900;color:#EFE9E7;letter-spacing:-0.04em;line-height:1;">Creation</span>
+    </div>
+    <div id="hero-subtitle">
+      <p class="hs-title" style="font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(18px,2.5vw,28px);color:#EFE9E7;letter-spacing:-0.02em;margin-bottom:8px;">Brand. Art. Identity.</p>
+      <p class="hs-meta" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(10px,1.2vw,13px);color:rgba(239,233,231,0.5);letter-spacing:0.05em;line-height:1.6;">Nico Bigler — Communications Specialist · Brand Manager · Founder of Project Nr. 13.</p>
     </div>
   </div>
   <!-- Layer 5: Grid Label -->
@@ -619,7 +642,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
     <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:2;padding:80px;">
       <div class="pillar-row">
-        <span class="pillar-row-num">01</span>
         <div>
           <h3 class="pillar-row-title">Art &amp; Design</h3>
           <p class="pillar-row-text">Cover art and poster design are the foundation of everything Project Nr. 13 creates. Each piece starts as a response to a specific track, an energy, a frequency. The process is intuitive but deliberate: concepts are developed from scratch, references drawn from cyberpunk aesthetics, brutalist architecture, Japanese minimalism and underground rave culture. The goal is never decoration. The goal is to give sound a visual body that feels as honest and uncompromising as the music itself.</p>
@@ -634,7 +656,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
     <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:3;padding:80px;">
       <div class="pillar-row">
-        <span class="pillar-row-num">02</span>
         <div>
           <h3 class="pillar-row-title">Brand &amp; Strategy</h3>
           <p class="pillar-row-text">A strong visual identity is not just about aesthetics. It is about coherence, consistency and the ability to communicate the same values across every single touchpoint. With professional experience in CI/CD governance, brand voice development and visual systems for organisations ranging from Swiss private banking to social innovation agencies, I bring the same strategic rigour to creative work that most people reserve only for corporate briefs. Brand thinking and artistic instinct are not opposites. They are the same skill applied at different scales.</p>
@@ -653,7 +674,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
     <section style="background:#0032FF;min-height:100vh;position:sticky;top:0;z-index:4;padding:80px;">
       <div class="pillar-row">
-        <span class="pillar-row-num">03</span>
         <div>
           <h3 class="pillar-row-title">Music &amp; Culture</h3>
           <p class="pillar-row-text">Underground music culture is not a backdrop or an inspiration board. It is the actual reason any of this exists. Drum and bass, techno, trance and ambient music have shaped the way I see contrast, tension, silence and energy in visual work. The rave, the record sleeve, the club flyer, the anonymous poster on a concrete wall: these are the design traditions that matter most to me. Culture built from the bottom up, with no brief and no budget, that somehow communicates more clearly than anything produced in a boardroom ever could.</p>
@@ -1226,12 +1246,10 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 
   /* ── WORD LIST ── */
   const heroWords = [
-    'Creation','Minimal','Elegant','Modern',
-    'Bold','Vibrant','Clean','Aesthetic',
-    'Impactful','Innovative','Inspiring',
-    'Strategic','Unique','Visual','Immersive',
-    'Sleek','Iconic','Stunning','Passionate',
-    'Project Nr. 13'
+    'Subterranean','Distorted','Compressed','Exposed',
+    'Unresolved','After-hours','Resampled','Brutalist',
+    'Corrupted','Visceral','Archival','Encrypted',
+    'Fragmented','Underground','Project Nr. 13'
   ];
   const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*';
 
