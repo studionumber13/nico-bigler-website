@@ -4,26 +4,23 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="assets/images/logo.png">
 <link rel="apple-touch-icon" href="assets/images/logo.png">
-<meta name="google-site-verification" content="NX3-2JTfyi7l74XZ8cDNx4-PsS_ttDgd5kWgjPt7hPs" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Nico Bigler</title>
-<meta name="description" content="Nico Bigler — Communications Specialist &amp; Founder of Project Nr. 13. Bern &amp; Zürich.">
+<title>Why Brands Need What Artists Have — Nico Bigler</title>
+<meta name="description" content="The conversation about artist-brand collaborations almost always focuses on what brands gain. The question nobody asks often enough: what does the artist actually get out of it?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:56px}
 body{
   background:#000;color:#EFE9E7;
   font-family:'Inter',sans-serif;
   -webkit-font-smoothing:antialiased;
-  cursor:none;overflow-x:hidden;width:100%;
+  cursor:none;overflow-x:hidden;
 }
 :root{
   --black:#000000;--white:#EFE9E7;
-  --accent:#0032FF;--purple:#340539;
   --grey:#69626D;--dim:rgba(239,233,231,0.08);
 }
 a{color:inherit;text-decoration:none;cursor:none}
@@ -35,7 +32,7 @@ img{display:block;max-width:100%}
 #cursor-dot{
   width:5px;height:5px;background:#EFE9E7;border-radius:50%;
   position:fixed;pointer-events:none;z-index:99998;
-  transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;
+  transform:translate(-50%,-50%);transition:opacity 0.2s;
 }
 #cursor-ring{
   width:48px;height:48px;
@@ -43,28 +40,12 @@ img{display:block;max-width:100%}
   position:fixed;pointer-events:none;z-index:99997;
   transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:transform 0.25s ease,
-             border-color 0.25s ease,background 0.25s ease,
-             opacity 0.3s ease;
+  transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease;
 }
-@media(hover:none) and (pointer:coarse){
-  body,a,button{cursor:auto!important;}
-}
-body.cursor-active #cursor-dot,
-body.cursor-active #cursor-ring{opacity:1;}
 #cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
-#cursor-ring.hover-link #cursor-label{opacity:0}
-#cursor-ring.hover-img{
-  transform:translate(-50%,-50%) scale(1);
-  background:rgba(239,233,231,0.08);
-  border-color:rgba(239,233,231,0.5);
-}
+#cursor-ring.hover-img{transform:translate(-50%,-50%) scale(1);background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5)}
+#cursor-label{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#EFE9E7;letter-spacing:0.05em;opacity:0;transition:opacity 0.2s;white-space:nowrap}
 #cursor-ring.hover-img #cursor-label{opacity:1}
-#cursor-label{
-  font-family:'IBM Plex Mono',monospace;font-size:8px;
-  color:#EFE9E7;letter-spacing:0.05em;opacity:0;
-  transition:opacity 0.2s;white-space:nowrap;
-}
 
 /* ── NAV ── */
 #nav{
@@ -74,21 +55,17 @@ body.cursor-active #cursor-ring{opacity:1;}
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
 }
+#nav.scrolled{background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .nav-left,.nav-right{display:flex;align-items:center;gap:24px}
-.nav-btn{
-  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:#EFE9E7;letter-spacing:0.08em;
-}
-.nav-cv{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#69626D;letter-spacing:0.08em;transition:color 0.2s;
-}
-.nav-cv:hover{color:#EFE9E7}
 .nav-menu-btn{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;}
 .nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
 .nav-menu-btn:hover svg line{stroke:#0032FF;}
-.nav-back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;text-decoration:none;transition:color 0.2s;}
-.nav-back-link:hover{color:#FFFFFF;}
+.nav-back-link:link,.nav-back-link:visited{color:#5A5B64}
+.nav-back-link:hover,.nav-back-link:active{color:#EFE9E7}
+.nav-back-link{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;
+}
 .nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center::after{
   content:'';position:absolute;top:50%;left:50%;
@@ -104,8 +81,6 @@ body.cursor-active #cursor-ring{opacity:1;}
   color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;
 }
 .nav-link:hover{color:#0032FF;}
-.nav-link[aria-current="page"]{color:#EFE9E7;}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .nav-mobile-links{display:none;}
 @media(max-width:768px){.nav-mobile-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;}}
 .nav-mobile-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(239,233,231,0.5);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
@@ -123,7 +98,8 @@ body.cursor-active #cursor-ring{opacity:1;}
 .mm-close{
   position:absolute;top:28px;right:48px;
   font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
-  color:#69626D;z-index:10;line-height:1;transition:color 0.2s;
+  color:#69626D;z-index:10;line-height:1;
+  transition:color 0.2s;
 }
 .mm-close:hover{color:#EFE9E7}
 .mm-nav-links{padding-top:80px}
@@ -162,141 +138,76 @@ body.cursor-active #cursor-ring{opacity:1;}
 }
 @keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
 
-/* ── HERO 16:9 ── */
-#about-hero{
-  position:relative;
-  width:100%;
-  padding-bottom:56.25%;
-  background:#090A0C;
-  overflow:hidden;
-  margin-top:56px;
+/* ── BLOG HERO ── */
+#blog-hero{
+  padding:140px 80px 72px;background:#000;
 }
-.hero-center-text{
-  position:absolute;
-  right:clamp(16px,4vw,48px);
-  bottom:clamp(16px,4vw,48px);
-  text-align:right;
-  z-index:2;
+.blog-meta{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:28px;
 }
-.hero-center-text span{
-  display:block;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:clamp(1rem,2vw,1.4rem);
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#EFE9E7;
-  opacity:0.75;
-  line-height:2;
+.blog-title{
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:clamp(2rem,4.5vw,3.75rem);color:#EFE9E7;
+  letter-spacing:-0.03em;line-height:1.1;max-width:820px;
+  margin-bottom:24px;text-wrap:balance;
+}
+.blog-subtitle{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:56px;
+}
+.blog-hero-rule{
+  border:none;border-top:1px solid #323338;
 }
 
-/* ── QUOTE ── */
-#about-quote{
-  background:#000;
-  padding:clamp(5rem,10vw,9rem) 2.5rem;
+/* ── BLOG BODY ── */
+#blog-body{
+  padding:64px 80px 96px;background:#000;
 }
-.quote-text{
-  font-family:'Inter',sans-serif;
-  font-weight:700;
-  font-size:clamp(1.8rem,3.5vw,3rem);
-  line-height:1.2;
-  color:#EFE9E7;
-  max-width:900px;
-  display:block;
-  text-wrap:pretty;
+.blog-inner{
+  max-width:680px;
 }
-.quote-attr{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.7rem;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#69626D;
-  margin-top:2rem;
-  display:block;
-  font-style:normal;
+.blog-section{
+  margin-bottom:52px;
 }
-
-/* ── MY STORY ── */
-#about-story{
-  background:#000;
-  padding:clamp(5rem,10vw,9rem) 2.5rem;
+.blog-section-head{
+  display:block;font-family:'Inter',sans-serif;font-weight:700;
+  font-size:1.05rem;color:#EFE9E7;margin-bottom:20px;
 }
-.story-label{
-  display:block;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.7rem;
-  font-weight:400;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#69626D;
-  margin-bottom:4rem;
+.blog-p{
+  font-family:'Inter',sans-serif;font-size:1rem;color:#AAABBC;
+  line-height:1.8;margin-bottom:20px;
 }
-.story-body{
-  font-family:'Inter',sans-serif;
-  font-weight:400;
-  font-size:clamp(1rem,1.5vw,1.15rem);
-  line-height:1.9;
-  color:#EFE9E7;
-  max-width:68ch;
+.blog-p:last-child{margin-bottom:0}
+.blog-end-rule{
+  border:none;border-top:1px solid #323338;margin:0 0 28px;
 }
-.story-body p{margin-bottom:2rem;text-wrap:pretty;}
-.story-body p:last-child{margin-bottom:0;}
-
-/* ── CAREER ── */
-#career{background:#090A0C;padding:120px 80px;}
-.career-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:400;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;display:block;}
-.career-card{display:grid;grid-template-columns:140px 1fr 160px;padding:48px 0;border-bottom:1px solid #323338;align-items:start;}
-.career-card:last-child{border-bottom:none;}
-.career-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;letter-spacing:0.08em;padding-top:4px;}
-.career-company{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
-.career-title{font-family:'Inter',sans-serif;font-weight:500;font-size:36px;color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
-.career-desc{font-family:'Inter',sans-serif;font-size:14px;color:#AAABBC;line-height:1.7;max-width:520px;margin-bottom:20px;}
-.career-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.career-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:#5A5B64;border:0.5px solid #5A5B64;padding:4px 10px;border-radius:2px;}
-.career-link{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:#EFE9E7;display:block;text-align:right;text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;align-self:center;}
-.career-link:hover{opacity:1;color:#FFFFFF;}
+.blog-back-link:link,.blog-back-link:visited{color:#5A5B64}
+.blog-back-link:hover,.blog-back-link:active{color:#EFE9E7}
+.blog-back-link{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.12em;
+  text-decoration:none;transition:color 0.2s;display:inline-block;
+}
+.blog-copyright{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6B7280;
+  letter-spacing:0.05em;margin-top:24px;line-height:1.6;text-align:center;
+}
 
 /* ── FOOTER ── */
-footer{
-  background:#000;padding:28px 80px;
-  border-top:1px solid rgba(239,233,231,0.07);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.foot{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  color:#69626D;letter-spacing:0.08em;text-transform:uppercase;
-}
+footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display:flex;justify-content:space-between;align-items:center}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase}
 .foot-back{cursor:none;transition:color 0.2s}
 .foot-back:hover{color:#EFE9E7}
 .foot-group{display:flex;align-items:center;gap:20px;}
 .foot-legal{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(239,233,231,0.3);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
 .foot-legal:hover{color:#0032FF;}
 
-/* ── ANIM ── */
-.anim{
-  transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),
-             transform 0.8s cubic-bezier(0.22,1,0.36,1);
-}
-.js-anim .anim{opacity:0;transform:translateY(28px);}
-.js-anim .anim.visible{opacity:1;transform:translateY(0)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  #career{padding:80px 48px}
-}
-@media(max-width:768px){
-  #career{padding:80px 24px}
-  .career-card{grid-template-columns:1fr;gap:24px}
-  .career-link{text-align:left;margin-top:16px;}
-  footer{padding:28px 24px;flex-direction:column;gap:12px;text-align:center}
-  #about-hero{padding-bottom:0;min-height:60vh;}
-  #about-hero img{object-fit:cover;object-position:center center!important}
-  #cursor-dot,#cursor-ring{display:none!important}
-}
 /* ── CONTACT SECTION ── */
 .dl-arrow{color:#0032FF;margin-right:8px;}
 #contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
 .contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
-.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(32px,10vw,80px);color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
 .contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
 .contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
 .contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
@@ -309,34 +220,39 @@ footer{
 .contact-dl-link:hover{color:#FFFFFF}
 .contact-right{padding:120px 80px;display:flex;flex-direction:column}
 .contact-cover{margin-bottom:48px;overflow:hidden}
-.contact-cover img{width:100%;height:480px;object-fit:cover;background:#EFE9E7;display:block}
+.contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
 .contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:16px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
 .contact-field::placeholder{color:rgba(239,233,231,0.62);font-weight:500}
 .contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
 textarea.contact-field{resize:none}
-.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s,opacity 0.2s}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s}
 .contact-submit:hover{background:#fff;transform:translateY(-2px)}
-.contact-submit:disabled{opacity:0.45;transform:none;pointer-events:none;}
 .fs-message{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:24px;}
 .fs-message--error{color:#FF3B30;}
 #fs-success{color:#0032FF;}
-#archive-btn{display:block;width:100%;padding:64px 48px;border:none;border-top:1px solid rgba(239,233,231,0.12);background:transparent;text-align:center;color:#EFE9E7;position:relative;overflow:hidden;transition:color 0.4s ease;font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(40px,7vw,88px);letter-spacing:-0.04em;line-height:1;cursor:none;text-decoration:none;}
-#archive-btn::before{content:'';position:absolute;inset:0;background:#EFE9E7;transform:translateX(-100%);transition:transform 0.4s ease;}
-#archive-btn:hover{color:#000;}
-#archive-btn:hover::before{transform:translateX(0);}
-#archive-btn span{position:relative;z-index:1;}
+
+/* ── ANIM ── */
+.anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.anim.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
 @media(max-width:1024px){
   #nav{padding:0 32px}
+  #blog-hero{padding:100px 48px 56px}
+  #blog-body{padding:56px 48px 80px}
 }
 @media(max-width:768px){
   #nav{padding:0 20px}
   .nav-right{display:none}
-  .career-title{font-size:clamp(22px,5vw,30px)}
+  #blog-hero{padding:88px 20px 40px}
+  #blog-body{padding:40px 20px 64px}
+  footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
   #contact{grid-template-columns:1fr}
   .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
   .contact-right{padding:56px 20px}
+  .contact-h{font-size:clamp(32px,10vw,56px)}
   .contact-cover{display:none}
-  #archive-btn{padding:40px 20px}
+  #cursor-dot,#cursor-ring{display:none!important}
 }
 /* ── MOBILE MEGA MENU ── */
 @media(max-width:640px){
@@ -349,15 +265,12 @@ textarea.contact-field{resize:none}
   .mm-right{padding-top:0;}
   .mm-manifesto{margin-top:24px;}
 }
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
-  html{scroll-behavior:auto}
-}
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 </style>
 </head>
 <body>
 
-<!-- Cursor -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"><span id="cursor-label">VIEW</span></div>
 
@@ -376,13 +289,13 @@ textarea.contact-field{resize:none}
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
   </a>
   <div class="nav-right">
-    <a href="archive.html" class="nav-link">ARCHIVE</a>
-    <a href="about.html" class="nav-link" aria-current="page">ABOUT</a>
+    <a href="thesis.html" class="nav-back-link">← THOUGHTS &amp; CONTRIBUTIONS</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
     <a href="index.html#contact" class="nav-link">CONTACT</a>
   </div>
   <div class="nav-mobile-links">
-    <a href="about.html" class="nav-mobile-link" aria-current="page">ABOUT</a>
-    <a href="#contact" class="nav-mobile-link">CONTACT</a>
+    <a href="about.html" class="nav-mobile-link">ABOUT</a>
+    <a href="index.html#contact" class="nav-mobile-link">CONTACT</a>
   </div>
 </nav>
 
@@ -426,92 +339,54 @@ textarea.contact-field{resize:none}
   </div>
 </div>
 
-<!-- Hero 16:9 -->
-<section id="about-hero">
-  <h1 class="visually-hidden">About Nico Bigler</h1>
-  <img src="assets/images/nico-about.jpg" alt="Nico Bigler" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 75%;">
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.85) 100%);"></div>
-  <div class="hero-center-text">
-    <span>Sound becomes image.</span>
-    <span>The unknown becomes art.</span>
-  </div>
+<!-- Article Hero -->
+<section id="blog-hero">
+  <span class="blog-meta anim">ARTICLE 01 · JUNE 2026</span>
+  <h1 class="blog-title anim" data-delay="60">The Other Side of the Deal</h1>
+  <span class="blog-subtitle anim" data-delay="120">The second in a series exploring artist-brand collaborations.</span>
+  <hr class="blog-hero-rule">
 </section>
 
-<!-- Quote -->
-<section id="about-quote">
-  <blockquote class="quote-text">There's a version of me in a meeting room, and a version of me at 174 BPM. This site is where they finally meet.</blockquote>
-  <cite class="quote-attr">Nico Bigler — Project Nr. 13</cite>
-</section>
+<!-- Article Body -->
+<section id="blog-body">
+  <div class="blog-inner">
 
-<!-- My Story -->
-<section id="about-story">
-  <h2 class="story-label">My Story</h2>
-  <div class="story-body">
-    <p>I was born on the 13th of February. For most people, that's a bad number. For me, it was always an invitation to look at what's on the other side.</p>
-    <p>That's what I do. By day as a Communications Specialist and Brand Manager for private banks, social institutions, public agencies. I build systems that hold. Identities that mean something.</p>
-    <p>By night, I follow a different instinct. Project Nr. 13 is my place where strategy ends and translation begins. Where music becomes image. Where the unknown becomes visible.</p>
-    <p>I start with a track. I put it on loop, sometimes for hours, until I can feel what it's trying to say. Then I try to say it back. In colour. In composition. In image. What you see here are final versions. Behind each one are twenty others that didn't make it.</p>
-    <p>Art has always been my reference point. Not as decoration, but as a way of thinking. Dalí taught me that the subconscious is a design tool. Basquiat that raw energy and precision can coexist. Warhol that culture and commerce aren't opposites, they're in constant conversation. KAWS, Haring, Arsham, Murakami — all of them working at the edge of what art is allowed to be.</p>
-    <p>I spend a lot of time in museums. Renaissance, modern, contemporary. I'm not loyal to an era, only to the feeling a work gives you when it lands.</p>
-    <p>I also spend a lot of time on dancefloors. Techno, DnB, Hardstyle, Trance. The genre matters, but never more than the energy in the room. The people around you. The scene behind it all. Whether it's a bunker where there's nothing but raw concrete, steel and bass, or a festival stage that looks like it came from another universe, with lasers, video walls and fire. What I'm looking for is the same thing. A room that commits completely to a feeling.</p>
-    <p>I used to be introverted. Quietly observing from the edges. That changed, slowly, then completely. Now I'm someone who genuinely wants to know what drives people. Not the surface version. The real one. What keeps them up at night. What they're building toward.</p>
-    <p>Raised in Bern, a city that teaches you that depth takes time. Now in Zürich, where precision and sharpness set the standard.</p>
-    <p>Both live in me. Both show up in my work. So does the humour. So does the perfectionism. So does the loop that keeps playing until something finally feels right.</p>
-  </div>
-</section>
-
-<!-- Career -->
-<section id="career">
-  <h2 class="career-label anim">SELECTED EXPERIENCE</h2>
-
-  <div class="career-card anim" data-delay="80">
-    <div class="career-date">2024–2025</div>
-    <div>
-      <div class="career-company">PRIVATE BANK BERGOS AG</div>
-      <h3 class="career-title">Communications<br>&amp; Brand Manager</h3>
-      <p class="career-desc">Built and led the Brand Center. Developed CI/CD governance, style guide, and brand voice. Independently produced all brand assets — from print files to digital assets.</p>
-      <div class="career-tags">
-        <span class="career-tag">Brand Management</span>
-        <span class="career-tag">CI/CD</span>
-        <span class="career-tag">Editorial Design</span>
-        <span class="career-tag">Digital Assets</span>
-      </div>
+    <div class="blog-section anim">
+      <span class="blog-section-head">The Brand Side: Buying Access, Not Design</span>
+      <p class="blog-p">A campaign communicates what a brand does. Art communicates what a brand believes.</p>
+      <p class="blog-p">That is why brands across every industry, from fashion and automotive to technology and food, are increasingly seeking out artists as strategic partners. Not for decoration. For meaning. And the conversation almost always focuses on one side. What I find more interesting is the other question: what does the artist actually get out of it?</p>
+      <p class="blog-p">When a brand approaches an artist, they are not buying a design. They are buying access to a cultural community they cannot reach on their own.</p>
+      <p class="blog-p">In saturated markets, differentiation through product alone has a ceiling. Art creates something that a campaign cannot: an identity that connects to culture rather than just commerce. The meaning that lives in an artist's world transfers into the brand's world. That changes what the product means to the people who buy it.</p>
+      <p class="blog-p">Adidas understood this when they signed Kanye West in 2013. At the time, Adidas was trailing Nike in almost every relevant market. West did not bring a design. He brought an entire cultural ecosystem: music, streetwear, contemporary art. All things Adidas could not have built organically. The Yeezy line eventually generated around 1.5 billion euros annually. Not because the shoes were technically superior. Because of what they meant to the people wearing them.</p>
     </div>
-    <a href="bergos.html" class="career-link">Learn more →</a>
-  </div>
 
-  <div class="career-card anim" data-delay="160">
-    <div class="career-date">2024–2025</div>
-    <div>
-      <div class="career-company">SOCIALDESIGN AG</div>
-      <h3 class="career-title">Communications<br>Manager</h3>
-      <p class="career-desc">Editorial communications, campaign planning, and AI workflow development for a Swiss social innovation agency. Achieved 75–85% efficiency gains through AI implementation.</p>
-      <div class="career-tags">
-        <span class="career-tag">Content</span>
-        <span class="career-tag">Campaigns</span>
-        <span class="career-tag">AI Workflows</span>
-        <span class="career-tag">Project Coordination</span>
-      </div>
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">The Artist Side: Buying Scale, Not Selling Out</span>
+      <p class="blog-p">For an artist, a brand collaboration offers something the traditional art market rarely provides: scale.</p>
+      <p class="blog-p">When Keith Haring collaborated with Swatch in 1986, he was not compromising his practice. He was extending it. Haring believed art belongs outside galleries, on subway walls, on everyday objects, in the hands of people who would never set foot in a museum. Swatch operated from the same principle: the watch as the world's smallest canvas, a democratic object that anyone can wear.</p>
+      <p class="blog-p">They were not two parties negotiating a deal. They were two parallel ideas that finally met. That is the difference between a collaboration and a transaction. It is visible in the result every single time.</p>
     </div>
-    <a href="socialdesign.html" class="career-link">Learn more →</a>
-  </div>
 
-  <div class="career-card anim" data-delay="240">
-    <div class="career-date">2020–2024</div>
-    <div>
-      <div class="career-company">OFFICE OF THE CANTONAL MEDICAL OFFICER — CANTON OF BERN</div>
-      <h3 class="career-title">Communications<br>&amp; Digitalization</h3>
-      <p class="career-desc">Led communications for the cantonal HPV vaccination campaign across seven target groups. Co-developed AI governance. Managed budgets and contracts of CHF 8–12 million per year.</p>
-      <div class="career-tags">
-        <span class="career-tag">Public Health</span>
-        <span class="career-tag">Campaigns</span>
-        <span class="career-tag">AI Governance</span>
-        <span class="career-tag">Digitalization</span>
-      </div>
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">What I Actually Look For</span>
+      <p class="blog-p">If I could choose one brand to collaborate with today, it would be Stussy. The prints, the attitude, the way they built a global subculture out of a signature. That is exactly the kind of brand identity I find interesting to work with visually. But if I am honest: what made Stussy iconic was a specific era. The 90s. The decade between 2010 and 2020. Right now, in 2026, I am still waiting for a design that hits the same way.</p>
+      <p class="blog-p">That gap, between what a brand was and what it is putting out today, is itself an argument for why artist collaborations matter. Sometimes a brand needs an outside eye to find its way back to what made it worth caring about.</p>
+      <p class="blog-p">That is the question I ask before any creative partnership: do we believe the same things? If the answer is no, the scale does not matter.</p>
     </div>
-    <a href="kantonnbern.html" class="career-link">Learn more →</a>
-  </div>
 
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">When the Exchange Breaks Down</span>
+      <p class="blog-p">A brand that approaches an artist with a predefined brief and a fixed outcome is not collaborating. They are commissioning. The result might look interesting. But it will not carry the weight that makes these partnerships worth doing.</p>
+      <p class="blog-p">An artist who accepts any offer regardless of fit is not extending their practice. They are diluting it. And credibility, once lost in this space, is very hard to rebuild.</p>
+      <p class="blog-p">The collaborations that hold up share one characteristic: both parties brought something genuine, and both walked away with something they could not have built alone. Finding that alignment before committing is where most collaborations fail before they even begin.</p>
+      <p class="blog-p">And it raises a question worth sitting with: how do you actually know if the fit is real before you commit to it? Because the signals are there. You just have to know where to look.</p>
+    </div>
+
+    <hr class="blog-end-rule anim">
+    <a href="thesis.html" class="blog-back-link anim" data-delay="40">← Back to Thesis</a>
+    <p class="blog-copyright">© 2026 Nico Bigler. This article is part of an ongoing series based on research conducted for the Bachelor Thesis "Artist-Brand Collaborations". All views are my own.</p>
+
+  </div>
 </section>
 
 <!-- Contact -->
@@ -535,24 +410,18 @@ textarea.contact-field{resize:none}
   <div class="contact-right">
     <div class="contact-cover anim">
       <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
-           onerror="this.parentElement.style.display='none'">
+           onerror="this.style.background='#111111';this.style.minHeight='480px';">
     </div>
-    <div id="fs-success" style="display:none;" class="fs-message" aria-live="polite">Message received. I'll be in touch.</div>
-    <div id="fs-error" style="display:none;" class="fs-message fs-message--error" role="alert">Something went wrong. Please try again.</div>
+    <div id="fs-success" style="display:none;" class="fs-message">Message received. I'll be in touch.</div>
+    <div id="fs-error" style="display:none;" class="fs-message fs-message--error">Something went wrong. Please try again.</div>
     <form id="contact-form" class="anim" data-delay="120">
-      <label for="field-name" class="visually-hidden">Name</label>
-      <input id="field-name" type="text" name="name" class="contact-field" placeholder="Name" autocomplete="name" required>
-      <label for="field-email" class="visually-hidden">Email</label>
-      <input id="field-email" type="email" name="email" class="contact-field" placeholder="Email" autocomplete="email" required>
-      <label for="field-message" class="visually-hidden">Message</label>
-      <textarea id="field-message" name="message" class="contact-field" rows="5" placeholder="Message" autocomplete="off" required></textarea>
+      <input type="text" name="name" class="contact-field" placeholder="Name" required>
+      <input type="email" name="email" class="contact-field" placeholder="Email" required>
+      <textarea name="message" class="contact-field" rows="5" placeholder="Message" required></textarea>
       <button type="submit" class="contact-submit">LET'S TALK →</button>
     </form>
   </div>
 </section>
-
-<!-- Archive Button -->
-<a href="archive.html" id="archive-btn"><span>Archive — Project Nr. 13</span></a>
 
 <!-- Footer -->
 <footer>
@@ -561,34 +430,21 @@ textarea.contact-field{resize:none}
     <a href="datenschutz.html" class="foot-legal">Datenschutz</a>
     <a href="impressum.html" class="foot-legal">Impressum</a>
   </div>
-  <span class="foot">Bern · Zürich · Est. 2019</span>
-  <button type="button" class="foot foot-back" id="backTop">↑ Back to Top</button>
+  <span class="foot">Bern · Zürich · Est. 2026</span>
+  <span class="foot foot-back" id="backTop">↑ Back to Top</span>
 </footer>
 
 <script>
 (function () {
   'use strict';
-  document.body.classList.add('js-anim');
 
   /* ── CURSOR ── */
   if (window.innerWidth > 768) {
     var dot  = document.getElementById('cursor-dot');
     var ring = document.getElementById('cursor-ring');
     var mx = 0, my = 0, rx = 0, ry = 0;
-    var cursorActivated = false, touchDetected = false;
-
-    /* Touch fires in capture phase before any ghost mousemove */
-    document.addEventListener('touchstart', function () {
-      touchDetected = true;
-    }, { once: true, capture: true, passive: true });
 
     document.addEventListener('mousemove', function (e) {
-      if (touchDetected) return;
-      if (!cursorActivated) {
-        cursorActivated = true;
-        rx = e.clientX; ry = e.clientY; /* snap ring to first real position */
-        document.body.classList.add('cursor-active');
-      }
       mx = e.clientX; my = e.clientY;
       dot.style.left = mx + 'px';
       dot.style.top  = my + 'px';
@@ -635,10 +491,9 @@ textarea.contact-field{resize:none}
   megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
   mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
 
-  /* ── BACK TO TOP ── */
-  document.getElementById('backTop').addEventListener('click', function () {
-    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+  /* ── NAV SCROLL ── */
+  window.addEventListener('scroll', function () {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
   });
 
   /* ── SCROLL ANIMATIONS ── */
@@ -653,6 +508,11 @@ textarea.contact-field{resize:none}
     });
   }, { threshold: 0.1 });
   animEls.forEach(function (el) { animObs.observe(el); });
+
+  /* ── BACK TO TOP ── */
+  document.getElementById('backTop').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
 })();
 </script>

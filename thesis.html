@@ -182,14 +182,14 @@ img{display:block;max-width:100%}
 }
 .thesis-btns{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 .thesis-btn-pri{
-  background:#EFE9E7;color:#000;padding:13px 30px;
-  border-radius:3px;border:none;cursor:none;
+  background:transparent;color:#EFE9E7;padding:13px 30px;
+  border-radius:3px;border:1px solid #EFE9E7;cursor:none;
   font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
   text-transform:uppercase;letter-spacing:0.08em;
   display:inline-block;
-  transition:background 0.2s,transform 0.2s;
+  transition:background 0.2s,color 0.2s,transform 0.2s;
 }
-.thesis-btn-pri:hover{background:#fff;transform:translateY(-2px)}
+.thesis-btn-pri:hover{background:#EFE9E7;color:#000;transform:translateY(-2px)}
 .thesis-btn-sec{
   background:transparent;color:#69626D;
   border:1px solid var(--dim);padding:13px 30px;
@@ -312,8 +312,37 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
 .anim.visible{opacity:1;transform:translateY(0)}
 
-/* Hidden until real content exists — remove this rule to re-enable */
-#th-thoughts{display:none}
+/* ── ARTICLE CARD ── */
+.th-contrib-intro{
+  font-family:'Inter',sans-serif;font-size:clamp(1rem,1.5vw,1.1rem);
+  color:#AAABBC;max-width:620px;line-height:1.8;
+  margin-bottom:3rem;display:block;
+}
+.th-article-card{
+  border:1px solid rgba(255,255,255,0.1);padding:32px;
+  max-width:760px;transition:border-color 0.25s ease;
+}
+.th-article-card:hover{border-color:#0032FF}
+.th-article-card-label{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;margin-bottom:1rem;
+}
+.th-article-card-title{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(1.2rem,2vw,1.55rem);color:#EFE9E7;
+  line-height:1.25;margin-bottom:0.9rem;
+}
+.th-article-card-teaser{
+  font-family:'Inter',sans-serif;font-size:0.95rem;color:#AAABBC;
+  line-height:1.7;max-width:620px;margin-bottom:1.5rem;
+}
+.th-article-card-link,.th-article-card-link:link,.th-article-card-link:visited,.th-article-card-link:hover,.th-article-card-link:active{color:#0032FF}
+.th-article-card-link{
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.08em;text-decoration:none;
+  display:inline-block;transition:opacity 0.2s;
+}
+.th-article-card-link:hover{opacity:0.7}
 
 /* ── CONTACT SECTION ── */
 .dl-arrow{color:#0032FF;margin-right:8px;}
@@ -366,6 +395,7 @@ textarea.contact-field{resize:none}
   .contact-right{padding:56px 20px}
   .contact-h{font-size:clamp(32px,10vw,56px)}
   .contact-cover{display:none}
+  #cursor-dot,#cursor-ring{display:none!important}
 }
 /* ── MOBILE MEGA MENU ── */
 @media(max-width:640px){
@@ -539,15 +569,15 @@ textarea.contact-field{resize:none}
 <!-- Section 6: Thoughts & Contributions -->
 <section id="th-thoughts">
   <span class="th-section-label anim">Thoughts &amp; Contributions</span>
-  <span class="th-thoughts-subtitle anim" data-delay="80">Reflections on design, music and brand culture.</span>
-  <div class="th-article-row anim" data-delay="160">
-    <span class="th-article-cat">BRAND STRATEGY</span>
-    <div>
-      <h3 class="th-article-title">Wenn Musik zur Marke wird</h3>
-      <p class="th-article-desc">Über die strategischen Mechanismen hinter Künstler-Brand-Kollaborationen und warum die Authentizität der entscheidende Faktor ist.</p>
+  <p class="th-contrib-intro anim" data-delay="60">Research ends. Thinking doesn't. This is where I write about artist-brand collaborations, visual identity and the space where culture meets commerce — beyond the thesis, in my own words.</p>
+  <a href="blog-01.html" style="display:block;text-decoration:none;color:inherit">
+    <div class="th-article-card anim" data-delay="120">
+      <span class="th-article-card-label">ARTICLE 01</span>
+      <h3 class="th-article-card-title">The Other Side of the Deal</h3>
+      <p class="th-article-card-teaser">The conversation about artist-brand collaborations almost always focuses on what brands gain. The question nobody asks often enough: what does the artist actually get out of it?</p>
+      <span class="th-article-card-link">Read more →</span>
     </div>
-    <span class="th-article-status">COMING SOON</span>
-  </div>
+  </a>
 </section>
 
 <!-- Contact -->
@@ -600,32 +630,34 @@ textarea.contact-field{resize:none}
   'use strict';
 
   /* ── CURSOR ── */
-  var dot  = document.getElementById('cursor-dot');
-  var ring = document.getElementById('cursor-ring');
-  var mx = 0, my = 0, rx = 0, ry = 0;
+  if (window.innerWidth > 768) {
+    var dot  = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.addEventListener('mousemove', function (e) {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+    });
 
-  (function lerpRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(lerpRing);
-  })();
+    (function lerpRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(lerpRing);
+    })();
 
-  document.querySelectorAll('a,button').forEach(function (el) {
-    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
-    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
-  });
-  document.querySelectorAll('img').forEach(function (el) {
-    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
-    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
-  });
+    document.querySelectorAll('a,button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+    });
+    document.querySelectorAll('img').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+    });
+  }
 
   /* ── MEGA MENU ── */
   var megaMenu = document.getElementById('megaMenu');

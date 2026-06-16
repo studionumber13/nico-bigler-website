@@ -448,6 +448,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   #showreel{display:none}
   .contact-cover{display:none}
   #archive-btn{padding:40px 20px}
+  #cursor-dot,#cursor-ring{display:none!important}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
 }
 /* ── MOBILE MEGA MENU ── */
@@ -816,35 +817,37 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   'use strict';
 
   /* ── CURSOR ── */
-  var dot  = document.getElementById('cursor-dot');
-  var ring = document.getElementById('cursor-ring');
-  var mx = 0, my = 0, rx = 0, ry = 0;
-  var cursorActivated = false, touchDetected = false;
+  if (window.innerWidth > 768) {
+    var dot  = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    var cursorActivated = false, touchDetected = false;
 
-  /* Touch fires in capture phase before any ghost mousemove */
-  document.addEventListener('touchstart', function () {
-    touchDetected = true;
-  }, { once: true, capture: true, passive: true });
+    /* Touch fires in capture phase before any ghost mousemove */
+    document.addEventListener('touchstart', function () {
+      touchDetected = true;
+    }, { once: true, capture: true, passive: true });
 
-  document.addEventListener('mousemove', function (e) {
-    if (touchDetected) return;
-    if (!cursorActivated) {
-      cursorActivated = true;
-      rx = e.clientX; ry = e.clientY; /* snap ring to first real position */
-      document.body.classList.add('cursor-active');
-    }
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
+    document.addEventListener('mousemove', function (e) {
+      if (touchDetected) return;
+      if (!cursorActivated) {
+        cursorActivated = true;
+        rx = e.clientX; ry = e.clientY; /* snap ring to first real position */
+        document.body.classList.add('cursor-active');
+      }
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+    });
 
-  (function lerpRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(lerpRing);
-  })();
+    (function lerpRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(lerpRing);
+    })();
+  }
 
   /* ── PROJECTS DATA ── */
   var projects = [
@@ -908,14 +911,16 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   window._worksData = projects;
 
   /* ── CURSOR HOVER STATES ── */
-  document.querySelectorAll('a,button').forEach(function (el) {
-    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
-    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
-  });
-  document.querySelectorAll('img').forEach(function (el) {
-    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
-    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
-  });
+  if (window.innerWidth > 768) {
+    document.querySelectorAll('a,button').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+    });
+    document.querySelectorAll('img').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+    });
+  }
 
   /* ── LOADER ── */
   var loader        = document.getElementById('loader');
