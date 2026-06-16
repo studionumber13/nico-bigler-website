@@ -32,7 +32,7 @@ img{display:block;max-width:100%}
 #cursor-dot{
   width:5px;height:5px;background:#EFE9E7;border-radius:50%;
   position:fixed;pointer-events:none;z-index:99998;
-  transform:translate(-50%,-50%);transition:opacity 0.2s;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;
 }
 #cursor-ring{
   width:32px;height:32px;
@@ -40,9 +40,15 @@ img{display:block;max-width:100%}
   position:fixed;pointer-events:none;z-index:99997;
   transform:translate(-50%,-50%);
   display:flex;align-items:center;justify-content:center;
-  transition:width 0.25s ease,height 0.25s ease,
-             border-color 0.25s ease,background 0.25s ease;
+  opacity:0;transition:width 0.25s ease,height 0.25s ease,
+             border-color 0.25s ease,background 0.25s ease,
+             opacity 0.3s ease;
 }
+@media(hover:none) and (pointer:coarse){
+  body,a,button{cursor:auto!important;}
+}
+body.cursor-active #cursor-dot,
+body.cursor-active #cursor-ring{opacity:1;}
 #cursor-ring.hover-link{width:48px;height:48px;border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-link #cursor-label{opacity:0}
 #cursor-ring.hover-img{
@@ -544,8 +550,20 @@ textarea.contact-field{resize:none}
   var dot  = document.getElementById('cursor-dot');
   var ring = document.getElementById('cursor-ring');
   var mx = 0, my = 0, rx = 0, ry = 0;
+  var cursorActivated = false, touchDetected = false;
+
+  /* Touch fires in capture phase before any ghost mousemove */
+  document.addEventListener('touchstart', function () {
+    touchDetected = true;
+  }, { once: true, capture: true, passive: true });
 
   document.addEventListener('mousemove', function (e) {
+    if (touchDetected) return;
+    if (!cursorActivated) {
+      cursorActivated = true;
+      rx = e.clientX; ry = e.clientY; /* snap ring to first real position */
+      document.body.classList.add('cursor-active');
+    }
     mx = e.clientX; my = e.clientY;
     dot.style.left = mx + 'px';
     dot.style.top  = my + 'px';
