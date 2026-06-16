@@ -378,9 +378,9 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 #nav-cards-section{background:#000000;padding:120px 80px}
 .nav-cards-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:48px;display:block}
 .nav-cards-grid{display:grid;grid-template-columns:2fr 1.5fr 1.5fr;gap:2px}
-.nav-card{position:relative;overflow:hidden;cursor:none;display:block;text-decoration:none;min-height:480px}
-.nav-card-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.4s ease}
-.nav-card:hover .nav-card-overlay{background:rgba(0,0,0,0.55)}
+.nav-card{position:relative;overflow:hidden;cursor:none;display:block;text-decoration:none;min-height:480px;background-size:cover;background-position:center}
+.nav-card-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(9,10,12,0.2),rgba(9,10,12,0.75));transition:background 0.4s ease;z-index:1}
+.nav-card:hover .nav-card-overlay{background:linear-gradient(to bottom,rgba(9,10,12,0.1),rgba(9,10,12,0.75))}
 .nav-card-hover-content{position:absolute;top:24px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:flex-start;z-index:2;opacity:0;transition:opacity 0.3s ease 0.1s}
 .nav-card:hover .nav-card-hover-content{opacity:1}
 .nav-card-hover-title{font-family:'Inter',sans-serif;font-weight:700;font-size:28px;color:#FFFFFF}
@@ -676,7 +676,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 <section id="nav-cards-section">
   <span class="nav-cards-label">EXPLORE</span>
   <div class="nav-cards-grid">
-    <a href="about.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#1a1a2e 100%)">
+    <a href="about.html" class="nav-card" style="background-image:url('assets/images/card-about.jpg')">
       <div class="nav-card-overlay"></div>
       <div class="nav-card-hover-content">
         <span class="nav-card-hover-title">MY STORY</span>
@@ -684,7 +684,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       </div>
       <span class="nav-card-bottom">ABOUT — NICO BIGLER</span>
     </a>
-    <a href="archive.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#0d1117 100%)">
+    <a href="archive.html" class="nav-card" style="background-image:url('assets/images/card-archive.png')">
       <div class="nav-card-overlay"></div>
       <div class="nav-card-hover-content">
         <span class="nav-card-hover-title">ARCHIVE</span>
@@ -692,7 +692,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
       </div>
       <span class="nav-card-bottom">ARCHIVE — PROJECT NR. 13</span>
     </a>
-    <a href="thesis.html" class="nav-card" style="background:linear-gradient(160deg,#111 0%,#1a0d1a 100%)">
+    <a href="thesis.html" class="nav-card" style="background-image:url('assets/images/card-thesis.png')">
       <div class="nav-card-overlay"></div>
       <div class="nav-card-hover-content">
         <span class="nav-card-hover-title">THESIS</span>
