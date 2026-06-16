@@ -223,6 +223,7 @@ body.cursor-active #cursor-ring{opacity:1;}
   display:block;
   font-family:'IBM Plex Mono',monospace;
   font-size:0.7rem;
+  font-weight:400;
   letter-spacing:0.15em;
   text-transform:uppercase;
   color:#69626D;
@@ -241,7 +242,7 @@ body.cursor-active #cursor-ring{opacity:1;}
 
 /* ── CAREER ── */
 #career{background:#090A0C;padding:120px 80px;}
-.career-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;display:block;}
+.career-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:400;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:64px;display:block;}
 .career-card{display:grid;grid-template-columns:140px 1fr 160px;padding:48px 0;border-bottom:1px solid #323338;align-items:start;}
 .career-card:last-child{border-bottom:none;}
 .career-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;letter-spacing:0.08em;padding-top:4px;}
@@ -376,7 +377,7 @@ textarea.contact-field{resize:none}
     <a href="index.html#contact" class="nav-link">CONTACT</a>
   </div>
   <div class="nav-mobile-links">
-    <a href="about.html" class="nav-mobile-link">ABOUT</a>
+    <a href="about.html" class="nav-mobile-link" aria-current="page">ABOUT</a>
     <a href="#contact" class="nav-mobile-link">CONTACT</a>
   </div>
 </nav>
@@ -423,6 +424,7 @@ textarea.contact-field{resize:none}
 
 <!-- Hero 16:9 -->
 <section id="about-hero">
+  <h1 class="visually-hidden">About Nico Bigler</h1>
   <img src="assets/images/nico-about.jpg" alt="Nico Bigler" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 75%;">
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.85) 100%);"></div>
   <div class="hero-center-text">
