@@ -430,6 +430,8 @@ textarea.contact-field{resize:none}
     <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
       <span id="lbRelease" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;"></span>
       <h2 id="lbTitle" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;"></h2>
+      <p id="lbDesc" style="font-family:'Inter',sans-serif;font-size:15px;color:#EFE9E7;line-height:1.7;margin:0;"></p>
+      <p id="lbMusic" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase;margin:0;"></p>
       <div style="height:1px;background:rgba(239,233,231,0.08);"></div>
       <p style="font-family:'Inter',sans-serif;font-size:14px;color:#69626D;line-height:1.7;">Visual experiment — part of the ongoing Project Nr. 13 archive. Cover art and visual design exploring the intersection of music, identity and image.</p>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
@@ -522,6 +524,159 @@ textarea.contact-field{resize:none}
 })();
 
 /* ── ARCHIVE SHUFFLE ── */
+const archiveData = {
+  'arch02': {
+    title: 'Fracture State',
+    description: 'White lines cut through like lightning that chose its own path. Teal surges through the break, electric and alive. Something split open, and the light got in.',
+    music: 'Karashnikov – Kepler'
+  },
+  'arch03': {
+    title: 'Skin Deep',
+    description: 'A body holds its ground, caught in the tension between softness and edge. The fragment below anchors it, a detail that changes everything. Close enough to feel the heat.',
+    music: 'Avatism, Lake People Remix – Not Everything is Lost'
+  },
+  'arch04': {
+    title: 'Core Signal',
+    description: 'At the center of all the chaos, something blooms. Bright and sharp, it burns through the noise like a frequency only the body understands. Raw energy finding its shape.',
+    music: 'Logic – Euology'
+  },
+  'arch05': {
+    title: 'GRAFIK',
+    description: 'Type hits like a fist. Blue and bold, it owns the surface, cutting through the static with full intention. Loud by design, precise by nature.',
+    music: 'Kobosil – BR3ATH3'
+  },
+  'arch06': {
+    title: 'Drift System',
+    description: 'Shapes in flight, building speed. Blue charges through black, and the whole thing moves like a system that knows exactly where it is going.',
+    music: 'Cesco, Sparkz – Big Fi Dem'
+  },
+  'arch07': {
+    title: 'QUOTE!',
+    description: 'Blue cuts through the noise like a punctuation mark the city forgot to erase. Wires, layers, fragments, and still the shape holds its ground. A pause that means everything.',
+    music: 'Tim Sanders – Do to Me'
+  },
+  'arch08': {
+    title: 'Phase Unknown',
+    description: 'Jewels and flesh and something watching from underneath. Ornate and strange, it pulls you in before you realize you are already inside it. Beautiful on its own terms.',
+    music: 'Luca Eck – Ghost Town feat. benzii'
+  },
+  'arch09': {
+    title: 'Phase Unknown',
+    description: 'A devotional object for a future that does not pray quietly. Lace and color and raw texture collide into something that feels holy and feral at once. Wear it or worship it.',
+    music: 'Luca Eck – Ghost Town feat. benzii'
+  },
+  'arch10': {
+    title: 'RELEASE',
+    description: 'Neon green tears through structure at full speed. The grid bends, the text flips, and something beneath the surface finally breaks free. Loud, fast, and completely on purpose.',
+    music: 'DANN – wanting more'
+  },
+  'arch11': {
+    title: 'Signal Body',
+    description: 'Light splits the frame and a figure reaches into it. The noise dissolves at the edges, and what remains is pure motion, the body as antenna, tuned to something just out of range.',
+    music: 'KAS:ST – VTOPIA'
+  },
+  'arch12': {
+    title: 'Red Orbit',
+    description: 'A face pulled into the atmosphere of something larger. Red burns across the surface like a solar flare, precise and unstoppable. The signal travels further than the body.',
+    music: 'Amelie Lens – Breathe'
+  },
+  'arch13': {
+    title: 'Saturn V',
+    description: 'Thirty-five stories of controlled explosion pointed at the sky. The rings hold still while everything below ignites. Mankind\'s loudest answer to the question of how far.',
+    music: 'Indira Paganotto – Lions of God'
+  },
+  'arch14': {
+    title: 'Pull Up',
+    description: 'The city does not sleep, it accelerates. Neon stacks on neon, signs compete for the same square meter of sky. A commission that smells like asphalt and adrenaline.',
+    music: 'Genc – Pull Up'
+  },
+  'arch15': {
+    title: 'Low Low',
+    description: 'Blue dissolves into black like something spilling in slow motion. A figure, a form, a feeling that sinks before it settles. Made for a friend. Felt like it.',
+    music: 'Tripset – Low Low'
+  },
+  'arch16': {
+    title: 'Diopter',
+    description: 'Four frames, four tensions. A circle holds the chaos at the top while a face looks away at the bottom. Fragmented but deliberate, every piece knows where it belongs.',
+    music: 'Rosa Anschütz – Diopter (Hior Remix)'
+  },
+  'arch17': {
+    title: 'Not A Competition',
+    description: 'The statement lands before anything else does. Ink and figure push up from below, raw and unfinished on purpose. A manifesto that does not ask for permission.',
+    music: 'nthng – 1996'
+  },
+  'arch18': {
+    title: 'Crown of Static',
+    description: 'Thorns grow through a silhouette like memory does, uninvited and precise. The form survives the pressure. Sharp things and soft things occupying the same space.',
+    music: 'Rival Consoles – Memory Arc'
+  },
+  'arch19': {
+    title: 'EYE Contact',
+    description: 'A face behind a net that was not put there to trap but to reveal. The text bleeds through like a frequency. Still and restless at the same time.',
+    music: 'RÜFÜS DU SOL – Nocturnal'
+  },
+  'arch20': {
+    title: 'Inside Out',
+    description: 'Bone and breath on the same surface. The skeleton holds its shape while something fluid moves through it, black and alive. Anatomy as intimacy.',
+    music: 'nthng – With You'
+  },
+  'arch21': {
+    title: 'TAP3',
+    description: 'Layers collide without asking. Ink, symbol, face and static compressed into a single frame that refuses to resolve. The city in a cover, the cover in a grid.',
+    music: 'Slimzee, Boylan, Riko Dan – Mile End (Zero Remix)'
+  },
+  'arch22': {
+    title: 'SECRETS',
+    description: 'A face wrapped in foil and frequency, text bleeding through like a transmission nobody was meant to intercept. Holographic and haunted. The message is in the material.',
+    music: 'NOTION, Cameron Hayes – SECRETS'
+  },
+  'arch24': {
+    title: 'FAST LANE',
+    description: 'A sphere splits open and something ornate spills out. Cross and creature and fracture, all competing for the same surface. Dark by design, intricate by instinct.',
+    music: 'bullet tooth – LOVE SENSATION'
+  },
+  'arch25': {
+    title: 'VISION',
+    description: 'Teeth and tension and text that cuts as sharp as bone. The mouth is open but it is not speaking, it is warning. Biology as brutalism.',
+    music: 'Little Simz – Dead Body'
+  },
+  'arch26': {
+    title: 'BPM175',
+    description: 'A body braced for impact, blue cuts through grey like voltage through muscle. The arrow knows its direction. Everything else is just reaction.',
+    music: 'Watch The Ride – Mashup the Dance'
+  },
+  'arch27': {
+    title: 'Never Look Away',
+    description: 'Blue saturates everything until the figure inside it becomes the atmosphere. Immersive and electric, a world built entirely from one frequency.',
+    music: 'KAS:ST – Never Look Away feat. Brume'
+  },
+  'arch28': {
+    title: 'MIRRORS',
+    description: 'Flowers grow through a figure that stopped fighting gravity. Soft and precise, botanical and bruised. Beauty that arrives quietly and stays longer than expected.',
+    music: 'Radiohead – Let Down'
+  },
+  'arch29': {
+    title: 'ILOVEYOU',
+    description: 'Two faces dissolve into each other under pressure and pigment. Red takes over before either one can resist. Proximity as a form of combustion.',
+    music: 'DNMO, Wolfy Lights – Bombalaya (Bloom Remix)'
+  },
+  'arch30': {
+    title: 'MATISSE',
+    description: 'Bodies in teal, duplicated and drifting. Movement caught between frames, like a signal that never fully arrived. The figure repeats because the feeling does too.',
+    music: 'Burial – Ghost Hardware'
+  },
+  'arch31': {
+    title: 'BlackShades',
+    description: 'Blades and type and a system that spins upside down. The logo holds its ground while everything around it accelerates. Architecture in motion, identity under pressure.',
+    music: 'Waeys – Stopping Turning'
+  },
+  'arch32': {
+    title: '2TheMoon',
+    description: 'A sphere cracks open to reveal an eye looking straight back. Branches fracture across the surface like a nervous system. Contained and watching. Always watching.',
+    music: 'Modestep – Hang my Heart'
+  }
+};
+
 const archiveImages = [
   'arch02.jpg','arch03.jpg','arch04.jpg','arch05.jpg',
   'arch06.jpg','arch07.jpg','arch08.jpg','arch09.jpg',
@@ -594,7 +749,15 @@ function updateLightbox() {
   document.getElementById('lbImg').src = 'assets/covers/archive/' + filename;
   document.getElementById('lbImg').alt = filename.replace(/\.[^.]+$/, '');
   document.getElementById('lbRelease').textContent = "(ARCH'" + num + ")";
-  document.getElementById('lbTitle').textContent = 'Untitled ' + num;
+  const key = 'arch' + num;
+  const data = archiveData[key] || {};
+  document.getElementById('lbTitle').textContent = data.title || 'Untitled ' + num;
+  if (document.getElementById('lbDesc')) {
+    document.getElementById('lbDesc').textContent = data.description || '';
+  }
+  if (document.getElementById('lbMusic')) {
+    document.getElementById('lbMusic').textContent = data.music || '';
+  }
   document.getElementById('lbCounter').textContent =
     String(currentLightbox + 1).padStart(2, '0') + ' / 16';
 }
