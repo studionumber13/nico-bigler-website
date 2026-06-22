@@ -392,13 +392,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   #hero-subtitle .hs-title{font-size:15px;}
   #hero-subtitle .hs-meta{font-size:9px;}
 }
-/* ── SHOWREEL ── */
-#showreel{background:#090A0C;padding:0;opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease}
-#showreel.visible{opacity:1;transform:translateY(0)}
-#showreel-placeholder{width:100%;aspect-ratio:16/9;background:#090A0C;overflow:hidden;position:relative}
-#showreel-placeholder span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#323338;text-transform:uppercase;letter-spacing:0.15em;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-#showreel-edge{position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(to right,#090A0C 0%,transparent 18%,transparent 82%,#090A0C 100%)}
-
 /* ── NAV CARDS ── */
 #nav-cards-section{background:#000000;padding:120px 80px}
 .nav-cards-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:48px;display:block}
@@ -446,7 +439,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
   .contact-right{padding:56px 20px}
   .contact-h{font-size:clamp(32px,10vw,56px)}
-  #showreel{display:none}
   .contact-cover{display:none}
   #archive-btn{padding:40px 20px}
   #cursor-dot,#cursor-ring{display:none!important}
@@ -699,13 +691,6 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
   </div>
 
 </div>
-
-<!-- Section C: Archive Preview -->
-<section id="showreel">
-  <div id="showreel-placeholder">
-    <span>SHOWREEL — COMING SOON</span>
-  </div>
-</section>
 
 <!-- Section D: Navigation Cards -->
 <section id="nav-cards-section">
@@ -1415,19 +1400,6 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 <script>
-(function() {
-  var showreel = document.getElementById('showreel');
-  if (showreel) {
-    new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) showreel.classList.add('visible');
-      });
-    }, { threshold: 0.1 }).observe(showreel);
-  }
-})();
-</script>
-
-<script>
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
@@ -1486,181 +1458,5 @@ document.addEventListener('keydown', function(e) {
   })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script>
-(function () {
-  'use strict';
-
-  var COVERS = [
-    'arch02.webp','arch03.webp','arch04.webp','arch05.webp',
-    'arch06.webp','arch07.webp','arch08.webp','arch09.webp',
-    'arch11.webp','arch12.webp','arch13.webp','arch14.webp',
-    'arch15.webp','arch16.webp','arch17.webp','arch18.webp',
-    'arch19.webp'
-  ];
-
-  var ph = document.getElementById('showreel-placeholder');
-  if (!ph) return;
-
-  /* ── MOBILE: CSS scroll gallery, skip Three.js ── */
-  if (window.innerWidth <= 768) {
-    buildMobileGallery();
-    return;
-  }
-
-  /* ── DESKTOP: wait for Three.js CDN then init ── */
-  function tryInit() {
-    if (!window.THREE) { setTimeout(tryInit, 50); return; }
-    buildGallery();
-  }
-  tryInit();
-
-  /* ────────────────────────────────────────────── */
-  function buildMobileGallery() {
-    ph.innerHTML = '';
-    ph.removeAttribute('style');
-    ph.style.cssText = [
-      'width:100%',
-      'background:#090A0C',
-      'overflow-x:auto',
-      'overflow-y:hidden',
-      'display:flex',
-      'align-items:center',
-      'gap:12px',
-      'padding:32px 24px',
-      '-webkit-overflow-scrolling:touch',
-      'scroll-snap-type:x mandatory'
-    ].join(';');
-
-    COVERS.slice(0, 8).forEach(function (name) {
-      var img = document.createElement('img');
-      img.src  = 'assets/covers/archive/' + name;
-      img.alt  = 'Project Nr. 13 — Cover Art';
-      img.loading = 'lazy';
-      img.style.cssText = 'height:260px;width:auto;flex-shrink:0;scroll-snap-align:center;object-fit:cover;border-radius:2px;';
-      ph.appendChild(img);
-    });
-  }
-
-  /* ────────────────────────────────────────────── */
-  function buildGallery() {
-    var THREE = window.THREE;
-    var N       = COVERS.length;        /* 17 cards                      */
-    var SPACING = 2.0;                  /* world-unit gap between centres */
-    var CARD_W  = 1.4;
-    var CARD_H  = CARD_W * (4 / 3);    /* portrait 3:4 ≈ 1.87           */
-    var TOTAL   = N * SPACING;          /* 34 — full cycle width          */
-    var HALF    = TOTAL / 2;            /* 17                             */
-
-    /* Clear placeholder, set up container */
-    ph.innerHTML = '';
-    ph.style.display    = 'block';
-    ph.style.background = '#090A0C';
-    ph.style.overflow   = 'hidden';
-
-    var W = ph.offsetWidth;
-    var H = ph.offsetHeight || Math.round(W * 9 / 16);
-
-    /* Canvas — pointer-events:none keeps custom cursor working */
-    var canvas = document.createElement('canvas');
-    canvas.style.cssText = 'display:block;pointer-events:none;';
-    ph.appendChild(canvas);
-
-    /* Edge-fade overlay (left/right vignette) */
-    var edge = document.createElement('div');
-    edge.id = 'showreel-edge';
-    ph.appendChild(edge);
-
-    /* Three.js renderer */
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(W, H);
-    renderer.setClearColor(0x090A0C, 1);
-
-    var scene  = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
-    camera.position.set(0, 0, 5);
-
-    /* Cards */
-    var loader = new THREE.TextureLoader();
-    var cards  = [];
-
-    COVERS.forEach(function (name, i) {
-      var geo  = new THREE.PlaneGeometry(CARD_W, CARD_H);
-      var mat  = new THREE.MeshBasicMaterial({ color: 0x1a1a1a });
-      var mesh = new THREE.Mesh(geo, mat);
-      scene.add(mesh);
-      cards.push({ mesh: mesh, mat: mat, i: i });
-
-      loader.load('assets/covers/archive/' + name, function (tex) {
-        tex.minFilter = THREE.LinearFilter;
-        tex.magFilter = THREE.LinearFilter;
-        mat.map = tex;
-        mat.color.set(0xffffff);
-        mat.needsUpdate = true;
-      });
-    });
-
-    /* State */
-    var offset = 0;
-    var mx = 0, my = 0, tmx = 0, tmy = 0;
-    var active = true;
-    var resizeTimer;
-
-    /* Mouse tracked on window — not on canvas — so cursor ring is unaffected */
-    window.addEventListener('mousemove', function (e) {
-      tmx = (e.clientX / window.innerWidth  - 0.5) * 2;
-      tmy = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-
-    /* Pause rendering when section scrolled out of view */
-    new IntersectionObserver(function (ents) {
-      active = ents[0].isIntersecting;
-    }, { threshold: 0 }).observe(ph);
-
-    /* Debounced resize */
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        W = ph.offsetWidth;
-        H = ph.offsetHeight || Math.round(W * 9 / 16);
-        renderer.setSize(W, H);
-        camera.aspect = W / H;
-        camera.updateProjectionMatrix();
-      }, 150);
-    });
-
-    /* Render loop */
-    (function loop() {
-      requestAnimationFrame(loop);
-      if (!active) return;
-
-      offset += 0.012;                        /* scroll speed             */
-      mx += (tmx - mx) * 0.05;               /* lerp mouse X             */
-      my += (tmy - my) * 0.05;               /* lerp mouse Y             */
-
-      cards.forEach(function (c) {
-        /* Cyclical X in range (-HALF, +HALF] */
-        var x = ((c.i * SPACING - offset * SPACING) % TOTAL + TOTAL) % TOTAL;
-        if (x > HALF) x -= TOTAL;
-
-        var norm = x / HALF;                  /* –1 … +1                  */
-
-        c.mesh.position.x = x;
-        c.mesh.position.z = -Math.abs(norm) * 1.5;  /* depth: edges recede */
-        c.mesh.position.y = my * -0.12;
-        c.mesh.rotation.y = -norm * 0.35 + mx * 0.05; /* fan + mouse tilt */
-
-        var sc = 1 - Math.abs(norm) * 0.1;   /* edge cards slightly smaller */
-        c.mesh.scale.set(sc, sc, 1);
-      });
-
-      camera.position.x = mx * 0.25;
-      renderer.render(scene, camera);
-    })();
-  }
-
-})();
-</script>
 </body>
 </html>
