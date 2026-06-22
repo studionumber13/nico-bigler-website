@@ -35,6 +35,7 @@ img{display:block;max-width:100%}
   width:5px;height:5px;background:#EFE9E7;border-radius:50%;
   position:fixed;pointer-events:none;z-index:99998;
   transform:translate(-50%,-50%);transition:opacity 0.2s;
+  opacity:0;
 }
 #cursor-ring{
   width:48px;height:48px;
@@ -43,6 +44,7 @@ img{display:block;max-width:100%}
   transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
   transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease;
+  opacity:0;
 }
 #cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-link #cursor-label{opacity:0}
@@ -354,8 +356,8 @@ textarea.contact-field{resize:none}
   <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;display:block;">ARCHIVE — ALL RELEASES</span>
   <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;display:block;">The Full</span>
   <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;display:block;">Collection.</span>
-  <p style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#69626D;line-height:1.7;margin-top:24px;max-width:480px;">Every piece ever made. Unfiltered.<br>From early experiments to latest releases —<br>the complete visual archive of Project Nr. 13.</p>
-  <span id="release-count" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:100px;padding:5px 14px;display:inline-block;margin-top:20px;"></span>
+  <p style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#AAABBC;line-height:1.7;margin-top:24px;max-width:480px;">Every piece ever made. Unfiltered.<br>From early experiments to latest releases —<br>the complete visual archive of Project Nr. 13.</p>
+  <span id="release-count" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;border:1px solid rgba(239,233,231,0.15);border-radius:2px;padding:5px 14px;display:inline-block;margin-top:20px;"></span>
 </header>
 
 <!-- Archive Grid -->
@@ -388,7 +390,7 @@ textarea.contact-field{resize:none}
   </div>
   <div class="contact-right">
     <div class="contact-cover anim">
-      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
+      <img src="assets/covers/drp04-13_face.webp" alt="Project Nr. 13" loading="lazy"
            onerror="this.style.background='#111111';this.style.minHeight='480px';">
     </div>
     <div id="fs-success" style="display:none;" class="fs-message">Message received. I'll be in touch.</div>
@@ -433,7 +435,6 @@ textarea.contact-field{resize:none}
       <p id="lbDesc" style="font-family:'Inter',sans-serif;font-size:15px;color:#EFE9E7;line-height:1.7;margin:0;"></p>
       <p id="lbMusic" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase;margin:0;"></p>
       <div style="height:1px;background:rgba(239,233,231,0.08);"></div>
-      <p style="font-family:'Inter',sans-serif;font-size:14px;color:#69626D;line-height:1.7;">Visual experiment — part of the ongoing Project Nr. 13 archive. Cover art and visual design exploring the intersection of music, identity and image.</p>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">COVER ART</span>
         <span style="border:1px solid rgba(239,233,231,0.12);color:#69626D;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px;display:inline-block;">ARCHIVE</span>
@@ -453,8 +454,20 @@ textarea.contact-field{resize:none}
     var dot  = document.getElementById('cursor-dot');
     var ring = document.getElementById('cursor-ring');
     var mx = 0, my = 0, rx = 0, ry = 0;
+    var cursorActivated = false, touchDetected = false;
+
+    document.addEventListener('touchstart', function () {
+      touchDetected = true;
+    }, { once: true, capture: true, passive: true });
 
     document.addEventListener('mousemove', function (e) {
+      if (touchDetected) return;
+      if (!cursorActivated) {
+        cursorActivated = true;
+        rx = e.clientX; ry = e.clientY;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+      }
       mx = e.clientX; my = e.clientY;
       dot.style.left = mx + 'px';
       dot.style.top  = my + 'px';
@@ -922,9 +935,12 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
 });
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') prevImage();
-  if (e.key === 'ArrowRight') nextImage();
+  var lb = document.getElementById('lightbox');
+  if (lb && lb.style.display === 'flex') {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  }
 });
 </script>
 <script>
