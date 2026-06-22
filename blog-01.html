@@ -32,7 +32,7 @@ img{display:block;max-width:100%}
 #cursor-dot{
   width:5px;height:5px;background:#EFE9E7;border-radius:50%;
   position:fixed;pointer-events:none;z-index:99998;
-  transform:translate(-50%,-50%);transition:opacity 0.2s;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;
 }
 #cursor-ring{
   width:48px;height:48px;
@@ -40,8 +40,10 @@ img{display:block;max-width:100%}
   position:fixed;pointer-events:none;z-index:99997;
   transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
-  transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease;
+  opacity:0;transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease,opacity 0.3s ease;
 }
+body.cursor-active #cursor-dot,body.cursor-active #cursor-ring{opacity:1;}
+@media(hover:none) and (pointer:coarse){body,a,button{cursor:auto!important;}}
 #cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-img{transform:translate(-50%,-50%) scale(1);background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5)}
 #cursor-label{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#EFE9E7;letter-spacing:0.05em;opacity:0;transition:opacity 0.2s;white-space:nowrap}
@@ -57,7 +59,7 @@ img{display:block;max-width:100%}
 }
 #nav.scrolled{background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .nav-left,.nav-right{display:flex;align-items:center;gap:24px}
-.nav-menu-btn{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;}
+.nav-menu-btn{background:none;border:none;cursor:none;padding:8px;display:flex;align-items:center;}
 .nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
 .nav-menu-btn:hover svg line{stroke:#0032FF;}
 .nav-back-link:link,.nav-back-link:visited{color:#5A5B64}
@@ -91,13 +93,13 @@ img{display:block;max-width:100%}
   position:fixed;inset:0;z-index:9000;background:#000;
   display:grid;grid-template-columns:25% 45% 30%;
   opacity:0;pointer-events:none;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.4s ease;overflow-y:auto;
 }
 #megaMenu.open{opacity:1;pointer-events:all}
 .mm-col{padding:48px;height:100%}
 .mm-close{
   position:absolute;top:28px;right:48px;
-  font-family:'Inter',sans-serif;font-weight:300;font-size:32px;
+  font-family:'Inter',sans-serif;font-weight:400;font-size:32px;
   color:#69626D;z-index:10;line-height:1;
   transition:color 0.2s;
 }
@@ -190,7 +192,7 @@ img{display:block;max-width:100%}
   text-decoration:none;transition:color 0.2s;display:inline-block;
 }
 .blog-copyright{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6B7280;
+  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;
   letter-spacing:0.05em;margin-top:24px;line-height:1.6;text-align:center;
 }
 
@@ -207,7 +209,7 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .dl-arrow{color:#0032FF;margin-right:8px;}
 #contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
 .contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
-.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px;text-wrap:balance;}
 .contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
 .contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
 .contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
@@ -232,8 +234,9 @@ textarea.contact-field{resize:none}
 #fs-success{color:#0032FF;}
 
 /* ── ANIM ── */
-.anim{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
-.anim.visible{opacity:1;transform:translateY(0)}
+.anim{transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.js-anim .anim{opacity:0;transform:translateY(28px);}
+.js-anim .anim.visible{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
@@ -409,7 +412,7 @@ textarea.contact-field{resize:none}
   </div>
   <div class="contact-right">
     <div class="contact-cover anim">
-      <img src="assets/covers/drp04-13_face.jpg" alt="Project Nr. 13" loading="lazy"
+      <img src="assets/covers/drp04-13_face.webp" alt="Project Nr. 13" loading="lazy"
            onerror="this.style.background='#111111';this.style.minHeight='480px';">
     </div>
     <div id="fs-success" style="display:none;" class="fs-message">Message received. I'll be in touch.</div>
@@ -437,14 +440,23 @@ textarea.contact-field{resize:none}
 <script>
 (function () {
   'use strict';
+  document.body.classList.add('js-anim');
 
   /* ── CURSOR ── */
   if (window.innerWidth > 768) {
     var dot  = document.getElementById('cursor-dot');
     var ring = document.getElementById('cursor-ring');
     var mx = 0, my = 0, rx = 0, ry = 0;
+    var cursorActivated = false, touchDetected = false;
+    document.addEventListener('touchstart', function(){touchDetected=true;},{once:true,capture:true,passive:true});
 
     document.addEventListener('mousemove', function (e) {
+      if(touchDetected) return;
+      if(!cursorActivated){
+        cursorActivated=true;
+        rx=e.clientX; ry=e.clientY;
+        document.body.classList.add('cursor-active');
+      }
       mx = e.clientX; my = e.clientY;
       dot.style.left = mx + 'px';
       dot.style.top  = my + 'px';
