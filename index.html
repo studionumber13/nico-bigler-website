@@ -765,8 +765,11 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
     <div id="fs-error" style="display:none;" class="fs-message fs-message--error">Something went wrong. Please try again.</div>
     <form id="contact-form" class="anim" data-delay="120">
       <input type="text" name="name" class="contact-field" placeholder="Name" required>
+      <p class="field-hint" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#AAABBC;letter-spacing:0.08em;margin:4px 0 0;display:none;">Please enter your name.</p>
       <input type="email" name="email" class="contact-field" placeholder="Email" required>
+      <p class="field-hint" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#AAABBC;letter-spacing:0.08em;margin:4px 0 0;display:none;">Please enter a valid email address.</p>
       <textarea name="message" class="contact-field" rows="5" placeholder="Message" required></textarea>
+      <p class="field-hint" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#AAABBC;letter-spacing:0.08em;margin:4px 0 0;display:none;">Please enter your message.</p>
       <button type="submit" class="contact-submit">LET'S TALK →</button>
     </form>
   </div>
@@ -1431,6 +1434,21 @@ document.addEventListener('keydown', function(e) {
     const btn = form.querySelector('[type="submit"]');
     const success = document.getElementById('fs-success');
     const error = document.getElementById('fs-error');
+
+    const nameField = form.querySelector('[name="name"]');
+    const emailField = form.querySelector('[name="email"]');
+    const messageField = form.querySelector('[name="message"]');
+    const hints = form.querySelectorAll('.field-hint');
+    const nameHint = hints[0];
+    const emailHint = hints[1];
+    const messageHint = hints[2];
+
+    let valid = true;
+    if (!nameField.value.trim()) { nameHint.style.display = 'block'; valid = false; } else { nameHint.style.display = 'none'; }
+    if (!emailField.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) { emailHint.style.display = 'block'; valid = false; } else { emailHint.style.display = 'none'; }
+    if (!messageField.value.trim()) { messageHint.style.display = 'block'; valid = false; } else { messageHint.style.display = 'none'; }
+    if (!valid) { return; }
+
     btn.disabled = true;
     success.style.display = 'none';
     error.style.display = 'none';
@@ -1452,6 +1470,20 @@ document.addEventListener('keydown', function(e) {
     }
     btn.disabled = false;
   });
+
+  (function() {
+    var form = document.getElementById('contact-form');
+    var pairs = [
+      [form.querySelector('[name="name"]'), 0],
+      [form.querySelector('[name="email"]'), 1],
+      [form.querySelector('[name="message"]'), 2]
+    ];
+    pairs.forEach(function(pair) {
+      pair[0].addEventListener('input', function() {
+        form.querySelectorAll('.field-hint')[pair[1]].style.display = 'none';
+      });
+    });
+  })();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
