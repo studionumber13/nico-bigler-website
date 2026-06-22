@@ -1374,7 +1374,7 @@ function updateWorksLightbox() {
   document.getElementById('wlbRelease').textContent = item.release;
   document.getElementById('wlbTitle').textContent = item.title;
   document.getElementById('wlbDesc').textContent = item.desc;
-  document.getElementById('wlbMusic').textContent = item.music;
+  document.getElementById('wlbMusic').textContent = item.music ? 'Track ID: ' + item.music : '';
   document.getElementById('wlbCounter').textContent =
     String(currentWork + 1).padStart(2, '0') + ' / ' + String(data.length).padStart(2, '0');
 }
