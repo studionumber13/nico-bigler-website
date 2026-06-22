@@ -774,6 +774,41 @@ const archiveData = {
     title: 'Ko-omote',
     description: 'A face contained inside a circle of thorns, framed like a relic. The expression holds everything back and releases nothing. Old form, new weight.',
     music: 'TOKYOPILL – E t h e r e a l'
+  },
+  'arch53': {
+    title: 'Brutalism',
+    description: 'Type fractures across concrete and geometry like a manifesto etched into the wall of a building that was never meant to be beautiful. Raw material, raw message. The aesthetic is the argument.',
+    music: 'Molchat Doma – Sudno'
+  },
+  'arch54': {
+    title: 'THiNK',
+    description: 'A figure mid-motion, text bleeding through the body like thought made physical. Black and white and urgent. The hand reaches, the mind follows, or maybe it is the other way around.',
+    music: 'Luude, Harry Bee – Fun in the Sun'
+  },
+  'arch55': {
+    title: 'PORTAL',
+    description: 'A monolith opens red at its core, blue smoke rising around it like a ritual in progress. Step through or step back. The light on the other side does not wait.',
+    music: 'disruption – salvation'
+  },
+  'arch56': {
+    title: 'OBSERVE',
+    description: 'Thorns frame a face beneath a directive. The instruction is calm, the image is not. Something watches back from inside the spikes, patient and precise.',
+    music: 'aon – 10k hours'
+  },
+  'arch57': {
+    title: 'BLUE SPIRIT',
+    description: 'A face tilted upward, jewelled and distant, dissolving into blue like a frequency only she can hear. The star above holds its position. Everything else drifts.',
+    music: 'Izzamuzzic, Julien Marchal – Shootout'
+  },
+  'arch58': {
+    title: 'White Label',
+    description: 'A creature pressed into vinyl, ghosted and grey like a test press nobody was supposed to hear. The record holds the animal. The animal holds still.',
+    music: 'D A N N Y – Take Me'
+  },
+  'arch59': {
+    title: 'PALACE',
+    description: 'A bird descends onto a face that is already somewhere else. Type cuts through the frame like a street sign in a city that does not explain itself. South of everything familiar.',
+    music: 'SELECT SELCT – South London'
   }
 };
 
@@ -790,7 +825,8 @@ const archiveImages = [
   'arch39.png','arch40.jpg','arch41.jpg','arch42.jpg',
   'arch43.jpg','arch44.png','arch45.png','arch46.png',
   'arch47.jpg','arch48.jpg','arch49.jpg','arch50.jpg',
-  'arch51.jpg','arch52.png'
+  'arch51.jpg','arch52.png',
+  'arch53.jpg','arch54.jpg','arch55.jpg','arch56.jpg','arch57.jpg','arch58.jpg','arch59.jpg'
 ];
 
 let currentBatch = [];
@@ -856,7 +892,7 @@ function updateLightbox() {
     document.getElementById('lbDesc').textContent = data.description || '';
   }
   if (document.getElementById('lbMusic')) {
-    document.getElementById('lbMusic').textContent = data.music || '';
+    document.getElementById('lbMusic').textContent = data.music ? 'Track ID: ' + data.music : '';
   }
   document.getElementById('lbCounter').textContent =
     String(currentLightbox + 1).padStart(2, '0') + ' / 16';
