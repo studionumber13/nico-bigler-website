@@ -171,6 +171,7 @@ img{display:block;max-width:100%}
 .arch-img-wrap{position:relative;overflow:hidden;cursor:none;}
 .arch-img-wrap img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;transition:opacity 0.2s ease;}
 .arch-img-wrap:hover img{opacity:0.7}
+.arch-img-wrap:active img{opacity:0.5}
 #arch-shuffle-wrap{display:flex;justify-content:center;padding-top:48px;}
 #shuffle-btn{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#EFE9E7;border:1px solid rgba(239,233,231,0.2);padding:12px 32px;cursor:none;transition:border-color 0.2s,color 0.2s;background:transparent;}
 #shuffle-btn:hover{border-color:rgba(239,233,231,0.6);}
@@ -363,6 +364,7 @@ textarea.contact-field{resize:none}
 <!-- Archive Grid -->
 <section id="arch-section">
   <div id="arch-grid"></div>
+  <p id="arch-hint" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase;text-align:center;padding-bottom:16px;margin:0;"></p>
   <div id="arch-shuffle-wrap">
     <button id="shuffle-btn">SHUFFLE</button>
   </div>
@@ -876,6 +878,7 @@ function shuffleAndDisplay() {
     wrap.appendChild(img);
     grid.appendChild(wrap);
   });
+  document.getElementById('arch-hint').textContent = 'Showing 16 of ' + archiveImages.length + ' releases — shuffle to discover more';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
