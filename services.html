@@ -218,11 +218,19 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
 .section-head .mono{color:var(--blue);display:block;margin-bottom:20px;}
 
 /* ---------- Service cards ---------- */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border:1px solid rgba(170,171,188,0.18);}
-.service{padding:clamp(28px,3.5vw,48px);border-right:1px solid rgba(170,171,188,0.18);display:flex;flex-direction:column;gap:22px;position:relative;transition:background 0.25s;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(170,171,188,0.18);}
+.service{padding:clamp(20px,2.5vw,32px);border-right:1px solid rgba(170,171,188,0.18);display:flex;flex-direction:column;gap:22px;position:relative;transition:background 0.25s;}
 .service:last-child{border-right:none;}
-@media(max-width:1020px){
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
   .service{border-right:none;border-bottom:1px solid rgba(170,171,188,0.18);}
+  .service:nth-child(odd){border-right:1px solid rgba(170,171,188,0.18);}
+  .service:nth-child(n+3){border-bottom:none;}
+}
+@media(max-width:640px){
+  .services-grid{grid-template-columns:1fr;}
+  .service,.service:nth-child(odd){border-right:none;border-bottom:1px solid rgba(170,171,188,0.18);}
+  .service:nth-child(n+3){border-bottom:1px solid rgba(170,171,188,0.18);}
   .service:last-child{border-bottom:none;}
 }
 .service:hover{background:rgba(0,50,255,0.07);}
@@ -405,7 +413,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
           <li>2 concept directions, 2 revision rounds</li>
         </ul>
         <div class="meta">
-          <span class="price">from CHF 450</span>
+          <span class="price">On request</span>
           <span class="mono lead-time">2–3 weeks</span>
         </div>
         <a class="card-cta" href="#contact">Request release artwork →</a>
@@ -422,7 +430,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
           <li>Built to hold up across every touchpoint</li>
         </ul>
         <div class="meta">
-          <span class="price">from CHF 2'400</span>
+          <span class="price">On request</span>
           <span class="mono lead-time">4–6 weeks</span>
         </div>
         <a class="card-cta" href="#contact">Request an identity →</a>
@@ -439,7 +447,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
           <li>Series pricing for recurring event nights</li>
         </ul>
         <div class="meta">
-          <span class="price">from CHF 400</span>
+          <span class="price">On request</span>
           <span class="mono lead-time">2–4 weeks</span>
         </div>
         <a class="card-cta" href="#contact">Request event design →</a>
@@ -456,7 +464,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
           <li>Fully editable files, built to stay on-brand</li>
         </ul>
         <div class="meta">
-          <span class="price">from CHF 690</span>
+          <span class="price">On request</span>
           <span class="mono lead-time">1–2 weeks</span>
         </div>
         <a class="card-cta" href="#contact">Request a deck →</a>
@@ -465,8 +473,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
     </div>
 
     <p class="price-note">
-      Every project starts with a short call and a fixed quote — no hourly billing,
-      no surprises. Prices reflect scope; larger campaigns and label retainers are quoted individually.
+      Every project starts with a reply within 48 hours. I look at the scope, assess the effort involved, and send you a quote. If the project grows or needs more rounds along the way, we adjust it together before I continue.
     </p>
   </section>
 
@@ -561,7 +568,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
       </details>
       <details>
         <summary>What do you need from me to start?</summary>
-        <p>The track (even a rough mix), your release date, and any references you love or hate. That's enough. The brief call covers the rest.</p>
+        <p>Tell me what the project is and which service you're after, when you need it by, and give me something to hold on to, a few style ideas or references you love and hate. For a release, send the track if you have it, even a rough mix. We sort out the rest together.</p>
       </details>
       <details>
         <summary>Can you work with tight release deadlines?</summary>
