@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="assets/images/logo.png">
+<link rel="apple-touch-icon" href="assets/images/logo.png">
+<meta name="google-site-verification" content="NX3-2JTfyi7l74XZ8cDNx4-PsS_ttDgd5kWgjPt7hPs" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Project Nr. 13 | Cover Art, Visual Identity &amp; Poster Design</title>
+<meta name="description" content="Cover art, visual identity and poster design for artists, labels and brands. Rooted in underground music culture. Project Nr. 13 — Zürich / Bern, Switzerland.">
+<link rel="canonical" href="https://projectnr13.ch/services.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Services — Project Nr. 13">
+<meta property="og:description" content="Cover art, visual identity and poster design for artists, labels and brands.">
+<meta property="og:url" content="https://projectnr13.ch/services.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://projectnr13.ch/assets/covers/drp04-13_face.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{
+  background:#090A0C;color:#EFE9E7;
+  font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;overflow-x:hidden;
+}
+:root{
+  --blue:#0032FF;--bone:#EFE9E7;--ink:#090A0C;
+  --grey:#69626D;--steel:#AAABBC;
+  --dim:rgba(239,233,231,0.08);
+  --pad:clamp(20px,4vw,64px);
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+a{color:inherit;text-decoration:none;cursor:none}
+button{background:none;border:none;color:inherit;cursor:none;font:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:var(--bone);}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
+  outline:2px solid var(--blue);outline-offset:3px;
+}
+
+/* ── CURSOR ── */
+#cursor-dot{
+  width:5px;height:5px;background:#EFE9E7;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;
+}
+#cursor-ring{
+  width:48px;height:48px;border:1px solid rgba(239,233,231,0.35);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99997;
+  transform:translate(-50%,-50%) scale(0.667);
+  opacity:0;transition:transform 0.25s ease,border-color 0.25s ease,
+    background 0.25s ease,opacity 0.3s ease;
+}
+body.cursor-active #cursor-dot,body.cursor-active #cursor-ring{opacity:1;}
+#cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
+#cursor-ring.hover-img{transform:translate(-50%,-50%) scale(1);background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5);}
+@media(hover:none) and (pointer:coarse){body,a,button{cursor:auto!important;}}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
+  background:#0D0D0D;border-bottom:1px solid #323338;
+  display:flex;align-items:center;justify-content:space-between;padding:0 48px;
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:24px}
+.nav-menu-btn{background:none;border:none;cursor:none;padding:8px;display:flex;align-items:center;}
+.nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
+.nav-menu-btn:hover svg line{stroke:#0032FF;}
+.nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-center::after{
+  content:'';position:absolute;top:50%;left:50%;
+  width:28px;height:28px;border-radius:50%;border:1.5px solid #0032FF;
+  transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none;
+  transition:transform 0.3s ease,opacity 0.3s ease;
+}
+.nav-center:hover::after{transform:translate(-50%,-50%) scale(1);opacity:1;}
+.nav-link{font-family:'Inter',sans-serif;font-weight:500;font-size:12px;color:#EFE9E7;letter-spacing:0.08em;transition:color 0.2s ease;}
+.nav-link:hover{color:#0032FF;}
+.nav-link[aria-current="page"]{color:#0032FF;}
+.nav-mobile-links{display:none;}
+@media(max-width:768px){.nav-mobile-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;}}
+.nav-mobile-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(239,233,231,0.5);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.nav-mobile-link:hover,.nav-mobile-link[aria-current="page"]{color:#0032FF;}
+
+/* ── MEGA MENU ── */
+#megaMenu{
+  position:fixed;inset:0;z-index:9000;background:#000;
+  display:grid;grid-template-columns:25% 45% 30%;
+  opacity:0;pointer-events:none;transition:opacity 0.4s ease;overflow-y:auto;
+}
+#megaMenu.open{opacity:1;pointer-events:all}
+.mm-col{padding:48px;height:100%}
+.mm-close{
+  position:absolute;top:28px;right:48px;
+  font-family:'Inter',sans-serif;font-weight:400;font-size:32px;
+  color:#69626D;z-index:10;line-height:1;transition:color 0.2s;
+}
+.mm-close:hover{color:#EFE9E7}
+.mm-nav-links{padding-top:80px}
+.mm-nav-link{
+  display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:52px;
+  color:#EFE9E7;padding:4px 0;opacity:0;transform:translateY(32px);
+  transition:color 0.2s,transform 0.2s;
+}
+#megaMenu.open .mm-nav-link{opacity:1;transform:translateY(0);transition:opacity 0.6s ease-out,transform 0.6s ease-out,color 0.2s;}
+.mm-nav-link:hover{color:#0032FF;transform:translateX(8px)!important}
+.mm-right{padding-top:80px}
+.mm-section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:14px;display:block;}
+.mm-right-link{font-family:'Inter',sans-serif;font-size:14px;color:#EFE9E7;display:block;padding:4px 0;transition:color 0.2s ease;}
+.mm-right-link:hover{color:#0032FF}
+.mm-section{margin-top:28px}
+.mm-manifesto{margin-top:48px}
+.mm-manifesto-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;display:block;}
+.mm-manifesto-text{font-family:'Inter',sans-serif;font-weight:700;font-size:28px;color:#FFFFFF;letter-spacing:-0.02em;line-height:1.1;animation:pulse 3s ease-in-out infinite alternate;}
+@keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
+
+/* ── FOOTER ── */
+footer{background:#000;padding:28px 80px;border-top:1px solid var(--dim);display:flex;justify-content:space-between;align-items:center;}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;letter-spacing:0.08em;text-transform:uppercase;}
+.foot-back{cursor:none;transition:color 0.2s}
+.foot-back:hover{color:#EFE9E7}
+.foot-group{display:flex;align-items:center;gap:20px;}
+.foot-legal{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(239,233,231,0.3);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
+.foot-legal:hover{color:#0032FF;}
+
+/* ── CONTACT SECTION ── */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.dl-arrow{color:#0032FF;margin-right:8px;}
+#contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding:0;border-bottom:none;}
+.contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(32px,10vw,80px);color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
+.contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
+.contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
+.contact-email:hover{text-decoration:underline}
+.contact-social-label,.contact-dl-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;display:block}
+.contact-dl-label{margin-top:40px}
+.contact-social-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-social-link:hover{color:#FFFFFF}
+.contact-dl-link{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#D3D3D9;display:block;margin-bottom:12px;text-decoration:none;transition:color 0.2s}
+.contact-dl-link:hover{color:#FFFFFF}
+.contact-right{padding:120px 80px;display:flex;flex-direction:column}
+.contact-cover{margin-bottom:48px;overflow:hidden}
+.contact-cover img{width:100%;height:480px;object-fit:cover;background:#111111;display:block}
+.contact-field{width:100%;background:transparent;border:none;border-bottom:1px solid #323338;color:#EFE9E7;padding:14px 0;font-family:'Inter',sans-serif;font-size:16px;outline:none;margin-bottom:20px;display:block;transition:border-bottom-color 0.2s}
+.contact-field::placeholder{color:rgba(239,233,231,0.62);font-weight:500}
+.contact-field:focus{border-bottom-color:#0032FF;outline:none;color:#EFE9E7;caret-color:#0032FF}
+textarea.contact-field{resize:none}
+.contact-submit{background:#EFE9E7;color:#000;padding:13px 30px;border:none;border-radius:3px;cursor:none;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s,transform 0.2s,opacity 0.2s}
+.contact-submit:hover{background:#fff;transform:translateY(-2px)}
+.contact-submit:disabled{opacity:0.45;transform:none;pointer-events:none;}
+.fs-message{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:24px;}
+.fs-message--error{color:#FF3B30;}
+#fs-success{color:#0032FF;}
+
+/* ── MOBILE NAV + FOOTER ── */
+@media(max-width:1024px){#nav{padding:0 32px}}
+@media(max-width:768px){
+  #nav{padding:0 20px}
+  .nav-right{display:none}
+  footer{padding:28px 24px;flex-direction:column;gap:12px;text-align:center}
+  #contact{grid-template-columns:1fr}
+  .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
+  .contact-right{padding:56px 20px}
+  .contact-cover{display:none}
+}
+@media(max-width:640px){
+  #megaMenu{display:flex;flex-direction:column;overflow-y:auto;}
+  #megaMenu>.mm-col:first-child{display:none;}
+  .mm-col{padding:32px 24px;height:auto;}
+  .mm-nav-links{padding-top:24px;}
+  .mm-nav-link{font-size:36px;}
+  .mm-close{right:20px;top:20px;}
+  .mm-right{padding-top:0;}
+  .mm-manifesto{margin-top:24px;}
+}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ── PAGE STYLES ── */
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:0.12em;font-size:0.72rem;}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(80px,14vh,160px) var(--pad) clamp(60px,10vh,120px);border-bottom:1px solid rgba(170,171,188,0.18);margin-top:56px;}
+.eyebrow{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:28px;}
+.hero h1{font-weight:900;font-size:clamp(2.6rem,8vw,6.5rem);line-height:0.98;letter-spacing:-0.03em;text-transform:uppercase;max-width:14ch;}
+.hero h1 em{font-style:normal;color:var(--blue);}
+.hero p{margin-top:32px;max-width:52ch;color:var(--steel);font-size:clamp(1rem,1.4vw,1.15rem);}
+.hero-cta{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;}
+
+.btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;padding:16px 28px;border:1px solid var(--bone);background:transparent;color:var(--bone);cursor:none;transition:background 0.2s,color 0.2s,border-color 0.2s;display:inline-block;}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:var(--bone);}
+.btn--solid{background:var(--bone);color:var(--ink);}
+.btn--solid:hover{background:var(--blue);color:var(--bone);border-color:var(--blue);}
+
+/* ---------- Ticker ---------- */
+.ticker{border-bottom:1px solid rgba(170,171,188,0.18);overflow:hidden;white-space:nowrap;padding:14px 0;}
+.ticker span{display:inline-block;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey);padding-left:100%;animation:ticker 28s linear infinite;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+
+/* ---------- Sections ---------- */
+section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(170,171,188,0.18);}
+.section-head{margin-bottom:clamp(40px,6vh,72px);}
+.section-head h2{font-weight:900;font-size:clamp(1.8rem,4.5vw,3.4rem);line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase;max-width:22ch;}
+.section-head .mono{color:var(--blue);display:block;margin-bottom:20px;}
+
+/* ---------- Service cards ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border:1px solid rgba(170,171,188,0.18);}
+.service{padding:clamp(28px,3.5vw,48px);border-right:1px solid rgba(170,171,188,0.18);display:flex;flex-direction:column;gap:22px;position:relative;transition:background 0.25s;}
+.service:last-child{border-right:none;}
+@media(max-width:1020px){
+  .service{border-right:none;border-bottom:1px solid rgba(170,171,188,0.18);}
+  .service:last-child{border-bottom:none;}
+}
+.service:hover{background:rgba(0,50,255,0.07);}
+.service .index{color:var(--grey);}
+.service h3{font-weight:800;font-size:clamp(1.3rem,2.2vw,1.7rem);text-transform:uppercase;letter-spacing:-0.01em;line-height:1.1;}
+.service .for{color:var(--steel);font-size:0.92rem;}
+.service ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.service ul li{font-size:0.92rem;color:var(--bone);padding-left:20px;position:relative;}
+.service ul li::before{content:"→";position:absolute;left:0;color:var(--blue);font-family:var(--mono);font-size:0.8rem;}
+.service .meta{margin-top:auto;padding-top:22px;border-top:1px solid rgba(170,171,188,0.18);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.service .price{font-family:var(--mono);font-size:1rem;letter-spacing:0.06em;color:var(--bone);}
+.service .lead-time{color:var(--grey);}
+.service a.card-cta{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-top:6px;}
+.service a.card-cta:hover{color:var(--bone);}
+.price-note{margin-top:24px;color:var(--grey);font-size:0.85rem;max-width:68ch;}
+
+/* ---------- Process ---------- */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(24px,3vw,48px);}
+.step .mono{color:var(--blue);display:block;margin-bottom:14px;}
+.step h3{font-weight:800;text-transform:uppercase;font-size:1.05rem;margin-bottom:10px;letter-spacing:0.01em;}
+.step p{color:var(--steel);font-size:0.92rem;}
+
+/* ---------- Selected work ---------- */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:rgba(170,171,188,0.18);border:1px solid rgba(170,171,188,0.18);}
+.work-tile{background:var(--ink);aspect-ratio:1/1;position:relative;overflow:hidden;display:block;}
+.work-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;}
+.work-tile:hover img{transform:scale(1.03);}
+.work-tile .label{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--bone);background:rgba(9,10,12,0.82);padding:6px 10px;}
+.work-more{margin-top:28px;}
+
+/* ---------- Prints teaser ---------- */
+.prints{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(32px,5vw,80px);align-items:center;}
+@media(max-width:860px){.prints{grid-template-columns:1fr;}}
+.prints img{width:100%;display:block;border:1px solid rgba(170,171,188,0.18);}
+.prints h2{font-weight:900;font-size:clamp(1.8rem,4vw,3rem);text-transform:uppercase;letter-spacing:-0.02em;line-height:1.02;margin-bottom:20px;}
+.prints p{color:var(--steel);max-width:48ch;margin-bottom:28px;}
+.waitlist{display:flex;gap:0;max-width:460px;}
+.waitlist input[type="email"]{flex:1;background:transparent;border:1px solid rgba(170,171,188,0.4);border-right:none;color:var(--bone);font-family:var(--mono);font-size:0.8rem;padding:15px 16px;min-width:0;}
+.waitlist input::placeholder{color:var(--grey);}
+.waitlist .btn{border-color:rgba(170,171,188,0.4);}
+.form-msg{margin-top:14px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;min-height:1.2em;}
+.form-msg.ok{color:var(--blue);}
+.form-msg.err{color:#ff4d4d;}
+
+/* ---------- FAQ ---------- */
+.faq details{border-bottom:1px solid rgba(170,171,188,0.18);padding:22px 0;}
+.faq details:first-of-type{border-top:1px solid rgba(170,171,188,0.18);}
+.faq summary{cursor:none;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.02em;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--blue);font-size:1.1rem;flex-shrink:0;}
+.faq details[open] summary::after{content:"–";}
+.faq details p{margin-top:14px;color:var(--steel);max-width:70ch;font-size:0.95rem;}
+
+/* ---------- Final CTA ---------- */
+.final-cta{text-align:left;}
+.final-cta h2{font-weight:900;font-size:clamp(2.2rem,7vw,5.4rem);text-transform:uppercase;letter-spacing:-0.03em;line-height:0.98;max-width:16ch;margin-bottom:36px;}
+.final-cta h2 em{font-style:normal;color:var(--blue);}
+.final-cta .mono a{color:var(--steel);}
+.final-cta .mono a:hover{color:var(--bone);}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="menuOpen" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="3" y1="6" x2="21" y2="6" stroke-width="1.5"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke-width="1.5"/>
+        <line x1="3" y1="18" x2="15" y2="18" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </div>
+  <a href="index.html" class="nav-center">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
+  </a>
+  <div class="nav-right">
+    <a href="archive.html" class="nav-link">ARCHIVE</a>
+    <a href="services.html" class="nav-link" aria-current="page">SERVICES</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="index.html#contact" class="nav-link">CONTACT</a>
+  </div>
+  <div class="nav-mobile-links">
+    <a href="services.html" class="nav-mobile-link" aria-current="page">SERVICES</a>
+    <a href="index.html#contact" class="nav-mobile-link">CONTACT</a>
+  </div>
+</nav>
+
+<!-- Mega Menu -->
+<div id="megaMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mm-close" id="menuClose" aria-label="Close menu">×</button>
+  <div class="mm-col">
+    <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:80px;height:auto;display:block;">
+  </div>
+  <div class="mm-col">
+    <nav class="mm-nav-links">
+      <a href="index.html" class="mm-nav-link">Home</a>
+      <a href="index.html#works" class="mm-nav-link">Works</a>
+      <a href="archive.html" class="mm-nav-link">Archive</a>
+      <a href="services.html" class="mm-nav-link" aria-current="page">Services</a>
+      <a href="about.html" class="mm-nav-link">About</a>
+      <a href="thesis.html" class="mm-nav-link">Thesis</a>
+      <a href="index.html#contact" class="mm-nav-link">Contact</a>
+    </nav>
+  </div>
+  <div class="mm-col mm-right">
+    <span class="mm-section-label">INFO</span>
+    <a href="about.html" class="mm-right-link">About me</a>
+    <a href="about.html#career" class="mm-right-link">Career</a>
+    <a href="services.html" class="mm-right-link">Services</a>
+    <a href="thesis.html" class="mm-right-link">HWZ Bachelor Thesis</a>
+    <a href="datenschutz.html" class="mm-right-link" style="border-top:1px solid rgba(239,233,231,0.07);margin-top:16px;padding-top:16px;">Datenschutz</a>
+    <a href="impressum.html" class="mm-right-link">Impressum</a>
+    <div class="mm-section">
+      <span class="mm-section-label">DOWNLOAD</span>
+      <a href="assets/cv/nico-bigler-cv-german.pdf" class="mm-right-link" target="_blank" download>↓ CV German</a>
+      <a href="assets/cv/nico-bigler-cv-english.pdf" class="mm-right-link" target="_blank" download>↓ CV English</a>
+    </div>
+    <div class="mm-section">
+      <span class="mm-section-label">SOCIAL</span>
+      <a href="https://www.instagram.com/project_nr.13" target="_blank" rel="noopener noreferrer" class="mm-right-link">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="mm-right-link">LinkedIn ↗</a>
+    </div>
+    <div class="mm-manifesto">
+      <span class="mm-manifesto-label">Art is...</span>
+      <span class="mm-manifesto-text">Make it mean something.</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <span class="eyebrow">Services — Project Nr. 13</span>
+    <h1 id="hero-title">Sound needs a body. <em>I build it.</em></h1>
+    <p>
+      Cover art, visual identity and poster design for artists, labels and brands —
+      rooted in underground music culture, executed with the strategic rigour of
+      professional brand management. From a single release to a full identity system.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn--solid" href="#contact">Start a project →</a>
+      <a class="btn" href="archive.html">See the work</a>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <span>Cover Art — Visual Identity — Poster Design — Presentation Design — Release Campaigns — Animated Covers — Brand Systems — Cover Art — Visual Identity — Poster Design — Presentation Design — Release Campaigns —&nbsp;</span>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="section-head reveal">
+      <span class="mono">What I offer — 01</span>
+      <h2 id="services-title">Four ways to work together.</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service reveal">
+        <span class="mono index">SRV — 01</span>
+        <h3>Release Artwork</h3>
+        <p class="for">For artists and labels putting out singles, EPs or albums.</p>
+        <ul>
+          <li>Custom cover art, built from your track — not a template</li>
+          <li>All platform formats (streaming, vinyl, social)</li>
+          <li>Animated cover version for Spotify Canvas &amp; Reels</li>
+          <li>2 concept directions, 2 revision rounds</li>
+        </ul>
+        <div class="meta">
+          <span class="price">from CHF 450</span>
+          <span class="mono lead-time">2–3 weeks</span>
+        </div>
+        <a class="card-cta" href="#contact">Request release artwork →</a>
+      </article>
+
+      <article class="service reveal">
+        <span class="mono index">SRV — 02</span>
+        <h3>Visual Identity</h3>
+        <p class="for">For artists, labels and brands that need a coherent visual world.</p>
+        <ul>
+          <li>Logo / wordmark and typographic system</li>
+          <li>Colour system and visual language</li>
+          <li>Social media templates and usage guide</li>
+          <li>Built to hold up across every touchpoint</li>
+        </ul>
+        <div class="meta">
+          <span class="price">from CHF 2'400</span>
+          <span class="mono lead-time">4–6 weeks</span>
+        </div>
+        <a class="card-cta" href="#contact">Request an identity →</a>
+      </article>
+
+      <article class="service reveal">
+        <span class="mono index">SRV — 03</span>
+        <h3>Poster &amp; Event Design</h3>
+        <p class="for">For promoters, venues, festivals and brands with something to announce.</p>
+        <ul>
+          <li>Key visual concept for your event or campaign</li>
+          <li>Print-ready poster and flyer files</li>
+          <li>Digital formats for social and screens</li>
+          <li>Series pricing for recurring event nights</li>
+        </ul>
+        <div class="meta">
+          <span class="price">from CHF 400</span>
+          <span class="mono lead-time">2–4 weeks</span>
+        </div>
+        <a class="card-cta" href="#contact">Request event design →</a>
+      </article>
+
+      <article class="service reveal">
+        <span class="mono index">SRV — 04</span>
+        <h3>Presentation Design</h3>
+        <p class="for">For founders, teams and brands that pitch, present and can't afford to look amateur.</p>
+        <ul>
+          <li>Pitch decks, investor and sales decks, keynotes</li>
+          <li>Story and structure — not just prettier slides</li>
+          <li>Reusable branded master template in PowerPoint</li>
+          <li>Fully editable files, built to stay on-brand</li>
+        </ul>
+        <div class="meta">
+          <span class="price">from CHF 690</span>
+          <span class="mono lead-time">1–2 weeks</span>
+        </div>
+        <a class="card-cta" href="#contact">Request a deck →</a>
+      </article>
+
+    </div>
+
+    <p class="price-note">
+      Every project starts with a short call and a fixed quote — no hourly billing,
+      no surprises. Prices reflect scope; larger campaigns and label retainers are quoted individually.
+    </p>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" aria-labelledby="process-title">
+    <div class="section-head reveal">
+      <span class="mono">How it works — 02</span>
+      <h2 id="process-title">A clear process. No black box.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal">
+        <span class="mono">01 — Brief</span>
+        <h3>We talk sound first</h3>
+        <p>A short call about your track, your release, your audience. I need to hear the music before I design anything. You get a fixed quote within 48 hours.</p>
+      </div>
+      <div class="step reveal">
+        <span class="mono">02 — Concept</span>
+        <h3>Directions, not drafts</h3>
+        <p>You receive two distinct concept directions with rationale — what each one says, and why it fits your sound. You pick one; we sharpen it.</p>
+      </div>
+      <div class="step reveal">
+        <span class="mono">03 — Execution</span>
+        <h3>Craft and iteration</h3>
+        <p>Full execution of the chosen direction, with two structured revision rounds. You see progress, not silence.</p>
+      </div>
+      <div class="step reveal">
+        <span class="mono">04 — Delivery</span>
+        <h3>Everything, ready to ship</h3>
+        <p>Final files in every format you need — streaming, print, social, animated. Plus a short usage note so the artwork stays sharp wherever it lands.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work" aria-labelledby="work-title">
+    <div class="section-head reveal">
+      <span class="mono">Proof — 03</span>
+      <h2 id="work-title">Selected work.</h2>
+    </div>
+    <div class="work-grid reveal">
+      <a class="work-tile" href="archive.html">
+        <img src="assets/covers/drp13-13_basquiat.webp" alt="Cover artwork — DRP13 Basquiat Series" loading="lazy" width="800" height="800">
+        <span class="label">Cover Art — DRP13</span>
+      </a>
+      <a class="work-tile" href="archive.html">
+        <img src="assets/covers/drp05-13_cyber.webp" alt="Cover artwork — DRP05 Cyber" loading="lazy" width="800" height="800">
+        <span class="label">Cover Art — DRP05</span>
+      </a>
+      <a class="work-tile" href="archive.html">
+        <img src="assets/covers/drp11-13_astro.webp" alt="Cover artwork — DRP11 Astro" loading="lazy" width="800" height="800">
+        <span class="label">Cover Art — DRP11</span>
+      </a>
+    </div>
+    <div class="work-more">
+      <a class="btn" href="archive.html">Full archive — 50+ pieces →</a>
+    </div>
+  </section>
+
+  <!-- PRINTS TEASER -->
+  <section id="prints" aria-labelledby="prints-title">
+    <div class="prints">
+      <div class="reveal">
+        <span class="eyebrow">Prints — Coming soon</span>
+        <h2 id="prints-title">Own the artwork.</h2>
+        <p>
+          Selected pieces from the archive will be released as limited, numbered
+          and signed editions. Small runs. No reprints. Join the list and get
+          first access before anything goes public.
+        </p>
+        <form class="waitlist" id="waitlist-form" action="https://formspree.io/f/xrevdegg" method="POST" novalidate>
+          <input type="email" name="email" placeholder="YOUR@EMAIL.COM" required aria-label="Email address for print waitlist">
+          <input type="hidden" name="_subject" value="Print Waitlist — projectnr13.ch">
+          <input type="hidden" name="source" value="services.html — print waitlist">
+          <button class="btn" type="submit">Join the list →</button>
+        </form>
+        <p class="form-msg" id="waitlist-msg" role="status" aria-live="polite"></p>
+      </div>
+      <img class="reveal" src="assets/covers/drp06-13_cube.webp" alt="Limited edition print — Project Nr. 13 cover art" loading="lazy" width="800" height="800">
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="section-head reveal">
+      <span class="mono">Questions — 04</span>
+      <h2 id="faq-title">Before you ask.</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>Who owns the artwork after the project?</summary>
+        <p>You receive full usage rights for the agreed purpose — release, promotion, merch if specified. I retain the right to show the work in my portfolio and archive. Exclusive buy-outs are possible and quoted separately.</p>
+      </details>
+      <details>
+        <summary>What do you need from me to start?</summary>
+        <p>The track (even a rough mix), your release date, and any references you love or hate. That's enough. The brief call covers the rest.</p>
+      </details>
+      <details>
+        <summary>Can you work with tight release deadlines?</summary>
+        <p>Often, yes. Rush delivery inside one week is possible depending on my schedule, with a rush surcharge. Ask early — the earlier you write, the more options we have.</p>
+      </details>
+      <details>
+        <summary>Do you only work with drum and bass artists?</summary>
+        <p>No. The practice is rooted in DnB and underground club culture, but the approach — translating sound into image — works across genres and for brands that want to connect with music culture credibly.</p>
+      </details>
+      <details>
+        <summary>How are payments handled?</summary>
+        <p>50% deposit to book the slot, 50% on delivery of final files. Invoiced from Switzerland (CHF or EUR). Fixed quotes only — no hourly surprises.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-left">
+      <div>
+        <h2 class="contact-h anim">GET IN<br>TOUCH</h2>
+        <span class="contact-sub-label anim" data-delay="80">Email Inquiries</span>
+        <span class="contact-name anim" data-delay="160">Nico Bigler</span>
+        <a href="mailto:hallo.nicobigler@gmail.com" class="contact-email anim" data-delay="200">hallo.nicobigler@gmail.com</a>
+      </div>
+      <div class="contact-bottom anim" data-delay="120">
+        <span class="contact-social-label">Socials</span>
+        <a href="https://www.instagram.com/project_nr.13" target="_blank" rel="noopener noreferrer" class="contact-social-link">Instagram</a>
+        <a href="https://www.linkedin.com/in/nico-justin-bigler" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
+        <span class="contact-dl-label">Downloads</span>
+        <a href="assets/cv/nico-bigler-cv-german.pdf" class="contact-dl-link" target="_blank" download><span class="dl-arrow">↓</span>CV German</a>
+        <a href="assets/cv/nico-bigler-cv-english.pdf" class="contact-dl-link" target="_blank" download><span class="dl-arrow">↓</span>CV English</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-cover anim">
+        <img src="assets/covers/drp04-13_face.webp" alt="Project Nr. 13" loading="lazy"
+             onerror="this.parentElement.style.display='none'">
+      </div>
+      <div id="fs-success" style="display:none;" class="fs-message" aria-live="polite">Message received. I'll be in touch.</div>
+      <div id="fs-error" style="display:none;" class="fs-message fs-message--error" role="alert">Something went wrong. Please try again.</div>
+      <form id="contact-form" class="anim" data-delay="120">
+        <label for="field-name" class="visually-hidden">Name</label>
+        <input id="field-name" type="text" name="name" class="contact-field" placeholder="Name" autocomplete="name" required>
+        <label for="field-email" class="visually-hidden">Email</label>
+        <input id="field-email" type="email" name="email" class="contact-field" placeholder="Email" autocomplete="email" required>
+        <label for="field-message" class="visually-hidden">Message</label>
+        <textarea id="field-message" name="message" class="contact-field" rows="5" placeholder="Message" autocomplete="off" required></textarea>
+        <button type="submit" class="contact-submit">LET'S TALK →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-group">
+    <span class="foot">© All Rights Reserved. Project Nr. 13</span>
+    <a href="datenschutz.html" class="foot-legal">Datenschutz</a>
+    <a href="impressum.html" class="foot-legal">Impressum</a>
+  </div>
+  <span class="foot">Bern · Zürich · Est. 2026</span>
+  <button type="button" class="foot foot-back" id="backTop">↑ Back to Top</button>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── CURSOR ── */
+  var dot  = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  var cursorActivated = false, touchDetected = false;
+
+  document.addEventListener('touchstart', function () {
+    touchDetected = true;
+  }, { once: true, capture: true, passive: true });
+
+  document.addEventListener('mousemove', function (e) {
+    if (touchDetected) return;
+    if (!cursorActivated) {
+      cursorActivated = true;
+      rx = e.clientX; ry = e.clientY;
+      document.body.classList.add('cursor-active');
+    }
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  (function lerpRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+
+  document.querySelectorAll('a, button').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-link'); ring.classList.remove('hover-img'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-link'); });
+  });
+  document.querySelectorAll('img').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { ring.classList.add('hover-img'); ring.classList.remove('hover-link'); });
+    el.addEventListener('mouseleave', function () { ring.classList.remove('hover-img'); });
+  });
+
+  /* ── MEGA MENU ── */
+  var megaMenu = document.getElementById('megaMenu');
+  var mmLinks  = document.querySelectorAll('.mm-nav-link');
+
+  function openMenu() {
+    megaMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    mmLinks.forEach(function (l, i) { l.style.transitionDelay = (i * 60) + 'ms'; });
+  }
+  function closeMenu() {
+    megaMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    mmLinks.forEach(function (l) { l.style.transitionDelay = '0ms'; });
+  }
+
+  document.getElementById('menuOpen').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && megaMenu.classList.contains('open')) closeMenu();
+  });
+  megaMenu.addEventListener('click', function (e) { if (e.target === megaMenu) closeMenu(); });
+  mmLinks.forEach(function (l) { l.addEventListener('click', closeMenu); });
+
+  /* ── BACK TO TOP ── */
+  document.getElementById('backTop').addEventListener('click', function () {
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+  });
+
+})();
+
+/* ── SCROLL REVEAL ── */
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
+/* ── PRINT WAITLIST ── */
+(function () {
+  var form = document.getElementById('waitlist-form');
+  var msg  = document.getElementById('waitlist-msg');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.querySelector('input[type="email"]');
+    if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.className = 'form-msg err';
+      return;
+    }
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (res) {
+      if (res.ok) {
+        msg.textContent = "You're on the list. First access is yours.";
+        msg.className = 'form-msg ok';
+        form.reset();
+      } else { throw new Error(); }
+    }).catch(function () {
+      msg.textContent = 'Something went wrong. Please try again.';
+      msg.className = 'form-msg err';
+    });
+  });
+})();
+</script>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('[type="submit"]');
+    const success = document.getElementById('fs-success');
+    const error = document.getElementById('fs-error');
+    btn.disabled = true;
+    success.style.display = 'none';
+    error.style.display = 'none';
+    try {
+      const res = await fetch('https://formspree.io/f/xrevdegg', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json();
+      if (data.ok) {
+        success.style.display = 'block';
+        form.reset();
+      } else {
+        error.style.display = 'block';
+      }
+    } catch {
+      error.style.display = 'block';
+    }
+    btn.disabled = false;
+  });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Project Nr. 13",
+  "url": "https://projectnr13.ch/services.html",
+  "founder": { "@type": "Person", "name": "Nico Bigler" },
+  "areaServed": ["Switzerland", "Europe"],
+  "description": "Cover art, visual identity and poster design for artists, labels and brands, rooted in underground music culture.",
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Release Artwork" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Visual Identity" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Poster & Event Design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Presentation Design" } }
+  ]
+}
+</script>
+
+</body>
+</html>
