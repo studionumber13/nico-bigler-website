@@ -88,6 +88,7 @@ body.cursor-active #cursor-dot,body.cursor-active #cursor-ring{opacity:1;}
 .nav-link[aria-current="page"]{color:#0032FF;}
 .nav-mobile-links{display:none;}
 @media(max-width:768px){.nav-mobile-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;}}
+@media(max-width:400px){.nav-mobile-links{gap:8px}.nav-mobile-link{font-size:9px}}
 .nav-mobile-link{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:rgba(239,233,231,0.5);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
 .nav-mobile-link:hover,.nav-mobile-link[aria-current="page"]{color:#0032FF;}
 
@@ -325,7 +326,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
   </div>
   <div class="nav-mobile-links">
     <a href="services.html" class="nav-mobile-link" aria-current="page">SERVICES</a>
-    <a href="index.html#contact" class="nav-mobile-link">CONTACT</a>
+    <a href="about.html" class="nav-mobile-link">ABOUT</a>
   </div>
 </nav>
 
@@ -551,7 +552,7 @@ section{padding:clamp(64px,10vh,120px) var(--pad);border-bottom:1px solid rgba(1
         </form>
         <p class="form-msg" id="waitlist-msg" role="status" aria-live="polite"></p>
       </div>
-      <img class="reveal" src="assets/covers/drp06-13_cube.webp" alt="Limited edition print — Project Nr. 13 cover art" loading="lazy" width="800" height="800">
+      <img class="reveal" src="assets/covers/drp06-13_cube.webp" alt="Limited edition print — Project Nr. 13 cover art" loading="lazy" width="800" height="1200">
     </div>
   </section>
 
