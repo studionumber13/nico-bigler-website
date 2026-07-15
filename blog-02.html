@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="assets/images/logo.png">
 <link rel="apple-touch-icon" href="assets/images/logo.png">
-<meta name="google-site-verification" content="NX3-2JTfyi7l74XZ8cDNx4-PsS_ttDgd5kWgjPt7hPs" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thesis — Artist-Brand Collaborations | Project Nr. 13</title>
-<meta name="description" content="Bachelor Thesis, HWZ Zürich, 2025, graded 6.0. Examines how artists and brands create value together, and what both sides actually get from working together.">
+<title>Reading the Signals — Artist-Brand Fit | Project Nr. 13</title>
+<meta name="description" content="How do you know if an artist-brand collaboration is genuine before you commit? Nico Bigler examines the signals — from Murakami × Louis Vuitton to Basquiat × Tiffany.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -41,14 +40,10 @@ img{display:block;max-width:100%}
   position:fixed;pointer-events:none;z-index:99997;
   transform:translate(-50%,-50%) scale(0.667);
   display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:transform 0.25s ease,border-color 0.25s ease,
-             background 0.25s ease,opacity 0.3s ease;
+  opacity:0;transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease,opacity 0.3s ease;
 }
-@media(hover:none) and (pointer:coarse){
-  body,a,button{cursor:auto!important;}
-}
-body.cursor-active #cursor-dot,
-body.cursor-active #cursor-ring{opacity:1;}
+body.cursor-active #cursor-dot,body.cursor-active #cursor-ring{opacity:1;}
+@media(hover:none) and (pointer:coarse){body,a,button{cursor:auto!important;}}
 #cursor-ring.hover-link{transform:translate(-50%,-50%) scale(1);border-color:rgba(239,233,231,0.8)}
 #cursor-ring.hover-img{transform:translate(-50%,-50%) scale(1);background:rgba(239,233,231,0.08);border-color:rgba(239,233,231,0.5)}
 #cursor-label{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#EFE9E7;letter-spacing:0.05em;opacity:0;transition:opacity 0.2s;white-space:nowrap}
@@ -64,22 +59,15 @@ body.cursor-active #cursor-ring{opacity:1;}
 }
 #nav.scrolled{background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .nav-left,.nav-right{display:flex;align-items:center;gap:24px}
-.nav-btn{
-  font-family:'Inter',sans-serif;font-weight:500;font-size:12px;
-  color:#EFE9E7;letter-spacing:0.08em;
-}
-.nav-cv{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  color:#69626D;letter-spacing:0.08em;
-  transition:color 0.2s;
-}
-.nav-cv:hover{color:#EFE9E7}
-.nav-cv[aria-current="page"]{color:#EFE9E7;pointer-events:none}
 .nav-menu-btn{background:none;border:none;cursor:none;padding:8px;display:flex;align-items:center;}
 .nav-menu-btn svg line{stroke:#D3D3D9;transition:stroke 0.2s;}
 .nav-menu-btn:hover svg line{stroke:#0032FF;}
-.nav-back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A5B64;text-decoration:none;transition:color 0.2s;}
-.nav-back-link:hover{color:#FFFFFF;}
+.nav-back-link:link,.nav-back-link:visited{color:#5A5B64}
+.nav-back-link:hover,.nav-back-link:active{color:#EFE9E7}
+.nav-back-link{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;
+}
 .nav-center{cursor:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-center::after{
   content:'';position:absolute;top:50%;left:50%;
@@ -106,7 +94,7 @@ body.cursor-active #cursor-ring{opacity:1;}
   position:fixed;inset:0;z-index:9000;background:#000;
   display:grid;grid-template-columns:25% 45% 30%;
   opacity:0;pointer-events:none;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.4s ease;overflow-y:auto;
 }
 #megaMenu.open{opacity:1;pointer-events:all}
 .mm-col{padding:48px;height:100%}
@@ -153,157 +141,64 @@ body.cursor-active #cursor-ring{opacity:1;}
 }
 @keyframes pulse{from{opacity:0.6;}to{opacity:1.0;}}
 
-/* ── THESIS HERO ── */
-#thesis-hero{
-  padding:140px 80px 80px;background:#000;
+/* ── BLOG HERO ── */
+#blog-hero{
+  padding:140px 80px 72px;background:#000;
 }
-.thesis-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
-  text-transform:uppercase;letter-spacing:0.15em;
-  margin-bottom:24px;display:block;
+.blog-meta{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:28px;
 }
-.thesis-h1{
-  display:block;font-family:'Inter',sans-serif;font-weight:900;
-  font-size:88px;color:#EFE9E7;letter-spacing:-0.04em;line-height:0.92;text-wrap:balance;
+.blog-title{
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:clamp(2rem,4.5vw,3.75rem);color:#EFE9E7;
+  letter-spacing:-0.03em;line-height:1.1;max-width:820px;
+  margin-bottom:24px;text-wrap:balance;
 }
-.thesis-h2{
-  display:block;font-family:'Inter',sans-serif;font-weight:900;
-  font-size:88px;color:transparent;
-  -webkit-text-stroke:1px rgba(239,233,231,0.18);
-  letter-spacing:-0.04em;line-height:0.92;
+.blog-subtitle{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5A5B64;
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:56px;
 }
-.thesis-chips{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.thesis-grade{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#EFE9E7;
-  border:1px solid rgba(239,233,231,0.18);border-radius:2px;
-  padding:5px 14px;
-}
-.thesis-award{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#0032FF;
-  border:1px solid #0032FF;border-radius:2px;
-  padding:5px 14px;letter-spacing:0.08em;
-}
-.thesis-desc{
-  margin-top:28px;max-width:560px;
-  font-family:'Inter',sans-serif;font-size:17px;color:#AAABBC;line-height:1.8;
-}
-.thesis-btns{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.thesis-btn-pri{
-  background:transparent;color:#EFE9E7;padding:13px 30px;
-  border-radius:3px;border:1px solid #EFE9E7;cursor:none;
-  font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
-  text-transform:uppercase;letter-spacing:0.08em;
-  display:inline-block;
-  transition:background 0.2s,color 0.2s,transform 0.2s;
-}
-.thesis-btn-pri:hover{background:#EFE9E7;color:#000;transform:translateY(-2px)}
-.thesis-btn-sec{
-  background:transparent;color:#69626D;
-  border:1px solid var(--dim);padding:13px 30px;
-  border-radius:3px;cursor:none;
-  font-family:'Inter',sans-serif;font-weight:600;font-size:11px;
-  text-transform:uppercase;letter-spacing:0.08em;
-  display:inline-block;
-  transition:border-color 0.2s,color 0.2s;
-}
-.thesis-btn-sec:hover{border-color:#EFE9E7;color:#EFE9E7}
-.thesis-note{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  color:#69626D;margin-top:1rem;display:block;
+.blog-hero-rule{
+  border:none;border-top:1px solid #323338;
 }
 
-/* ── SHARED SECTION LABEL ── */
-.th-section-label{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
-  letter-spacing:0.15em;text-transform:uppercase;color:#69626D;margin-bottom:3rem;
+/* ── BLOG BODY ── */
+#blog-body{
+  padding:64px 80px 96px;background:#000;
 }
-
-/* ── RESEARCH QUESTION ── */
-#th-rq{background:#000;padding:clamp(5rem,10vw,9rem) 2.5rem;}
-.th-rq-text{
-  font-family:'Inter',sans-serif;font-weight:700;
-  font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.3;
-  color:#EFE9E7;max-width:900px;text-wrap:balance;
+.blog-inner{
+  max-width:680px;
 }
-
-/* ── KEY FINDINGS ── */
-#th-findings{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
-.th-findings-list{border-top:1px solid #323338;}
-.th-finding-row{
-  display:grid;grid-template-columns:80px 1fr;gap:2rem;
-  padding:2.5rem 0;border-bottom:1px solid #323338;
+.blog-section{
+  margin-bottom:52px;
 }
-.th-finding-num{
-  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
-  color:#69626D;padding-top:4px;
-}
-.th-finding-title{
-  font-family:'Inter',sans-serif;font-weight:700;
-  font-size:clamp(1.2rem,2vw,1.6rem);color:#EFE9E7;margin-bottom:0.75rem;text-wrap:balance;
-}
-.th-finding-desc{
-  font-family:'Inter',sans-serif;font-size:0.95rem;
-  color:#AAABBC;max-width:700px;line-height:1.7;
-}
-
-/* ── CASE STUDIES ── */
-#th-cases{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
-.th-cases-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:2px;margin-top:0;
-}
-.th-card{background:#090A0C;border:1px solid #323338;padding:2rem;}
-.th-card-label{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;margin-bottom:0.75rem;
-}
-.th-card-title{
-  font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:#EFE9E7;
-}
-.th-card-text{
-  font-family:'Inter',sans-serif;font-size:0.9rem;
-  color:#AAABBC;margin-top:0.75rem;line-height:1.7;
-}
-
-/* ── DALÍ QUOTE ── */
-#th-quote{background:#000;padding:clamp(5rem,10vw,9rem) 2.5rem;}
-.th-quote-text{
+.blog-section-head{
   display:block;font-family:'Inter',sans-serif;font-weight:700;
-  font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;
-  color:#EFE9E7;max-width:800px;transition:color 0.3s ease;
+  font-size:1.05rem;color:#EFE9E7;margin-bottom:20px;
 }
-.th-quote-text:hover{color:#0032FF;}
-.th-quote-attr{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
-  letter-spacing:0.15em;text-transform:uppercase;color:#69626D;margin-top:1.5rem;
+.blog-p{
+  font-family:'Inter',sans-serif;font-size:1rem;color:#AAABBC;
+  line-height:1.8;margin-bottom:20px;
 }
-
-/* ── THOUGHTS & CONTRIBUTIONS ── */
-#th-thoughts{background:#000;padding:clamp(4rem,8vw,7rem) 2.5rem;}
-.th-thoughts-subtitle{
-  font-family:'Inter',sans-serif;font-size:clamp(1rem,1.5vw,1.2rem);
-  color:#69626D;margin-bottom:4rem;display:block;
+.blog-p:last-child{margin-bottom:0}
+.blog-end-rule{
+  border:none;border-top:1px solid #323338;margin:0 0 28px;
 }
-.th-article-row{
-  display:grid;grid-template-columns:180px 1fr 120px;gap:2rem;
-  align-items:start;border-bottom:1px solid #323338;padding:2.5rem 0;
+.blog-back-link:link,.blog-back-link:visited{color:#5A5B64}
+.blog-back-link:hover,.blog-back-link:active{color:#EFE9E7}
+.blog-back-link{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.12em;
+  text-decoration:none;transition:color 0.2s;display:inline-block;
 }
-.th-article-cat{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;padding-top:4px;
+.blog-copyright{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;color:#69626D;
+  letter-spacing:0.05em;margin-top:24px;line-height:1.6;text-align:center;
 }
-.th-article-title{
-  font-family:'Inter',sans-serif;font-weight:700;
-  font-size:clamp(1.1rem,1.8vw,1.4rem);color:#EFE9E7;margin-bottom:0.5rem;
-}
-.th-article-desc{
-  font-family:'Inter',sans-serif;font-size:0.9rem;
-  color:#69626D;max-width:600px;line-height:1.7;
-}
-.th-article-status{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  text-transform:uppercase;letter-spacing:0.15em;
-  color:#69626D;text-align:right;padding-top:4px;white-space:nowrap;
+.blog-footnote{
+  font-family:'Inter',sans-serif;font-style:italic;font-size:0.9rem;color:#5A5B64;
+  line-height:1.7;margin-bottom:24px;
 }
 
 /* ── FOOTER ── */
@@ -315,48 +210,11 @@ footer{background:#000;padding:28px 48px;border-top:1px solid var(--dim);display
 .foot-legal{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(239,233,231,0.3);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
 .foot-legal:hover{color:#0032FF;}
 
-/* ── ANIM ── */
-.anim{transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
-.js-anim .anim{opacity:0;transform:translateY(28px);}
-.js-anim .anim.visible{opacity:1;transform:translateY(0)}
-
-/* ── ARTICLE CARD ── */
-.th-contrib-intro{
-  font-family:'Inter',sans-serif;font-size:clamp(1rem,1.5vw,1.1rem);
-  color:#AAABBC;max-width:620px;line-height:1.8;
-  margin-bottom:3rem;display:block;
-}
-.th-article-card{
-  border:1px solid rgba(255,255,255,0.1);padding:32px;
-  max-width:760px;transition:border-color 0.25s ease;
-}
-.th-article-card:hover{border-color:#0032FF}
-.th-article-card-label{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-  text-transform:uppercase;letter-spacing:0.15em;color:#69626D;margin-bottom:1rem;
-}
-.th-article-card-title{
-  font-family:'Inter',sans-serif;font-weight:700;
-  font-size:clamp(1.2rem,2vw,1.55rem);color:#EFE9E7;
-  line-height:1.25;margin-bottom:0.9rem;
-}
-.th-article-card-teaser{
-  font-family:'Inter',sans-serif;font-size:0.95rem;color:#AAABBC;
-  line-height:1.7;max-width:620px;margin-bottom:1.5rem;
-}
-.th-article-card-link,.th-article-card-link:link,.th-article-card-link:visited,.th-article-card-link:hover,.th-article-card-link:active{color:#0032FF}
-.th-article-card-link{
-  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
-  letter-spacing:0.08em;text-decoration:none;
-  display:inline-block;transition:opacity 0.2s;
-}
-.th-article-card-link:hover{opacity:0.7}
-
 /* ── CONTACT SECTION ── */
 .dl-arrow{color:#0032FF;margin-right:8px;}
 #contact{background:#000;min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
 .contact-left{padding:120px 80px;border-right:1px solid var(--dim);display:flex;flex-direction:column;justify-content:space-between}
-.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px}
+.contact-h{font-family:'Inter',sans-serif;font-weight:900;font-size:80px;color:#EFE9E7;letter-spacing:-0.03em;line-height:1;margin-bottom:48px;text-wrap:balance;}
 .contact-sub-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#69626D;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
 .contact-name{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block}
 .contact-email{font-family:'Inter',sans-serif;font-size:16px;color:#EFE9E7;display:block;transition:text-decoration-color 0.2s}
@@ -380,23 +238,22 @@ textarea.contact-field{resize:none}
 .fs-message--error{color:#FF3B30;}
 #fs-success{color:#0032FF;}
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .th-finding-row{grid-template-columns:1fr;}
-  .th-cases-grid{grid-template-columns:1fr;}
-  .th-article-row{grid-template-columns:1fr;}
-  .th-article-status{text-align:left;}
-}
+/* ── ANIM ── */
+.anim{transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.js-anim .anim{opacity:0;transform:translateY(28px);}
+.js-anim .anim.visible{opacity:1;transform:translateY(0)}
 
+/* ── RESPONSIVE ── */
 @media(max-width:1024px){
   #nav{padding:0 32px}
-  #thesis-hero{padding:100px 48px 64px}
+  #blog-hero{padding:100px 48px 56px}
+  #blog-body{padding:56px 48px 80px}
 }
 @media(max-width:768px){
   #nav{padding:0 20px}
   .nav-right{display:none}
-  #thesis-hero{padding:88px 20px 48px}
-  .thesis-h1,.thesis-h2{font-size:clamp(40px,11vw,64px)}
+  #blog-hero{padding:88px 20px 40px}
+  #blog-body{padding:40px 20px 64px}
   footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
   #contact{grid-template-columns:1fr}
   .contact-left{padding:56px 20px;border-right:none;border-bottom:1px solid var(--dim)}
@@ -440,8 +297,7 @@ textarea.contact-field{resize:none}
     <img src="assets/images/logo.png" alt="Project Nr. 13" style="width:56px;height:auto;display:block;">
   </a>
   <div class="nav-right">
-    <span class="nav-cv" aria-current="page">THESIS</span>
-    <a href="archive.html" class="nav-link">ARCHIVE</a>
+    <a href="thesis.html" class="nav-back-link">← THOUGHTS &amp; CONTRIBUTIONS</a>
     <a href="services.html" class="nav-link">SERVICES</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="index.html#contact" class="nav-link">CONTACT</a>
@@ -465,7 +321,7 @@ textarea.contact-field{resize:none}
       <a href="archive.html" class="mm-nav-link">Archive</a>
       <a href="services.html" class="mm-nav-link">Services</a>
       <a href="about.html" class="mm-nav-link">About</a>
-      <a href="thesis.html" class="mm-nav-link" aria-current="page">Thesis</a>
+      <a href="thesis.html" class="mm-nav-link">Thesis</a>
       <a href="index.html#contact" class="mm-nav-link">Contact</a>
     </nav>
   </div>
@@ -494,109 +350,74 @@ textarea.contact-field{resize:none}
   </div>
 </div>
 
-<!-- Section 1: Hero -->
-<section id="thesis-hero">
-  <span class="thesis-eyebrow anim">BACHELOR THESIS · HWZ ZÜRICH · 2025</span>
-  <span class="thesis-h1 anim" data-delay="60">Artist–Brand</span>
-  <span class="thesis-h2 anim" data-delay="120">Collaborations</span>
-  <div class="thesis-chips anim" data-delay="200">
-    <span class="thesis-grade">GRADE 6.0</span>
-    <span class="thesis-award">BEST THESIS AWARD 2025</span>
+<!-- Article Hero -->
+<section id="blog-hero">
+  <span class="blog-meta anim">ARTICLE 02 · JULY 2026</span>
+  <h1 class="blog-title anim" data-delay="60">Reading the Signals</h1>
+  <span class="blog-subtitle anim" data-delay="120">The third in a series exploring artist-brand collaborations.</span>
+  <hr class="blog-hero-rule">
+</section>
+
+<!-- Article Body -->
+<section id="blog-body">
+  <div class="blog-inner">
+
+    <div class="blog-section anim">
+      <p class="blog-p">I closed the last piece on a question I left open on purpose. If a collaboration only works when both sides believe the same things, how do you know the belief is real before you sign anything? I said the signals were there. This is where I show you where to look.</p>
+      <p class="blog-p">Start with the distinction that decides everything: decoration versus fusion.</p>
+      <p class="blog-p">Decoration is art applied to a product. The logo stays what it was, the artist's name goes on it in large letters, and the object becomes a more expensive version of itself. Fusion is when the artist's world and the brand's world meet and produce something neither could have made alone. The difference is not taste. It is mechanism. My thesis called art a semantic amplifier, something that transfers meaning into a brand and raises what the product is worth to the people who buy it. That transfer only happens through fusion. Decoration cannot move meaning, because there is no shared meaning to move. It just prints a name.</p>
+      <p class="blog-p">So the real question behind fit is narrow and testable: will this collaboration let meaning cross over, or only a signature?</p>
+    </div>
+
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">Two Bags, One House</span>
+      <p class="blog-p">The cleanest way to see it is two collaborations from the same house, in the same era, side by side.</p>
+      <p class="blog-p">In 2002, Marc Jacobs saw a Takashi Murakami show at the Fondation Cartier in Paris. A year later, the Monogram Multicolore walked the Louis Vuitton runway: the house monogram rebuilt in thirty-three colours. Murakami did not decorate Vuitton. He brought his own theory to it. His Superflat work was already about collapsing the wall between high art, low art and consumer culture. Putting that idea onto a luxury monogram was not a compromise of his practice. It was his practice, in public. Meaning crossed over in both directions, which is why the bags meant something beyond the leather.</p>
+      <p class="blog-p">Fifteen years later, same house. In 2017, Louis Vuitton released the Masters collection with Jeff Koons: Old Master paintings, the Mona Lisa, a Van Gogh, a Rubens, printed across the bags with each dead painter's surname stamped on in metal capitals. It began when Delphine Arnault asked Koons for a handbag collection, and he supplied images from his own Gazing Ball series. So the bags carried other, long-dead artists' work as surface pattern, mediated by a name label. Nothing crossed over. There was no shared world between Vuitton and Rubens to transfer. There was a brief, and a famous name to sign it.</p>
+      <p class="blog-p">Same brand, same price tier, same craftsmanship. The variable that changed was whether meaning could move. Everything else follows from that.</p>
+    </div>
+
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">The Honest Objection</span>
+      <p class="blog-p">Here is where most people writing this kind of piece cheat, so let me not.</p>
+      <p class="blog-p">It is easy to call Murakami a triumph and Koons a misfire now, because I know how both ended. Murakami ran for roughly twelve years and Vuitton revived it in 2025 for the twentieth anniversary with over two hundred pieces. The Koons bags were a single drop, never repeated, and turned up secondhand at steep discounts, which for Vuitton almost never happens. That is real evidence. It is also entirely in hindsight. Longevity and resale are proof, not prediction. They tell you nothing on the day you have to decide.</p>
+      <p class="blog-p">So the useful question is not what the winners had. It is what was already visible before either launched. And the honest answer is: quite a lot.</p>
+      <p class="blog-p">You could see that Murakami came from a real encounter, a show that moved a designer, not a marketing slot to fill. You could see that his existing work was about the exact tension the collaboration would sit in, so the fit was structural, not decorative. You could see that he was reworking the sacred monogram itself, not printing over it. None of that required a sales figure. The Koons project, by contrast, announced its problem in its own origin story: it started from a request for a product, and the art on it had no prior relationship to the brand at all. The tell was there at the brief stage. The resale market only confirmed it later.</p>
+      <p class="blog-p">That is the whole method. Read the origin, the overlap and the depth of control before launch. Let longevity and market simply confirm what you already suspected.</p>
+    </div>
+
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">What the Signals Look Like</span>
+      <p class="blog-p">They are legible in the story of how a collaboration came to exist.</p>
+      <p class="blog-p">Stephen Sprouse is the origin signal. Before Murakami, Jacobs put Sprouse's graffiti on the monogram in 2001, an artist he had admired since 1984. He used the work because it meant something to him personally, not because a slot needed filling. Affinity you can name before the product exists is the first thing worth trusting.</p>
+      <p class="blog-p">Daniel Arsham is the coherence signal. Across Dior, Rimowa, Tiffany, Porsche and adidas he applies one consistent idea, his fictional archaeology, every time, and treats the brand work and the gallery work as the same practice. When an artist carries one coherent world into every partner, the fit is readable in advance, because you already know what they will bring and what they will refuse.</p>
+      <p class="blog-p">And to step outside the handbag for a moment, because this is not only a Vuitton phenomenon: in 2013 Alexander McQueen marked ten years of its skull scarf by handing thirty designs to Damien Hirst. That one works on paper before it works in a shop, because the two already shared an obsession, death, symmetry, insects, the beauty in something clinical. The motifs did not have to be forced into alignment. They were already the same subject. That is what structural overlap looks like when you spot it early.</p>
+    </div>
+
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">When Fit Is Manufactured</span>
+      <p class="blog-p">The most dangerous case is not obvious mismatch. Those are easy. It is fit invented after the fact, which is the exact failure of authenticity my thesis kept circling.</p>
+      <p class="blog-p">In 2021, Tiffany built a campaign around a Basquiat painting and claimed the blue in the canvas was some kind of homage to Tiffany blue. People who actually knew Basquiat, including the person who mixed and applied that blue, rejected the claim outright. The painting had nothing to do with the brand. A values story was reverse-engineered onto an artwork to make a transaction feel like a meeting of minds. And Basquiat's work was anti-capitalist, about power and who holds it, which makes the luxury framing not just thin but backwards.</p>
+      <p class="blog-p">This is the one to watch, because it is designed to pass your test. Manufactured fit borrows the language of real fit. The defence is simple and unforgiving: cultural fit is a condition that existed before you chose the art, or it did not. It is never a story you attach afterward. If the alignment only appears in the press release, there is no alignment.</p>
+    </div>
+
+    <div class="blog-section anim" data-delay="40">
+      <span class="blog-section-head">Where I Land</span>
+      <p class="blog-p">I will say the uncomfortable part out loud, because it applies to my own work too.</p>
+      <p class="blog-p">Most of the collaborations I see proposed, and some I have been offered, would fail this on the first question. Not because the parties involved are not talented, and not because the aesthetics do not work on paper. They fail because both sides reached for the other one's name before asking whether their worlds had anything to say to each other. The reach is real. The name is real. The meaning does not move an inch.</p>
+      <p class="blog-p">That is not a harmless mistake. My thesis found that when art is used as decoration, it does not just fail to transfer meaning. It quietly undermines the credibility of both sides. The brand ends up looking like it bought relevance. The artist ends up looking like they sold access. Nobody wins the long game on that deal, even if the first-week numbers look fine.</p>
+      <p class="blog-p">What I find more interesting is the version that almost passes. A collaboration that looks like fusion from the outside, has a careful press narrative, uses the right language, and still fails because the alignment only lives in the copy. The Tiffany case is that version. It passed every surface test and collapsed the moment someone who knew the painter opened their mouth. That is the most expensive kind of mistake, because you only find out about it after the campaign is live and the people who know better have already seen it.</p>
+      <p class="blog-p">So before I commit to anything, mine or a client's, I push on one question and refuse to move past it until I have an honest answer: can meaning actually cross between these two worlds, or am I looking at a surface that is about to get a signature on it? Everything else, the origin story, the coherence of the artist's practice, the depth of creative control, the length of the relationship, is how you check that one answer is true. None of those things are the point. They are evidence.</p>
+      <p class="blog-p">Project Nr. 13 is small enough that every collaboration I take carries the whole thing on its back. I cannot afford a Koons. I do not mean the budget. I mean the error. A decoration with my name on it is not a collaboration. It is just a print job.</p>
+      <p class="blog-p">Fit is not a feeling you get in the room. It is already true, or already false, before anyone signs. You just have to be willing to read it.</p>
+    </div>
+
+    <hr class="blog-end-rule anim">
+    <p class="blog-footnote anim" data-delay="40">Next: the question underneath all of this. When scale becomes selling out, and how to tell one from the other before it is too late to take back.</p>
+    <a href="thesis.html" class="blog-back-link anim" data-delay="40">← Back to Thesis</a>
+    <p class="blog-copyright">© 2026 Nico Bigler. This article is part of an ongoing series based on research conducted for the Bachelor Thesis "Artist-Brand Collaborations". All views are my own.</p>
+
   </div>
-  <p class="thesis-desc anim" data-delay="280">An investigation into the strategic mechanisms behind artist-brand collaborations — where music, culture and brand identity converge.</p>
-  <div class="thesis-btns anim" data-delay="360">
-    <a href="assets/cv/nico-bigler-bachelorthesis-2025.pdf" target="_blank" class="thesis-btn-pri">↓ READ THESIS</a>
-  </div>
-  <span class="thesis-note anim" data-delay="440">Note: The thesis is only available in German.</span>
-</section>
-
-<!-- Section 2: Research Question -->
-<section id="th-rq">
-  <span class="th-section-label anim">Research Question</span>
-  <p class="th-rq-text anim" data-delay="80">Which economic and cultural factors determine the success of an artist-brand collaboration — and how do these collaborations influence brand perception in the luxury and mass market?</p>
-</section>
-
-<!-- Section 3: Key Findings -->
-<section id="th-findings">
-  <span class="th-section-label anim">Key Findings</span>
-  <div class="th-findings-list">
-    <div class="th-finding-row anim">
-      <span class="th-finding-num">01</span>
-      <div>
-        <h3 class="th-finding-title">Authenticity Over Aesthetics</h3>
-        <p class="th-finding-desc">Collaborations succeed when artistic integrity is preserved. The moment art becomes pure decoration, both the brand and the artist lose cultural credibility.</p>
-      </div>
-    </div>
-    <div class="th-finding-row anim" data-delay="80">
-      <span class="th-finding-num">02</span>
-      <div>
-        <h3 class="th-finding-title">Brand Fit Is Cultural, Not Just Visual</h3>
-        <p class="th-finding-desc">A credible collaboration requires value-based alignment — stylistic, ethical and cultural coherence between artist and brand, not just a matching colour palette.</p>
-      </div>
-    </div>
-    <div class="th-finding-row anim" data-delay="160">
-      <span class="th-finding-num">03</span>
-      <div>
-        <h3 class="th-finding-title">Art as Strategic Capital</h3>
-        <p class="th-finding-desc">Art functions as a semantic amplifier. It transfers meaning, elevates perceived value and creates cultural relevance that conventional marketing instruments cannot replicate.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 4: Case Studies -->
-<section id="th-cases">
-  <span class="th-section-label anim">Case Studies</span>
-  <div class="th-cases-grid">
-    <div class="th-card anim" style="background:#0D0D0D;border:1px solid rgba(239,233,231,0.18)">
-      <span class="th-card-label">LUXURY MARKET</span>
-      <h3 class="th-card-title">KAWS × Dior</h3>
-      <p class="th-card-text">A study in cultural legitimacy. KAWS brought streetwear credibility into the haute couture world — generating global media attention while testing the boundaries of luxury brand identity.</p>
-    </div>
-    <div class="th-card anim" data-delay="80">
-      <span class="th-card-label">MASS MARKET</span>
-      <h3 class="th-card-title">KAWS × Uniqlo</h3>
-      <p class="th-card-text">Democratisation of art through commerce. The collaboration made KAWS accessible to millions — sparking debate around authenticity, the sell-out discourse and the value of art at scale.</p>
-    </div>
-    <div class="th-card anim" data-delay="160">
-      <span class="th-card-label">CULTURAL CONTINUITY</span>
-      <h3 class="th-card-title">Keith Haring × Swatch</h3>
-      <p class="th-card-text">A collaboration rooted in shared values. Haring's social and political mission found a natural extension in Swatch's democratic positioning — proof that brand fit runs deeper than aesthetics.</p>
-    </div>
-    <div class="th-card anim" data-delay="240" style="border-color:rgba(239,233,231,0.2)">
-      <span class="th-card-label" style="color:#EFE9E7">TENSION BETWEEN ART AND COMMERCE</span>
-      <h3 class="th-card-title">Yayoi Kusama × Louis Vuitton</h3>
-      <p class="th-card-text">The most contested case. Critics questioned whether LVMH's commercialisation of Kusama's life work crossed into exploitation — raising fundamental questions about artistic authenticity in luxury branding.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Section 5: Dalí Quote -->
-<section id="th-quote">
-  <span class="th-quote-text anim">Intelligence without Ambition is like a Bird without Wings.</span>
-  <span class="th-quote-attr anim" data-delay="80">Salvador Dalí</span>
-</section>
-
-<!-- Section 6: Thoughts & Contributions -->
-<section id="th-thoughts">
-  <span class="th-section-label anim">Thoughts &amp; Contributions</span>
-  <p class="th-contrib-intro anim" data-delay="60">Research ends. Thinking doesn't. This is where I write about artist-brand collaborations, visual identity and the space where culture meets commerce — beyond the thesis, in my own words.</p>
-  <a href="blog-01.html" style="display:block;text-decoration:none;color:inherit">
-    <div class="th-article-card anim" data-delay="120">
-      <span class="th-article-card-label">ARTICLE 01</span>
-      <h3 class="th-article-card-title">The Other Side of the Deal</h3>
-      <p class="th-article-card-teaser">The conversation about artist-brand collaborations almost always focuses on what brands gain. The question nobody asks often enough: what does the artist actually get out of it?</p>
-      <span class="th-article-card-link">Read more →</span>
-    </div>
-  </a>
-  <a href="blog-02.html" style="display:block;text-decoration:none;color:inherit">
-    <div class="th-article-card anim" data-delay="160">
-      <span class="th-article-card-label">ARTICLE 02 · JULY 2026</span>
-      <h3 class="th-article-card-title">Reading the Signals</h3>
-      <p class="th-article-card-teaser">Brand fit is cultural, not visual. Here is how you read the signals before you commit.</p>
-      <span class="th-article-card-link">Read more →</span>
-    </div>
-  </a>
 </section>
 
 <!-- Contact -->
@@ -655,16 +476,13 @@ textarea.contact-field{resize:none}
     var ring = document.getElementById('cursor-ring');
     var mx = 0, my = 0, rx = 0, ry = 0;
     var cursorActivated = false, touchDetected = false;
-
-    document.addEventListener('touchstart', function () {
-      touchDetected = true;
-    }, { once: true, capture: true, passive: true });
+    document.addEventListener('touchstart', function(){touchDetected=true;},{once:true,capture:true,passive:true});
 
     document.addEventListener('mousemove', function (e) {
-      if (touchDetected) return;
-      if (!cursorActivated) {
-        cursorActivated = true;
-        rx = e.clientX; ry = e.clientY;
+      if(touchDetected) return;
+      if(!cursorActivated){
+        cursorActivated=true;
+        rx=e.clientX; ry=e.clientY;
         document.body.classList.add('cursor-active');
       }
       mx = e.clientX; my = e.clientY;
@@ -730,6 +548,11 @@ textarea.contact-field{resize:none}
     });
   }, { threshold: 0.1 });
   animEls.forEach(function (el) { animObs.observe(el); });
+
+  /* ── BACK TO TOP ── */
+  document.getElementById('backTop').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
 })();
 </script>
